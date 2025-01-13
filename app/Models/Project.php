@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Project extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'title',
         'description',
         'owner_id',
         'deadline',
         'specification',
-        'status'
+        'status',
+        'type'  // Add this
     ];
 
     protected $casts = [

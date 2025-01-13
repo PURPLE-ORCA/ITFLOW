@@ -1,66 +1,64 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Task;
-use App\Http\Requests\StoreTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
+use App\Models\Project;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Project $project)
     {
-        //
+        Gate::authorize('view', $project);
+        
+        return Inertia::render('Tasks/Index', [
+            'project' => $project->load('owner'),
+            'tasks' => $project->tasks()
+                ->with(['assignedUser', 'creator'])
+                ->get()
+                ->groupBy('status')
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(Request $request, Project $project)
     {
-        //
+        Gate::authorize('update', $project);
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'assigned_to' => 'required|exists:users,id',
+            'due_date' => 'nullable|date'
+        ]);
+
+        $project->tasks()->create([
+            ...$validated,
+            'status' => 'pending',
+            'created_by' => Auth::id()
+        ]);
+
+        return redirect()->back()
+            ->with('success', 'Task created successfully!');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreTaskRequest $request)
+    public function update(Request $request, Task $task)
     {
-        //
-    }
+        Gate::authorize('update', $task->project);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Task $task)
-    {
-        //
-    }
+        $validated = $request->validate([
+            'title' => 'sometimes|string|max:255',
+            'description' => 'nullable|string',
+            'status' => 'sometimes|in:pending,in_progress,completed',
+            'assigned_to' => 'sometimes|exists:users,id',
+            'due_date' => 'nullable|date'
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Task $task)
-    {
-        //
-    }
+        $task->update($validated);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateTaskRequest $request, Task $task)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Task $task)
-    {
-        //
+        return redirect()->back()
+            ->with('success', 'Task updated successfully!');
     }
 }
