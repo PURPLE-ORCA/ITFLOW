@@ -31,6 +31,7 @@ class TaskController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'assigned_to' => 'required|exists:users,id',
+            'phase' => 'required|in:analysis,design,development,testing,wrapping', 
             'due_date' => 'nullable|date'
         ]);
 
@@ -52,6 +53,7 @@ class TaskController extends Controller
             'title' => 'sometimes|string|max:255',
             'description' => 'nullable|string',
             'status' => 'sometimes|in:pending,in_progress,completed',
+            'phase' => 'sometimes|in:analysis,design,development,testing,wrapping',
             'assigned_to' => 'sometimes|exists:users,id',
             'due_date' => 'nullable|date'
         ]);

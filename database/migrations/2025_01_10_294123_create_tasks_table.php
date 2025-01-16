@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->enum('status', ['pending', 'in_progress', 'completed']);
+            $table->enum('phase', ['analyse', 'design', 'development', 'testing', 'wrapping']);
             $table->foreignId('assigned_to')->constrained('users');
             $table->foreignId('created_by')->constrained('users');
             $table->dateTime('due_date')->nullable();

@@ -92,8 +92,6 @@ class DatabaseSeeder extends Seeder
             'Deployment' => ['Deploy to staging', 'Optimize performance', 'Release to production']
         ];
 
-        $complexityLevels = ['Low', 'Medium', 'High'];
-
         foreach ($projects as $project) {
             foreach ($taskTemplates as $category => $tasks) {
                 foreach ($tasks as $task) {
@@ -102,7 +100,8 @@ class DatabaseSeeder extends Seeder
                         'title' => "{$category}: {$task}",
                         'description' => "Time to make magic happen with {$task}!",
                         'status' => ['pending', 'in_progress', 'completed'][rand(0, 2)],
-                         'assigned_to' => $users->random()->id,
+                        'phase' => ['design', 'analyse', 'development', 'testing', 'wrapping'][rand(0, 4)], 
+                        'assigned_to' => $users->random()->id,
                         'created_by' => $project->owner_id,
                         'due_date' => now()->addDays(rand(5, 30))
                     ]);
