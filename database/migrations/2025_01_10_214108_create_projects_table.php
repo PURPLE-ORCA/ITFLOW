@@ -13,9 +13,9 @@ return new class extends Migration
             $table->string('title')->default('Untitled Project');
             $table->text('description')->nullable();
             $table->foreignId('owner_id')->constrained('users');
-            $table->string('type'); // Make sure this line exists
+            $table->string('type'); // e.g. Web, Mobile, Desktop
             $table->dateTime('deadline')->nullable();
-            $table->text('specification')->nullable();
+            $table->string('file_path')->nullable(); 
             $table->enum('status', ['Active', 'Completed']);
             $table->timestamps();
         });

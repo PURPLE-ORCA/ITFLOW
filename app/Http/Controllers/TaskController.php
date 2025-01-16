@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Task;
@@ -14,12 +15,15 @@ class TaskController extends Controller
     {
         Gate::authorize('view', $project);
         
+        // Load tasks with their confirmations, assigned user, and creator
+        $tasks = $project->tasks()
+            ->with(['assignedUser', 'creator', 'confirmations.creator']) // Load confirmations and their creators
+            ->get()
+            ->groupBy('status'); // Group tasks by status
+
         return Inertia::render('Tasks/Index', [
             'project' => $project->load('owner'),
-            'tasks' => $project->tasks()
-                ->with(['assignedUser', 'creator'])
-                ->get()
-                ->groupBy('status')
+            'tasks' => $tasks,
         ]);
     }
 
@@ -29,7 +33,7 @@ class TaskController extends Controller
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
             'assigned_to' => 'required|exists:users,id',
             'phase' => 'required|in:analysis,design,development,testing,wrapping', 
             'due_date' => 'nullable|date'

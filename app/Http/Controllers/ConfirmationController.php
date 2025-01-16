@@ -3,64 +3,49 @@
 namespace App\Http\Controllers;
 
 use App\Models\Confirmation;
+use App\Models\Task;
 use App\Http\Requests\StoreConfirmationRequest;
 use App\Http\Requests\UpdateConfirmationRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ConfirmationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreConfirmationRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        // Handle file upload
+        if ($request->hasFile('file')) {
+            $validated['file_path'] = $request->file('file')->store('confirmations');
+        }
+
+        $validated['created_by'] = Auth::id();
+
+        $confirmation = Confirmation::create($validated);
+
+        // Optionally, update the task status to completed
+        $task = Task::find($validated['task_id']);
+        $task->update(['status' => 'completed']);
+
+        return redirect()->back()->with('success', 'Task confirmed successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Confirmation $confirmation)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Confirmation $confirmation)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateConfirmationRequest $request, Confirmation $confirmation)
     {
-        //
-    }
+        $validated = $request->validated();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Confirmation $confirmation)
-    {
-        //
+        // Handle file upload
+        if ($request->hasFile('file')) {
+            // Delete old file if exists
+            if ($confirmation->file_path) {
+                Storage::delete($confirmation->file_path);
+            }
+            $validated['file_path'] = $request->file('file')->store('confirmations');
+        }
+
+        $confirmation->update($validated);
+
+        return redirect()->back()->with('success', 'Confirmation updated successfully!');
     }
 }

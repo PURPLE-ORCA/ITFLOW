@@ -6,23 +6,17 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreConfirmationRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
+    public function authorize()
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
-    public function rules(): array
+    public function rules()
     {
         return [
-            //
+            'task_id' => 'required|exists:tasks,id',
+            'description' => 'required|string',
+            'file' => 'required|file|max:10240', // 10MB max
         ];
     }
 }

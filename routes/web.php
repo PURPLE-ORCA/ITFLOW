@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProjectController;
@@ -32,6 +33,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/projects/{project}/tasks', [TaskController::class, 'index'])->name('projects.tasks.index');
     Route::post('/projects/{project}/tasks', [TaskController::class, 'store'])->name('projects.tasks.store');
     Route::patch('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+
+    // Confirmations
+    Route::post('/confirmations', [ConfirmationController::class, 'store'])->name('confirmations.store');
+    Route::put('/confirmations/{confirmation}', [ConfirmationController::class, 'update'])->name('confirmations.update');
 
     // Profile routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -6,23 +6,16 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateConfirmationRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
+    public function authorize()
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
-    public function rules(): array
+    public function rules()
     {
         return [
-            //
+            'description' => 'required|string',
+            'file' => 'required|file|max:10240', // 10MB max
         ];
     }
 }

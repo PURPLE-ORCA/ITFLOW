@@ -13,9 +13,9 @@ class Project extends Model
         'description',
         'owner_id',
         'deadline',
-        'specification',
+        'file_path',
         'status',
-        'type'  // Add this
+        'type'  
     ];
 
     protected $casts = [

@@ -73,7 +73,6 @@ class ProjectController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'deadline' => 'nullable|date',
-            'specification' => 'nullable|string',
             'file' => 'nullable|file|max:10240', // Allow file uploads (max 10MB)
         ]);
     
