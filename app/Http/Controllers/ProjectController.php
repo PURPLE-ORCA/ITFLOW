@@ -72,6 +72,7 @@ class ProjectController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'type' => 'nullable|string',
             'deadline' => 'nullable|date',
             'file' => 'nullable|file|max:10240', // Allow file uploads (max 10MB)
         ]);
@@ -86,14 +87,14 @@ class ProjectController extends Controller
         // Handle file upload
         if ($request->hasFile('file')) {
             $project->update([
-                'file_path' => $request->file('file')->store('project_files'), // Store the file
+                'file_path' => $request->file('file')->store('project_files', 'public'), // Store the file
             ]);
         }
     
         // Attach the authenticated user as a manager
         $project->users()->attach(Auth::id(), ['role' => 'manager']);
     
-        return redirect()->route('projects.show', $project)
+        return redirect()->route('dashboard', $project)
             ->with('success', 'Project created successfully!');
     }
 
@@ -117,6 +118,23 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function showFile(Project $project)
+    {
+        // Ensure the user is authorized to view the file
+        Gate::authorize('view', $project);
+
+        // Get the file path
+        $filePath = storage_path('app/public/' . $project->file_path);
+
+        // Check if the file exists
+        if (!file_exists($filePath)) {
+            abort(404);
+        }
+
+        // Return the file as a response
+        return response()->file($filePath);
+    }
+    
     public function edit(Project $project)
     {
         // Authorize the user to update the project
@@ -138,9 +156,8 @@ class ProjectController extends Controller
             'title' => 'sometimes|string|max:255',
             'description' => 'nullable|string',
             'deadline' => 'nullable|date',
-            'specification' => 'nullable|string',
             'status' => 'sometimes|in:Active,Completed',
-            'file' => 'nullable|file|max:10240', // Allow file uploads (max 10MB)
+            'file_path' => 'nullable|file|max:10240', // Allow file uploads (max 10MB)
         ]);
     
         // Update the project

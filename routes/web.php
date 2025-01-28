@@ -23,6 +23,7 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/projects/{project}/file', [ProjectController::class, 'showFile'])->name('project.file');
 
     // Projects
     Route::resource('projects', ProjectController::class);

@@ -25,7 +25,7 @@ class ProjectFactory extends Factory
             'owner_id' => User::factory(),  // Generates a new user for each project
             'type' => $projectTypes[array_rand($projectTypes)],
             'deadline' => now()->addMonths(rand(1, 6)),
-            'specification' => fake()->paragraph(),
+            'file_path' => fake()->paragraph(),
             'status' => fake()->randomElement(['Active', 'Completed']),
         ];
     }

@@ -20,7 +20,7 @@ class DashboardController extends Controller
         })
         ->where('status', 'Active')
         ->with(['tasks' => function ($query) {
-            $query->latest()->limit(5);
+            $query->latest()->limit(4);
         }])
         ->limit(5)
         ->get();

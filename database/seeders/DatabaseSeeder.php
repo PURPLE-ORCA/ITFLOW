@@ -15,8 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         // Create admin user
         User::create([
-            'name' => 'Admin User',
-            'email' => 'admin@itflow.com',
+            'name' => 'Admin mohammed',
+            'email' => 'mohammed@itflow.com',
+            'password' => Hash::make('password'),
+        ]);
+        User::create([
+            'name' => 'Admin kaoutar',
+            'email' => 'kaoutar@itflow.com',
             'password' => Hash::make('password'),
         ]);
 
@@ -61,7 +66,7 @@ class DatabaseSeeder extends Seeder
                 'owner_id' => $users->random()->id,
                 'type' => $projectTypes[array_rand($projectTypes)],
                 'deadline' => now()->addMonths(rand(1, 6)),
-                'specification' => "Detailed specs for {$name} - Let's make it awesome!",
+                'file_path' => 'public/storage/project_files/itflowspecs.pdf',
                 'status' => rand(0, 1) ? 'Active' : 'Completed'
             ]);
 
