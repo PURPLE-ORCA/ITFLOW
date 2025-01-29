@@ -43,6 +43,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/projects/{project}/users/add', [ProjectController::class, 'addUserForm'])
+        ->name('projects.addUserForm');
+
+    // Handle adding a team member
+    Route::post('/projects/{project}/users', [ProjectController::class, 'addUser'])
+        ->name('projects.addUser');
+        
+        Route::delete('/projects/{project}/users/{user}', [ProjectController::class, 'removeUser'])
+    ->name('projects.removeUser');
 });
 
 require __DIR__.'/auth.php';

@@ -35,19 +35,35 @@ class ProjectController extends Controller
         ]);
     }
 
+    // app/Http/Controllers/ProjectController.php
+    public function addUserForm(Project $project)
+    {
+        Gate::authorize('update', $project); // Ensure only the Project Manager can access
+
+        return Inertia::render('Projects/AddUserForm', [
+            'project' => $project,
+        ]);
+    }
+
     public function addUser(Request $request, Project $project)
     {
         Gate::authorize('update', $project);
-
+    
         $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'role' => 'required|in:manager,developer,designer',
+            'email' => 'required|exists:users,email', // Validate that the email exists in the users table
+            'role' => 'required|in:manager,developer,designer,tester,analyst',
         ]);
-
-        // Attach the user to the project with a role
-        $project->users()->attach($validated['user_id'], ['role' => $validated['role']]);
-
-        return redirect()->back()
+    
+        // Find the user by email
+        $user = User::where('email', $validated['email'])->first();
+    
+        if (!$user) {
+            return redirect()->back()->withErrors(['email' => 'User not found.']);
+        }
+    
+        $project->users()->attach($user->id, ['role' => $validated['role']]);
+    
+        return redirect()->route('projects.show', $project)
             ->with('success', 'User added to project successfully!');
     }
 
@@ -58,7 +74,7 @@ class ProjectController extends Controller
         // Detach the user from the project
         $project->users()->detach($user->id);
 
-        return redirect()->back()
+        return redirect()->route('projects.show', $project)
             ->with('success', 'User removed from project successfully!');
     }
 
@@ -94,7 +110,7 @@ class ProjectController extends Controller
         // Attach the authenticated user as a manager
         $project->users()->attach(Auth::id(), ['role' => 'manager']);
     
-        return redirect()->route('dashboard', $project)
+        return redirect()->route('projects.show', $project)
             ->with('success', 'Project created successfully!');
     }
 
