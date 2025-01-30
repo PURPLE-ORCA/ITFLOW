@@ -29,9 +29,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('projects', ProjectController::class);
     Route::post('/projects/{project}/users', [ProjectController::class, 'addUser'])->name('projects.addUser');
     Route::delete('/projects/{project}/users/{user}', [ProjectController::class, 'removeUser'])->name('projects.removeUser');
-    // Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])
-    // ->name('projects.destroy');
-   
    
     // Tasks (nested under projects)
     Route::get('/projects/{project}/tasks', [TaskController::class, 'index'])->name('projects.tasks.index');
@@ -61,6 +58,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         
         Route::delete('/projects/{project}/users/{user}', [ProjectController::class, 'removeUser'])
     ->name('projects.removeUser');
+
+    Route::prefix('projects/{project}')->group(function () {
+        Route::get('/{phase}', [ProjectController::class, 'showPhase'])
+            ->where('phase', 'analysis|design|development|testing|wrapping') // Limit to valid phases
+            ->name('projects.phases');
+    });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__.'/auth.php'; 

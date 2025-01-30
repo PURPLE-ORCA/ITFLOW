@@ -79,13 +79,23 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        // Create additional random projects
-        Project::factory(20)->create()->each(function ($project) use ($users) {
-            $project->users()->attach(
-                $users->random(rand(3, 8))->pluck('id'),
-                ['role' => ['manager', 'developer', 'designer', 'tester', 'analyst'][rand(0, 4)]]
-            );
-        });
+// Create additional random projects - split between user 1 and 2
+$totalAdditionalProjects = 20;
+$half = $totalAdditionalProjects / 2;
+
+Project::factory($half)->create(['owner_id' => 1])->each(function ($project) use ($users) {
+    $project->users()->attach(
+        $users->random(rand(3, 8))->pluck('id'),
+        ['role' => ['manager', 'developer', 'designer', 'tester', 'analyst'][rand(0, 4)]]
+    );
+});
+
+Project::factory($half)->create(['owner_id' => 2])->each(function ($project) use ($users) {
+    $project->users()->attach(
+        $users->random(rand(3, 8))->pluck('id'),
+        ['role' => ['manager', 'developer', 'designer', 'tester', 'analyst'][rand(0, 4)]]
+    );
+});
 
         // Create tasks with various levels of complexity
         $projects = Project::all();
@@ -104,8 +114,8 @@ class DatabaseSeeder extends Seeder
                         'project_id' => $project->id,
                         'title' => "{$category}: {$task}",
                         'description' => "Time to make magic happen with {$task}!",
-                        'status' => ['pending', 'in_progress', 'completed'][rand(0, 2)],
-                        'phase' => ['design', 'analyse', 'development', 'testing', 'wrapping'][rand(0, 4)], 
+                        'status' => ['pending', 'completed'][rand(0, 1)],
+                        'phase' => ['design', 'analysis', 'development', 'testing', 'wrapping'][rand(0, 4)], 
                         'assigned_to' => $users->random()->id,
                         'created_by' => $project->owner_id,
                         'due_date' => now()->addDays(rand(5, 30))

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -35,7 +37,32 @@ class ProjectController extends Controller
         ]);
     }
 
-    // app/Http/Controllers/ProjectController.php
+    // ProjectController.php
+    public function showPhase(Project $project, $phase)
+    {    
+        // Validate the phase
+        $validPhases = ['analysis', 'design', 'development', 'testing', 'wrapping'];
+        if (!in_array($phase, $validPhases)) {
+            abort(404, 'Phase not found');
+        }
+    
+        // Convert phase to PascalCase for Inertia page resolution
+        $pageName = Str::studly($phase); // Converts 'analysis' to 'Analysis'
+    
+        // Fetch tasks for the given phase
+        $tasks = $project->tasks()->where('phase', $phase)->get();
+    
+        // Separate pending and finished tasks
+        $pendingTasks = $tasks->where('status', 'pending')->values()->all(); // Convert to array
+        $finishedTasks = $tasks->where('status', 'finished')->values()->all(); // Convert to array
+            
+        return Inertia::render("Phases/{$pageName}", [
+            'project' => $project->load('users'),
+            'pendingTasks' => $pendingTasks,
+            'finishedTasks' => $finishedTasks,
+        ]);
+    }
+    
     public function addUserForm(Project $project)
     {
         Gate::authorize('update', $project); // Ensure only the Project Manager can access

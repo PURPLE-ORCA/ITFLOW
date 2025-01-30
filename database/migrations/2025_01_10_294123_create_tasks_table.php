@@ -13,8 +13,8 @@ return new class extends Migration
             $table->foreignId('project_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->enum('status', ['pending', 'in_progress', 'completed']);
-            $table->enum('phase', ['analyse', 'design', 'development', 'testing', 'wrapping']);
+            $table->enum('status', ['pending', 'completed']);
+            $table->enum('phase', ['analysis', 'design', 'development', 'testing', 'wrapping']);
             $table->foreignId('assigned_to')->constrained('users');
             $table->foreignId('created_by')->constrained('users');
             $table->dateTime('due_date')->nullable();
