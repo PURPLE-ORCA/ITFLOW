@@ -120,7 +120,7 @@ class ProjectController extends Controller
         Gate::authorize('view', $project);
 
         // Load the project with its owner, users, and tasks
-        $project->load(['owner', 'users', 'tasks']);
+        $project->load(['owner', 'users', 'tasks.assignedUser']);
 
         return Inertia::render('Projects/Show', [
             'project' => $project,
@@ -168,25 +168,52 @@ class ProjectController extends Controller
     {
         Gate::authorize('update', $project);
     
+        // Validate the incoming request
         $validated = $request->validate([
             'title' => 'sometimes|string|max:255',
             'description' => 'nullable|string',
             'deadline' => 'nullable|date',
             'status' => 'sometimes|in:Active,Completed',
-            'file_path' => 'nullable|file|max:10240', // Allow file uploads (max 10MB)
+            'file' => 'nullable|file|max:10240', // Allow file uploads (max 10MB)
         ]);
     
-        // Update the project
+        // Update the project attributes
         $project->update($validated);
     
         // Handle file upload
         if ($request->hasFile('file')) {
-            $project->update([
-                'file_path' => $request->file('file')->store('project_files'), // Store the file
-            ]);
+            // Delete the old file if it exists
+            if ($project->file_path) {
+                $oldFilePath = storage_path('app/public/' . $project->file_path);
+                if (file_exists($oldFilePath)) {
+                    unlink($oldFilePath); // Delete the old file
+                }
+            }
+    
+            // Store the new file and update the file_path
+            $newFilePath = $request->file('file')->store('project_files', 'public');
+            $project->update(['file_path' => $newFilePath]);
         }
     
-        return redirect()->back()
+        return redirect()->route('projects.show', $project)
             ->with('success', 'Project updated successfully!');
+    }
+    public function destroy(Project $project)
+    {
+        Gate::authorize('update', $project); // Only the project manager can delete
+
+        // Delete the associated file if it exists
+        if ($project->file_path) {
+            $filePath = storage_path('app/public/' . $project->file_path);
+            if (file_exists($filePath)) {
+                unlink($filePath); // Delete the file from storage
+            }
+        }
+
+        // Delete the project
+        $project->delete();
+
+        return redirect()->route('dashboard')
+            ->with('success', 'Project deleted successfully!');
     }
 }

@@ -27,6 +27,18 @@ class TaskController extends Controller
         ]);
     }
 
+    public function create(Project $project)
+    {
+        Gate::authorize('update', $project);
+    
+        // Load the project with its users
+        $project->load('users');
+    
+        return Inertia::render('Tasks/Create', [
+            'project' => $project,
+            'users' => $project->users, 
+        ]);
+    }
     public function store(Request $request, Project $project)
     {
         Gate::authorize('update', $project);
@@ -45,8 +57,21 @@ class TaskController extends Controller
             'created_by' => Auth::id()
         ]);
 
-        return redirect()->back()
+        return redirect()->route('projects.show', $project)
             ->with('success', 'Task created successfully!');
+    }
+    public function edit(Task $task)
+    {
+        Gate::authorize('update', $task->project);
+
+        // Load the task with its assigned user and project users
+        $task->load('assignedUser');
+        $task->project->load('users');
+
+        return Inertia::render('Tasks/Edit', [
+            'task' => $task,
+            'users' => $task->project->users, // Pass the list of users to the frontend
+        ]);
     }
 
     public function update(Request $request, Task $task)
@@ -64,7 +89,17 @@ class TaskController extends Controller
 
         $task->update($validated);
 
-        return redirect()->back()
+        return redirect()->route('projects.show', $task->project)
             ->with('success', 'Task updated successfully!');
+    }
+    public function destroy(Task $task)
+    {
+        Gate::authorize('update', $task->project);
+
+        // Delete the task
+        $task->delete();
+
+        return redirect()->route('projects.show', $task->project)
+            ->with('success', 'Task deleted successfully!');
     }
 }

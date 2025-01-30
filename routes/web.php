@@ -29,11 +29,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('projects', ProjectController::class);
     Route::post('/projects/{project}/users', [ProjectController::class, 'addUser'])->name('projects.addUser');
     Route::delete('/projects/{project}/users/{user}', [ProjectController::class, 'removeUser'])->name('projects.removeUser');
-
+    // Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])
+    // ->name('projects.destroy');
+   
+   
     // Tasks (nested under projects)
     Route::get('/projects/{project}/tasks', [TaskController::class, 'index'])->name('projects.tasks.index');
     Route::post('/projects/{project}/tasks', [TaskController::class, 'store'])->name('projects.tasks.store');
+    Route::get('/projects/{project}/tasks/create', [TaskController::class, 'create'])->name('projects.tasks.create');
     Route::patch('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+    Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])
+    ->name('tasks.edit');
+    Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])
+    ->name('tasks.destroy');
 
     // Confirmations
     Route::post('/confirmations', [ConfirmationController::class, 'store'])->name('confirmations.store');

@@ -165,20 +165,6 @@ export default function Welcome({ auth }) {
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
-                                        <div class="order-1 w-5/12"></div>
-                                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-12 h-12 rounded-full">
-                                            <h1 class="mx-auto font-semibold text-lg text-yellow-300">2</h1>
-                                        </div>
-                                        <div
-                                            class="order-1 text-white border-y-2 rounded-lg shadow-lg border-cyan-200 shadow-cyan-500/50 w-5/12 px-6 py-4">
-                                            <h3 class="mb-3 font-bold text-xl">Mohammed Belachkar</h3>
-                                            <p class="text-white leading-tight text-sm">
-                                                Back-end developer specializing in cloud solutions and agile
-                                                development, ensuring the robustness and scalability of systems.
-                                            </p>
-                                        </div>
-                                    </div>
                                     <div class="mb-8 flex justify-between items-center w-full right-timeline">
                                         <div class="order-1 w-5/12"></div>
                                         <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-12 h-12 rounded-full">
