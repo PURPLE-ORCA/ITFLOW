@@ -24,6 +24,16 @@ const Sidebar = () => {
                     </Link>
                 </li>
 
+                <li className="w-full group">
+                    <Link
+                        href={route('projects.show', { project: projectId })}
+                        className="flex items-center p-2 text-yellow-400 hover:text-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-sm shadow-yellow-400 hover:shadow-lg hover:shadow-blue-700 rounded-md"
+                    >
+                        <i className='bx bxs-folder-open text-2xl ml-2'></i>
+                        <span className="ml-4 text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">Project Details</span>
+                    </Link>
+                </li>
+
                 {/* Dynamically Generated Link for Analysis Phase */}
                 <li className="w-full group">
                     <Link
