@@ -54,7 +54,7 @@ class ProjectController extends Controller
     
         // Separate pending and finished tasks
         $pendingTasks = $tasks->where('status', 'pending')->values()->all(); // Convert to array
-        $finishedTasks = $tasks->where('status', 'finished')->values()->all(); // Convert to array
+        $finishedTasks = $tasks->where('status', 'completed')->values()->all(); // Convert to array
             
         return Inertia::render("Phases/{$pageName}", [
             'project' => $project->load('users'),

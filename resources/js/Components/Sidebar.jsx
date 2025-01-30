@@ -35,6 +35,45 @@ const Sidebar = () => {
                     </Link>
                 </li>
 
+                <li className="w-full group">
+                    <Link
+                        href={route('projects.phases', { project: projectId, phase: 'design' })}
+                        className="flex items-center p-2 text-yellow-400 hover:text-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-sm shadow-yellow-400 hover:shadow-lg hover:shadow-blue-700 rounded-md"
+                    >
+                        <i className='bx bxs-palette text-2xl ml-2'></i>
+                        <span className="ml-4 text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">Design</span>
+                    </Link>
+                </li>
+
+                <li className="w-full group">
+                    <Link
+                        href={route('projects.phases', { project: projectId, phase: 'development' })}
+                        className="flex items-center p-2 text-yellow-400 hover:text-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-sm shadow-yellow-400 hover:shadow-lg hover:shadow-blue-700 rounded-md"
+                    >
+                        <i className='bx bx-code-alt text-2xl ml-2'></i>
+                        <span className="ml-4 text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">Development</span>
+                    </Link>
+                </li>
+                <li className="w-full group">
+                    <Link
+                        href={route('projects.phases', { project: projectId, phase: 'testing' })}
+                        className="flex items-center p-2 text-yellow-400 hover:text-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-sm shadow-yellow-400 hover:shadow-lg hover:shadow-blue-700 rounded-md"
+                    >
+                        <i className='bx bxs-bug text-2xl ml-2'></i>
+                        <span className="ml-4 text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">Testing</span>
+                    </Link>
+                </li>
+                <li className="w-full group">
+                    <Link
+                        href={route('projects.phases', { project: projectId, phase: 'wrapping' })}
+                        className="flex items-center p-2 text-yellow-400 hover:text-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-sm shadow-yellow-400 hover:shadow-lg hover:shadow-blue-700 rounded-md"
+                    >
+                        <i className='bx bxs-package text-2xl ml-2'></i>
+                        <span className="ml-4 text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">Wrapping</span>
+                    </Link>
+                </li>
+
+
                 {/* Profile Section */}
                 <li className="w-full group flex flex-col items-center mt-auto px-2 py-4">
                     <div className="flex items-center w-full">

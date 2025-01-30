@@ -2,7 +2,7 @@ import React from 'react';
 import ProjectLayout from '@/Layouts/ProjectLayout';
 import Tasks from '@/Components/Tasks';
 
-const Analysis = ({ project, pendingTasks, finishedTasks }) => {
+const Wrapping = ({ project, pendingTasks, finishedTasks }) => {
   const pendingTasksArray = Array.isArray(pendingTasks)
     ? pendingTasks
     : Object.values(pendingTasks || {});
@@ -10,10 +10,10 @@ const Analysis = ({ project, pendingTasks, finishedTasks }) => {
 
   return (
     <ProjectLayout project={project} pendingTasks={pendingTasksArray} finishedTasks={finishedTasks}>
-      <h2 className='text-4xl'>Analysis Phase</h2>
+      <h2 className='text-4xl'>Wrapping Phase</h2>
       <Tasks />
     </ProjectLayout>
   );
 };
 
-export default Analysis;
+export default Wrapping;
