@@ -43,4 +43,13 @@ class Task extends Model
     {
         return $this->hasMany(Confirmation::class);
     }
+
+    public function confirmation()
+{
+    return $this->hasOne(Confirmation::class);
+}
+public function createdByUser()
+{
+    return $this->belongsTo(User::class, 'created_by');
+}
 }

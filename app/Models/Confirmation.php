@@ -25,4 +25,9 @@ class Confirmation extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+    // In Confirmation.php
+public function createdByUser()
+{
+    return $this->belongsTo(User::class, 'created_by');
+}
 }

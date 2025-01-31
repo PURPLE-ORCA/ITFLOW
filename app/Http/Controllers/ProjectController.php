@@ -50,8 +50,11 @@ class ProjectController extends Controller
         $pageName = Str::studly($phase); // Converts 'analysis' to 'Analysis'
     
         // Fetch tasks for the given phase
-        $tasks = $project->tasks()->where('phase', $phase)->get();
-    
+        $tasks = $project->tasks()
+        ->where('phase', $phase)
+        ->with(['confirmation', 'confirmation.createdByUser'])
+        ->get();
+
         // Separate pending and finished tasks
         $pendingTasks = $tasks->where('status', 'pending')->values()->all(); // Convert to array
         $finishedTasks = $tasks->where('status', 'completed')->values()->all(); // Convert to array

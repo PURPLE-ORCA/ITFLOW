@@ -42,10 +42,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])
     ->name('tasks.destroy');
 
-    // Confirmations
-    Route::post('/confirmations', [ConfirmationController::class, 'store'])->name('confirmations.store');
-    Route::put('/confirmations/{confirmation}', [ConfirmationController::class, 'update'])->name('confirmations.update');
-
     // Profile routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -66,6 +62,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->where('phase', 'analysis|design|development|testing|wrapping') // Limit to valid phases
             ->name('projects.phases');
     });
+
+    // Add this to your web.php routes file
+Route::get('/confirmations/create/{task}', [ConfirmationController::class, 'create'])
+->name('confirmations.create');
+Route::post('/confirmations/{task}', [ConfirmationController::class, 'store'])
+    ->name('confirmations.store');
 });
 
 require __DIR__.'/auth.php'; 
