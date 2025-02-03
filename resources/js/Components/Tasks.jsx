@@ -51,8 +51,8 @@ const Tasks = () => {
                     <div className="flex items-center space-x-4 text-sm">
                       <div className="flex items-center text-gray-500">
                         <UserCircleIcon className="w-4 h-4 mr-1.5" />
-                        <span>{task.assigned_to || 'Unassigned'}</span>
-                      </div>
+                        <span>Assigned to : <span>{task.assigned_user?.name || 'Unassigned'}</span></span>
+                        </div>
                       <div className="flex items-center text-gray-500">
                         <CalendarIcon className="w-4 h-4 mr-1.5" />
                         <span>{task.due_date ? formatDueDate(task.due_date) : 'No deadline'}</span>

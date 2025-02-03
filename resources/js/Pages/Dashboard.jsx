@@ -43,13 +43,6 @@ export default function Dashboard() {
                                 <PlusCircleIcon className="w-5 h-5 mr-2" />
                                 New Project
                             </Link>
-                            <Link
-                                href={route('projects.index')} // Changed from projects.show to projects.index
-                                className="flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                            >
-                                View All
-                                <ArrowRightIcon className="w-4 h-4 ml-2" />
-                            </Link>
                         </div>
                     </div>
                     

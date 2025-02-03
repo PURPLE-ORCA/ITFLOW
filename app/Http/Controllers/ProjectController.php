@@ -52,7 +52,7 @@ class ProjectController extends Controller
         // Fetch tasks for the given phase
         $tasks = $project->tasks()
         ->where('phase', $phase)
-        ->with(['confirmation', 'confirmation.createdByUser'])
+        ->with(['assignedUser' , 'confirmation', 'confirmation.createdByUser'])
         ->get();
 
         // Separate pending and finished tasks
