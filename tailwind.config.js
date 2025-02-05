@@ -11,13 +11,21 @@ export default {
         './resources/js/**/*.jsx',
     ],
 
+
     theme: {
         extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-            },
+          transformStyle: {
+            "3d": "preserve-3d",
+          },
+          perspective: {
+            "50em": "50em",
+          },
+          boxShadow: {
+            "inner-glow": "inset 0 0 0.5em #000d",
+            "inner-glow-blue": "inset 0 0 0.5em rgba(34, 0, 249, 0.936), 0 0 5px #000000",
+          },
         },
-    },
+      },
 
     plugins: [forms],
 };

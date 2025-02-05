@@ -6,10 +6,11 @@ import { UserCircleIcon, CalendarIcon, DocumentTextIcon, TrashIcon, PencilSquare
 
 const Show = ({ project, auth }) => {
   const isProjectManager = project.owner.id === auth.user.id;
-
-  // State for removing a user
   const [showUserConfirmationModal, setShowUserConfirmationModal] = useState(false);
   const [userToRemove, setUserToRemove] = useState(null);
+  const [showTaskConfirmationModal, setShowTaskConfirmationModal] = useState(false);
+  const [taskToRemove, setTaskToRemove] = useState(null);
+  const [showDeleteConfirmationModal, setShowDeleteConfirmationModal] = useState(false);
 
   const handleRemoveUser = (user) => {
     setUserToRemove(user);
@@ -27,10 +28,6 @@ const Show = ({ project, auth }) => {
     }
   };
 
-  // State for deleting a task
-  const [showTaskConfirmationModal, setShowTaskConfirmationModal] = useState(false);
-  const [taskToRemove, setTaskToRemove] = useState(null);
-
   const handleRemoveTask = (task) => {
     setTaskToRemove(task);
     setShowTaskConfirmationModal(true);
@@ -46,245 +43,229 @@ const Show = ({ project, auth }) => {
       });
     }
   };
-  // Date formatting function
+
   const formatDate = (dateString) => {
     const options = { day: 'numeric', month: 'short', year: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  const [showDeleteConfirmationModal, setShowDeleteConfirmationModal] = useState(false);
-
   return (
     <ProjectLayout>
-      <div className="max-w-4xl mx-auto space-y-8">
-        {/* Project Header */}
-        <div className="space-y-4">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-yellow-600 to-blue-600 bg-clip-text text-transparent">
-            {project.title}
-          </h1>
-          <p className="text-gray-200 text-lg leading-relaxed">{project.description}</p>
-        </div>
-
-        {/* Project Metadata */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold text-yellow-300 flex items-center">
-                <DocumentTextIcon className="w-6 h-6 mr-2" />
-                Project Details
-              </h2>
+      <div className=" ">
+         {/* Background overlay */}
+            <div
+                className="fixed bottom-0 right-0 w-1/2 h-full bg-gradient-to-r from-[#FDC03E] to-[#FDCD65] transition-all duration-800 ease-in-out -z-10"
+                style={{clipPath: 'polygon(52% 0, 100% 0, 100% 100%, 0% 100%)'}}
+            ></div>
+        {/* Top Banner */}
+        <div className=" text-white">
+          <div className="max-w-7xl mx-auto px-4 py-8">
+            <div className="flex justify-between items-center">
+              <h1 className="text-4xl font-bold">{project.title}</h1>
               {isProjectManager && (
-                <div className="flex space-x-2">
+                <div className="flex gap-2">
                   <Link
                     href={route('projects.edit', { project: project.id })}
-                    className="p-2 bg-yellow-400/90 hover:bg-yellow-500 rounded-lg transition-colors"
+                    className="p-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
                   >
-                    <PencilSquareIcon className="w-5 h-5 text-gray-900" />
+                    <PencilSquareIcon className="w-5 h-5" />
                   </Link>
                   <button
                     onClick={() => setShowDeleteConfirmationModal(true)}
-                    className="p-2 bg-red-500/90 hover:bg-red-600 rounded-lg transition-colors"
+                    className="p-2 bg-red-500/80 hover:bg-red-500 rounded-lg transition-colors"
                   >
-                    <TrashIcon className="w-5 h-5 text-white" />
+                    <TrashIcon className="w-5 h-5" />
                   </button>
                 </div>
               )}
             </div>
-            <div className="space-y-3 text-gray-200">
-              <div className="flex items-center space-x-2">
-                <UserCircleIcon className="w-5 h-5 text-yellow-400" />
-                <span><strong>Owner:</strong> {project.owner.name}</span>
+            <p className="mt-2 text-white/80">{project.description}</p>
+          </div>
+        </div>
+
+        {/* Project Info Bar */}
+        <div className="bg-gray-800 border-b border-gray-700">
+          <div className="max-w-7xl mx-auto px-4 py-4">
+            <div className="flex flex-wrap gap-6 text-sm">
+              <div className="flex items-center gap-2">
+                <UserCircleIcon className="w-5 h-5 text-violet-400" />
+                <span className="text-gray-400">Owner:</span>
+                <span className="text-white">{project.owner.name}</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <span className="w-5 h-5 text-center">📋</span>
-                <span><strong>Type:</strong> {project.type}</span>
+              <div className="flex items-center gap-2">
+                <DocumentTextIcon className="w-5 h-5 text-violet-400" />
+                <span className="text-gray-400">Type:</span>
+                <span className="text-white">{project.type}</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <CalendarIcon className="w-5 h-5 text-yellow-400" />
-                <span><strong>Deadline:</strong> {project.deadline ? formatDate(project.deadline) : 'No deadline'}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <span className="w-5 h-5 text-center">📌</span>
-                <span>
-                  <strong>Status:</strong> 
-                  <span className="ml-2 px-3 py-1 text-sm bg-white/20 rounded-full">{project.status}</span>
+              <div className="flex items-center gap-2">
+                <CalendarIcon className="w-5 h-5 text-violet-400" />
+                <span className="text-gray-400">Deadline:</span>
+                <span className="text-white">
+                  {project.deadline ? formatDate(project.deadline) : 'No deadline'}
                 </span>
               </div>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-violet-400" />
+                <span className="text-gray-400">Status:</span>
+                <span className="text-white">{project.status}</span>
+              </div>
+              {project.file_path && (
+                <a
+                  href={route('project.file', { project: project.id })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-3 py-1 bg-violet-600 hover:bg-violet-700 rounded-full transition-colors ml-auto"
+                >
+                  <DocumentTextIcon className="w-4 h-4" />
+                  <span>View Docs</span>
+                </a>
+              )}
             </div>
           </div>
-
-          {/* File Attachment */}
-          {project.file_path && (
-            <div className="p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20">
-              <h2 className="text-xl font-semibold text-yellow-300 mb-4 flex items-center">
-                <DocumentTextIcon className="w-6 h-6 mr-2" />
-                Project Specification
-              </h2>
-              <a
-                href={route('project.file', { project: project.id })}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-4 py-2 bg-blue-600/90 hover:bg-blue-700 rounded-lg transition-colors text-white"
-              >
-                <span className="mr-2">📄</span>
-                View PDF Document
-              </a>
-            </div>
-          )}
         </div>
 
-        {/* Team Members Section */}
-        <div className="p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-yellow-300 flex items-center">
-              <UserCircleIcon className="w-6 h-6 mr-2" />
-              Team Members ({project.users.length})
-            </h2>
-            {isProjectManager && (
-              <Link
-                href={route('projects.addUserForm', { project: project.id })}
-                className="flex items-center px-4 py-2 bg-yellow-400/90 hover:bg-yellow-500 rounded-lg transition-colors text-gray-900"
-              >
-                <PlusCircleIcon className="w-5 h-5 mr-2" />
-                Add Member
-              </Link>
-            )}
-          </div>
-          <ul className="space-y-3">
-            {project.users.map((user) => (
-              <li 
-                key={user.id}
-                className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl transition-colors flex items-center justify-between"
-              >
-                <div className="space-y-1">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-gray-200 font-medium">{user.name}</span>
-                    <span className="px-2 py-1 text-xs font-medium bg-yellow-400/20 text-yellow-300 rounded-full">
-                      {user.pivot.role}
-                    </span>
-                  </div>
-                  <div className="text-sm text-gray-400 flex items-center space-x-2">
-                    <span>🆔 {user.email}</span>
-                  </div>
-                </div>
+        {/* Main Content */}
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Team Members Column */}
+            <div className="lg:w-1/3 space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-white">Team Members</h2>
                 {isProjectManager && (
-                  <button
-                    onClick={() => handleRemoveUser(user)}
-                    className="p-2 hover:bg-red-500/20 rounded-lg transition-colors text-red-400 hover:text-red-300"
+                  <Link
+                    href={route('projects.addUserForm', { project: project.id })}
+                    className="p-2 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors"
                   >
-                    <TrashIcon className="w-5 h-5" />
-                  </button>
+                    <PlusCircleIcon className="w-5 h-5" />
+                  </Link>
                 )}
-              </li>
-            ))}
-          </ul>
-        </div>
+              </div>
 
-        {/* Tasks Section */}
-        <div className="p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-yellow-300 flex items-center">
-              📋 Tasks ({project.tasks.length})
-            </h2>
-            {isProjectManager && (
-              <Link
-                href={route('projects.tasks.create', { project: project.id })}
-                className="flex items-center px-4 py-2 bg-yellow-400/90 hover:bg-yellow-500 rounded-lg transition-colors text-gray-900"
-              >
-                <PlusCircleIcon className="w-5 h-5 mr-2" />
-                New Task
-              </Link>
-            )}
-          </div>
-          <ul className="space-y-4">
-            {project.tasks.map((task) => (
-              <li 
-                key={task.id}
-                className="p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 transition-all"
-              >
-                <div className="flex justify-between items-start">
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-medium text-gray-200">{task.title}</h3>
-                    {task.description && (
-                      <p className="text-gray-400 text-sm">{task.description}</p>
-                    )}
-                    <div className="flex flex-wrap gap-3 text-sm">
-                      <div className="flex items-center space-x-1 bg-blue-500/20 px-2 py-1 rounded-full">
-                        <span>📌</span>
-                        <span className="text-blue-300">{task.status}</span>
+              <div className="bg-gray-800 rounded-xl">
+                <div className="max-h-[600px] overflow-y-auto p-4 space-y-3">
+                  {project.users.map((user) => (
+                    <div
+                      key={user.id}
+                      className="group bg-gray-700/50 hover:bg-gray-700 rounded-lg p-4 transition-all"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="text-white font-medium">{user.name}</div>
+                          <div className="text-sm text-violet-300">{user.pivot.role}</div>
+                          <div className="text-xs text-gray-400 mt-1">{user.email}</div>
+                        </div>
+                        {isProjectManager && (
+                          <button
+                            onClick={() => handleRemoveUser(user)}
+                            className="opacity-0 group-hover:opacity-100 p-2 hover:bg-red-500/20 rounded-lg text-red-400 transition-opacity"
+                          >
+                            <TrashIcon className="w-5 h-5" />
+                          </button>
+                        )}
                       </div>
-                      <div className="flex items-center space-x-1 bg-purple-500/20 px-2 py-1 rounded-full">
-                        <span>📂</span>
-                        <span className="text-purple-300">{task.phase}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Tasks Column */}
+            <div className="lg:w-2/3 space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-white">Project Tasks</h2>
+                {isProjectManager && (
+                  <Link
+                    href={route('projects.tasks.create', { project: project.id })}
+                    className="p-2 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors"
+                  >
+                    <PlusCircleIcon className="w-5 h-5" />
+                  </Link>
+                )}
+              </div>
+
+              <div className="bg-gray-800 rounded-xl">
+                <div className="max-h-[600px] overflow-y-auto p-4 space-y-3">
+                  {project.tasks.map((task) => (
+                    <div
+                      key={task.id}
+                      className="group bg-gray-700/50 hover:bg-gray-700 rounded-lg p-4 transition-all"
+                    >
+                      <div className="flex justify-between items-start mb-3">
+                        <div>
+                          <h3 className="text-lg font-medium text-white">{task.title}</h3>
+                          {task.description && (
+                            <p className="text-gray-400 text-sm mt-1">{task.description}</p>
+                          )}
+                        </div>
+                        {isProjectManager && (
+                          <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <Link
+                              href={route('tasks.edit', { task: task.id })}
+                              className="p-2 hover:bg-violet-500/20 rounded-lg text-violet-400"
+                            >
+                              <PencilSquareIcon className="w-5 h-5" />
+                            </Link>
+                            <button
+                              onClick={() => handleRemoveTask(task)}
+                              className="p-2 hover:bg-red-500/20 rounded-lg text-red-400"
+                            >
+                              <TrashIcon className="w-5 h-5" />
+                            </button>
+                          </div>
+                        )}
                       </div>
-                      <div className="flex items-center space-x-1 bg-green-500/20 px-2 py-1 rounded-full">
-                        <UserCircleIcon className="w-4 h-4 text-green-300" />
-                        <span className="text-green-300">
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        <span className="px-3 py-1 bg-violet-500/20 text-violet-300 rounded-full text-sm">
+                          {task.status}
+                        </span>
+                        <span className="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">
+                          {task.phase}
+                        </span>
+                        <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">
                           {task.assigned_user?.name || 'Unassigned'}
                         </span>
-                      </div>
-                      <div className="flex items-center space-x-1 bg-yellow-500/20 px-2 py-1 rounded-full">
-                        <CalendarIcon className="w-4 h-4 text-yellow-300" />
-                        <span className="text-yellow-300">
+                        <span className="px-3 py-1 bg-violet-500/20 text-violet-300 rounded-full text-sm">
                           {task.due_date ? formatDate(task.due_date) : 'No deadline'}
                         </span>
                       </div>
                     </div>
-                  </div>
-                  {isProjectManager && (
-                    <div className="flex space-x-2">
-                      <Link
-                        href={route('tasks.edit', { task: task.id })}
-                        className="p-2 hover:bg-yellow-500/20 rounded-lg transition-colors text-yellow-400"
-                      >
-                        <PencilSquareIcon className="w-5 h-5" />
-                      </Link>
-                      <button
-                        onClick={() => handleRemoveTask(task)}
-                        className="p-2 hover:bg-red-500/20 rounded-lg transition-colors text-red-400"
-                      >
-                        <TrashIcon className="w-5 h-5" />
-                      </button>
-                    </div>
-                  )}
+                  ))}
                 </div>
-              </li>
-            ))}
-          </ul>
+              </div>
+            </div>
+          </div>
         </div>
 
-  {/* Confirmation Modal for Removing a User */}
-  <ConfirmationModal
-        isOpen={showUserConfirmationModal}
-        onClose={() => setShowUserConfirmationModal(false)}
-        onConfirm={confirmRemoveUser}
-        title="Confirm Removal"
-        message={`Are you sure you want to remove ${userToRemove?.name} from the project?`}
-      />
+        {/* Modals */}
+        <ConfirmationModal
+          isOpen={showUserConfirmationModal}
+          onClose={() => setShowUserConfirmationModal(false)}
+          onConfirm={confirmRemoveUser}
+          title="Confirm Removal"
+          message={`Are you sure you want to remove ${userToRemove?.name} from the project?`}
+        />
 
-      {/* Confirmation Modal for Deleting a Task */}
-      <ConfirmationModal
-        isOpen={showTaskConfirmationModal}
-        onClose={() => setShowTaskConfirmationModal(false)}
-        onConfirm={confirmRemoveTask}
-        title="Confirm Deletion"
-        message={`Are you sure you want to delete the task "${taskToRemove?.title}"?`}
-      />
+        <ConfirmationModal
+          isOpen={showTaskConfirmationModal}
+          onClose={() => setShowTaskConfirmationModal(false)}
+          onConfirm={confirmRemoveTask}
+          title="Confirm Deletion"
+          message={`Are you sure you want to delete the task "${taskToRemove?.title}"?`}
+        />
 
-      {/* Confirmation Modal for Deleting a Project */}
-      <ConfirmationModal
-        isOpen={showDeleteConfirmationModal}
-        onClose={() => setShowDeleteConfirmationModal(false)}
-        onConfirm={() => {
-          router.delete(route('projects.destroy', { project: project.id }), {
-            onSuccess: () => {
-              setShowDeleteConfirmationModal(false);
-            },
-          });
-        }}
-        title="Confirm Deletion"
-        message={`Are you sure you want to delete the project "${project.title}"?`}
-      />
+        <ConfirmationModal
+          isOpen={showDeleteConfirmationModal}
+          onClose={() => setShowDeleteConfirmationModal(false)}
+          onConfirm={() => {
+            router.delete(route('projects.destroy', { project: project.id }), {
+              onSuccess: () => {
+                setShowDeleteConfirmationModal(false);
+              },
+            });
+          }}
+          title="Confirm Deletion"
+          message={`Are you sure you want to delete the project "${project.title}"?`}
+        />
       </div>
     </ProjectLayout>
   );

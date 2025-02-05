@@ -14,9 +14,9 @@ const Tasks = () => {
   };
 
   const formatCompletionDate = (dateString) => {
-    const options = { 
-      day: 'numeric', 
-      month: 'short', 
+    const options = {
+      day: 'numeric',
+      month: 'short',
       year: 'numeric',
       hour: '2-digit',
       minute: '2-digit'
@@ -34,11 +34,11 @@ const Tasks = () => {
             Pending Tasks ({pendingTasks.length})
           </h3>
         </div>
-        
+
         <ul className="space-y-3">
           {pendingTasks.length > 0 ? (
             pendingTasks.map((task) => (
-              <li 
+              <li
                 key={task.id}
                 className="group p-4 bg-white rounded-lg border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all duration-200"
               >
@@ -65,7 +65,7 @@ const Tasks = () => {
                   <ClockIcon className="w-5 h-5 text-red-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                   {task.assigned_to === user.id && (
               <div className="mt-2">
-                <Link 
+                <Link
                   href={route('confirmations.create', { task: task.id })}
                   className="text-sm text-green-600 hover:text-green-800 flex items-center"
                 >
@@ -97,7 +97,7 @@ const Tasks = () => {
         <ul className="space-y-3">
           {finishedTasks.length > 0 ? (
             finishedTasks.map((task) => (
-              <li 
+              <li
                 key={task.id}
                 className="group p-4 bg-white rounded-lg border border-green-100 hover:border-green-200 hover:shadow-sm transition-all duration-200"
               >
@@ -121,23 +121,23 @@ const Tasks = () => {
 
                         {task.confirmation.file_path && (
                           <div className="flex items-center">
-                            <a 
+                            <a
                               href={`/storage/${task.confirmation.file_path}`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-indigo-600 hover:text-indigo-800 flex items-center"
                             >
-                              <svg 
-                                className="w-4 h-4 mr-1.5" 
-                                fill="none" 
-                                stroke="currentColor" 
+                              <svg
+                                className="w-4 h-4 mr-1.5"
+                                fill="none"
+                                stroke="currentColor"
                                 viewBox="0 0 24 24"
                               >
-                                <path 
-                                  strokeLinecap="round" 
-                                  strokeLinejoin="round" 
-                                  strokeWidth={2} 
-                                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                                 />
                               </svg>
                               View Attachment
