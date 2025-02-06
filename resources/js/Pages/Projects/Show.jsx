@@ -51,40 +51,45 @@ const Show = ({ project, auth }) => {
 
   return (
     <ProjectLayout>
-      <div className=" ">
-         {/* Background overlay */}
-            <div
-                className="fixed bottom-0 right-0 w-1/2 h-full bg-gradient-to-r from-[#FDC03E] to-[#FDCD65] transition-all duration-800 ease-in-out -z-10"
-                style={{clipPath: 'polygon(52% 0, 100% 0, 100% 100%, 0% 100%)'}}
-            ></div>
-        {/* Top Banner */}
-        <div className=" text-white">
-          <div className="max-w-7xl mx-auto px-4 py-8">
-            <div className="flex justify-between items-center">
-              <h1 className="text-4xl font-bold">{project.title}</h1>
-              {isProjectManager && (
-                <div className="flex gap-2">
-                  <Link
-                    href={route('projects.edit', { project: project.id })}
-                    className="p-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
-                  >
-                    <PencilSquareIcon className="w-5 h-5" />
-                  </Link>
-                  <button
-                    onClick={() => setShowDeleteConfirmationModal(true)}
-                    className="p-2 bg-red-500/80 hover:bg-red-500 rounded-lg transition-colors"
-                  >
-                    <TrashIcon className="w-5 h-5" />
-                  </button>
-                </div>
-              )}
-            </div>
-            <p className="mt-2 text-white/80">{project.description}</p>
-          </div>
+      <div className="font-poppins dark:bg-gradient-to-br dark:from-blue-900 dark:via-black dark:to-blue-950 min-h-screen dark:text-white p-5 h-auto sm:md:w-auto">
+        {/* Background overlay */}
+        <div id="back"
+          className="fixed bottom-0 right-0 w-2/6 h-full bg-gradient-to-r from-[#FDCD65] to-[#FDC03E] transition-all duration-800 ease-in-out -z-10"
+          style={{ clipPath: 'circle(50% at 100% 50%)' }}></div>
+
+       {/* Top Banner */}
+<div className="text-white mb-8">
+  <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="flex justify-between items-center">
+      <div>
+        <h1 className="text-4xl  font-bold bg-gradient-to-r from-[#FFD700] to-blue-200 bg-clip-text text-transparent">Project Details</h1>
+        <p className=" text-gray-300 mt-4 text-lg">Explorez les détails de votre projet avec des sections transparentes pour une gestion efficace des membres de l'équipe et des tâches.</p>
+
+      </div>
+      {isProjectManager && (
+        <div className="flex gap-2">
+          <Link
+            href={route('projects.edit', { project: project.id })}
+            className="p-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
+          >
+            <PencilSquareIcon className="w-5 h-5" />
+          </Link>
+          <button
+            onClick={() => setShowDeleteConfirmationModal(true)}
+            className="p-2 bg-red-500/80 hover:bg-red-500 rounded-lg transition-colors"
+          >
+            <TrashIcon className="w-5 h-5" />
+          </button>
         </div>
+      )}
+    </div>
+  </div>
+</div>
+
 
         {/* Project Info Bar */}
-        <div className="bg-gray-800 border-b border-gray-700">
+        <div className="bg-gradient-to-br  from-[#FDC03E] to-blue-800 p-1  rounded-xl">
+          <div class="bg-black/90 backdrop-blur-xl rounded-lg p-6">
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex flex-wrap gap-6 text-sm">
               <div className="flex items-center gap-2">
@@ -122,14 +127,18 @@ const Show = ({ project, auth }) => {
               )}
             </div>
           </div>
+
+          </div>
         </div>
 
         {/* Main Content */}
         <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className="flex flex-col lg:flex-row gap-8">
+          <div className="flex flex-col lg:flex-row gap-8 ">
             {/* Team Members Column */}
-            <div className="lg:w-1/3 space-y-4">
-              <div className="flex items-center justify-between">
+            <div className="lg:w-1/3 space-y-4 bg-gradient-to-br  from-[#FDC03E] to-blue-800 p-1 rounded-xl" >
+            <div class="bg-black/85 backdrop-blur-xl rounded-lg p-6">
+
+              <div className="flex items-center justify-between ">
                 <h2 className="text-xl font-semibold text-white">Team Members</h2>
                 {isProjectManager && (
                   <Link
@@ -141,12 +150,14 @@ const Show = ({ project, auth }) => {
                 )}
               </div>
 
-              <div className="bg-gray-800 rounded-xl">
+
+
+              <div className="rounded-xl">
                 <div className="max-h-[600px] overflow-y-auto p-4 space-y-3">
                   {project.users.map((user) => (
                     <div
                       key={user.id}
-                      className="group bg-gray-700/50 hover:bg-gray-700 rounded-lg p-4 transition-all"
+                      className="group hover:bg-gray-700/50 bg-white/10 backdrop-blur-lg rounded-lg p-4 transition-all"
                     >
                       <div className="flex items-center justify-between">
                         <div>
@@ -168,27 +179,31 @@ const Show = ({ project, auth }) => {
                 </div>
               </div>
             </div>
+            </div>
 
             {/* Tasks Column */}
             <div className="lg:w-2/3 space-y-4">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-white">Project Tasks</h2>
-                {isProjectManager && (
-                  <Link
-                    href={route('projects.tasks.create', { project: project.id })}
-                    className="p-2 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors"
-                  >
-                    <PlusCircleIcon className="w-5 h-5" />
-                  </Link>
-                )}
-              </div>
+  <div className="bg-gradient-to-br from-[#FDC03E] to-blue-800 p-1 rounded-xl">
+    <div className="bg-black/80 backdrop-blur-xl rounded-lg p-3 flex items-center justify-between">
+      <h2 className="text-xl font-semibold text-white">Project Tasks</h2>
+      {isProjectManager && (
+        <Link
+          href={route('projects.tasks.create', { project: project.id })}
+          className="p-2 bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors"
+        >
+          <PlusCircleIcon className="w-5 h-5" />
+        </Link>
+      )}
+    </div>
+  </div>
 
-              <div className="bg-gray-800 rounded-xl">
+
+              <div className="rounded-xl">
                 <div className="max-h-[600px] overflow-y-auto p-4 space-y-3">
                   {project.tasks.map((task) => (
                     <div
                       key={task.id}
-                      className="group bg-gray-700/50 hover:bg-gray-700 rounded-lg p-4 transition-all"
+                      className="group hover:bg-gray-700/50 rounded-lg p-4 transition-all"
                     >
                       <div className="flex justify-between items-start mb-3">
                         <div>
@@ -201,7 +216,7 @@ const Show = ({ project, auth }) => {
                           <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                             <Link
                               href={route('tasks.edit', { task: task.id })}
-                              className="p-2 hover:bg-violet-500/20 rounded-lg text-violet-400"
+                              className="p-2 hover:bg-blue-500/20 rounded-lg text-blue-300"
                             >
                               <PencilSquareIcon className="w-5 h-5" />
                             </Link>
@@ -215,16 +230,16 @@ const Show = ({ project, auth }) => {
                         )}
                       </div>
                       <div className="flex flex-wrap gap-2 mt-3">
-                        <span className="px-3 py-1 bg-violet-500/20 text-violet-300 rounded-full text-sm">
+                        <span className="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">
                           {task.status}
                         </span>
-                        <span className="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">
+                        <span className="px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-sm">
                           {task.phase}
                         </span>
-                        <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">
+                        <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">
                           {task.assigned_user?.name || 'Unassigned'}
                         </span>
-                        <span className="px-3 py-1 bg-violet-500/20 text-violet-300 rounded-full text-sm">
+                        <span className="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">
                           {task.due_date ? formatDate(task.due_date) : 'No deadline'}
                         </span>
                       </div>

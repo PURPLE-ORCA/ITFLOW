@@ -1,8 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, usePage } from '@inertiajs/react';
-
-
-
 import { DocumentTextIcon, CalendarIcon, ChartBarIcon, PlusCircleIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 
 export default function Dashboard() {
