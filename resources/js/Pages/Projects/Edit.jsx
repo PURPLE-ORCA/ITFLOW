@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from '@inertiajs/react';
 import ProjectLayout from '@/Layouts/ProjectLayout';
+import { PencilIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
 
 const Edit = ({ project }) => {
   const { data, setData, patch, processing, errors } = useForm({
@@ -8,111 +9,137 @@ const Edit = ({ project }) => {
     description: project.description || '',
     deadline: project.deadline || '',
     status: project.status || 'Active',
-    file: null, // For file uploads
+    file: null,
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     patch(route('projects.update', { project: project.id }), {
       onSuccess: () => {
-        // Reset the file input after successful submission
         setData('file', null);
       },
     });
   };
 
   return (
-    <ProjectLayout>
-      <h1 className="text-4xl font-bold bg-gradient-to-r from-yellow-800 to-blue-700 bg-clip-text text-transparent">
-        Edit Project: {project.title}
-      </h1>
+    <div className="font-poppins  text-white p-5 h-auto w-full">
+      {/* Background overlay */}
+      <div id="back"
+        className="fixed bottom-0 right-0 w-2/6 h-full bg-gradient-to-r from-[#FDCD65] to-[#FDC03E] transition-all duration-800 ease-in-out -z-10"
+        style={{ clipPath: 'circle(50% at 100% 50%)' }}></div>
+      <ProjectLayout>
+        <div className=" min-h-screen  p-2">
+          <div className="max-w-2xl mx-auto backdrop-blur-lg bg-slate-400/5 border border-white/20 rounded-xl">
+            <div className="p-6 space-y-1">
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-blue-500/20 rounded-lg">
+                  <PencilIcon className="h-6 w-6 text-blue-300" />
+                </div>
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FDC03E] to-blue-500 bg-clip-text text-transparent">
+                  Edit Project
+                </h2>
+              </div>
+            </div>
 
-      <form onSubmit={handleSubmit} className="mt-6">
-        {/* Title */}
-        <div className="mb-4">
-          <label htmlFor="title" className="block text-sm font-medium text-white/90">
-            Title
-          </label>
-          <input
-            type="text"
-            id="title"
-            value={data.title}
-            onChange={(e) => setData('title', e.target.value)}
-            className="mt-1 block w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
-          />
-          {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
+            <div className="p-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-200">
+                    Title
+                  </label>
+                  <input
+                    type="text"
+                    value={data.title}
+                    onChange={(e) => setData('title', e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg bg-slate-400/5 border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-white placeholder-gray-400"
+                  />
+                  {errors.title && <span className="text-red-400 text-sm">{errors.title}</span>}
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-200">
+                    Description
+                  </label>
+                  <textarea
+                    value={data.description}
+                    onChange={(e) => setData('description', e.target.value)}
+                    rows={4}
+                    className="w-full px-4 py-3 rounded-lg bg-slate-400/5 border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-white placeholder-gray-400"
+                  />
+                  {errors.description && <span className="text-red-400 text-sm">{errors.description}</span>}
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-200">
+                    Deadline
+                  </label>
+                  <input
+                    type="date"
+                    value={data.deadline}
+                    onChange={(e) => setData('deadline', e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg bg-slate-400/5 border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-white placeholder-gray-400"
+                  />
+                  {errors.deadline && <span className="text-red-400 text-sm">{errors.deadline}</span>}
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-200">
+                    Status
+                  </label>
+                  <select
+                    value={data.status}
+                    onChange={(e) => setData('status', e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg bg-slate-400/5 border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-white"
+                  >
+                    <option value="Active" className="bg-gray-900">Active</option>
+                    <option value="Completed" className="bg-gray-900">Completed</option>
+                  </select>
+                  {errors.status && <span className="text-red-400 text-sm">{errors.status}</span>}
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-200">
+                    Upload File (Optional)
+                  </label>
+                  <input
+                    type="file"
+                    onChange={(e) => setData('file', e.target.files[0])}
+                    className="w-full px-4 py-3 rounded-lg bg-slate-400/5 border border-white/10 text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-500/20 file:text-blue-200 hover:file:bg-purple-500/30 transition-all duration-200"
+                  />
+                  {errors.file && <span className="text-red-400 text-sm">{errors.file}</span>}
+                </div>
+
+                <div className="space-y-4">
+                  <button
+                    type="submit"
+                    disabled={processing}
+                    className="w-full px-4 py-3 bg-gradient-to-r from-[#FDC03E] to-blue-500 text-white rounded-lg font-medium hover:from-blue-500 hover:to-[#FDC03E] focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-200 disabled:opacity-50"
+                  >
+                    {processing ? (
+                      <span className="flex items-center justify-center space-x-2">
+                        <div className="w-5 h-5 border-t-2 border-b-2 border-white rounded-full animate-spin" />
+                        <span>Updating...</span>
+                      </span>
+                    ) : (
+                      'Update Project'
+                    )}
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => window.history.back()}
+                    className="w-full px-4 py-3 bg-slate-400/5 border border-white/10 text-gray-200 rounded-lg font-medium hover:bg-white/10 focus:ring-2 focus:ring-blue-500 transition-all duration-200 flex items-center justify-center space-x-2"
+                  >
+                    <ArrowLeftIcon className="h-4 w-4" />
+                    <span>Back to Project</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-
-        {/* Description */}
-        <div className="mb-4">
-          <label htmlFor="description" className="block text-sm font-medium text-white/90">
-            Description
-          </label>
-          <textarea
-            id="description"
-            value={data.description}
-            onChange={(e) => setData('description', e.target.value)}
-            className="mt-1 block w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
-          />
-          {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}
-        </div>
-
-        {/* Deadline */}
-        <div className="mb-4">
-          <label htmlFor="deadline" className="block text-sm font-medium text-white/90">
-            Deadline
-          </label>
-          <input
-            type="date"
-            id="deadline"
-            value={data.deadline}
-            onChange={(e) => setData('deadline', e.target.value)}
-            className="mt-1 block w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
-          />
-          {errors.deadline && <p className="text-red-500 text-sm">{errors.deadline}</p>}
-        </div>
-
-        {/* Status */}
-        <div className="mb-4">
-          <label htmlFor="status" className="block text-sm font-medium text-white/90">
-            Status
-          </label>
-          <select
-            id="status"
-            value={data.status}
-            onChange={(e) => setData('status', e.target.value)}
-            className="mt-1 block w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
-          >
-            <option value="Active">Active</option>
-            <option value="Completed">Completed</option>
-          </select>
-          {errors.status && <p className="text-red-500 text-sm">{errors.status}</p>}
-        </div>
-
-        {/* File Upload */}
-        <div className="mb-4">
-          <label htmlFor="file" className="block text-sm font-medium text-white/90">
-            Upload File (Optional)
-          </label>
-          <input
-            type="file"
-            id="file"
-            onChange={(e) => setData('file', e.target.files[0])}
-            className="mt-1 block w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
-          />
-          {errors.file && <p className="text-red-500 text-sm">{errors.file}</p>}
-        </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          disabled={processing}
-          className="inline-block px-4 py-2 bg-yellow-400 text-black rounded-md hover:bg-yellow-500 transition-colors duration-300"
-        >
-          Update Project
-        </button>
-      </form>
-    </ProjectLayout>
+      </ProjectLayout>
+    </div>
   );
 };
 
