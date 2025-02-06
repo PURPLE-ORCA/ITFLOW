@@ -24,6 +24,12 @@ export default {
             "inner-glow": "inset 0 0 0.5em #000d",
             "inner-glow-blue": "inset 0 0 0.5em rgba(34, 0, 249, 0.936), 0 0 5px #000000",
           },
+          colors: {
+            primary: '#1D4ED8',
+            secondary: '#FBBF24',
+            background: '#1E293B',
+            text: '#FFFFFF',
+        },
         },
       },
 
