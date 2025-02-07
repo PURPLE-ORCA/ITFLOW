@@ -1,190 +1,180 @@
 import React, { useContext, useState } from 'react';
 import { ProjectContext } from '@/contexts/ProjectContext';
-import { CheckCircleIcon, ClockIcon, UserCircleIcon, CalendarIcon } from '@heroicons/react/24/outline';
-import { Link, usePage } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react';
+import {
+  CheckCircleIcon,
+  ClockIcon,
+  UserCircleIcon,
+  CalendarIcon,
+  DocumentTextIcon,
+  ExclamationCircleIcon,
+  BeakerIcon,
+  ShieldCheckIcon
+} from '@heroicons/react/24/outline';
 
 const Tasks = () => {
   const { pendingTasks = [], finishedTasks = [] } = useContext(ProjectContext);
   const { user } = usePage().props.auth;
   const [activeTab, setActiveTab] = useState('pending');
 
-  const formatDueDate = (dateString) => {
-    const options = { day: 'numeric', month: 'short', year: 'numeric' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
-
-  const formatCompletionDate = (dateString) => {
-    const options = {
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('fr-FR', {
       day: 'numeric',
       month: 'short',
       year: 'numeric',
       hour: '2-digit',
       minute: '2-digit'
-    };
-    return new Date(dateString).toLocaleDateString(undefined, options);
+    }).format(date);
   };
 
-  const switchTab = (tab) => {
-    setActiveTab(tab);
+  const TaskCard = ({ task, status }) => {
+    const isPending = status === 'pending';
+    const cardStyles = isPending
+      ? 'bg-gradient-to-br from-[#FDC03E] to-blue-800'
+      : 'bg-gradient-to-br from-cyan-500 to-blue-900';
+
+    return (
+      <div className={`relative group transition-all duration-300 overflow-hidden rounded-3xl ${cardStyles} p-1`}>
+        <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-6 text-white">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex items-center space-x-3">
+              {isPending ? (
+                <ClockIcon className="w-5 h-5 text-yellow-400" />
+              ) : (
+                <CheckCircleIcon className="w-5 h-5 text-teal-400" />
+              )}
+              <h3 className="text-lg font-semibold">{task.title}</h3>
+            </div>
+            {isPending && task.assigned_to === user.id && (
+              <button
+                onClick={() => window.location.href = route('confirmations.create', { task: task.id })}
+                className="px-4 py-2 text-sm font-medium bg-blue-600 rounded-full hover:bg-blue-700 transition-colors"
+              >
+                Terminer
+              </button>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center text-gray-300">
+              <UserCircleIcon className="w-4 h-4 mr-3 text-indigo-400" />
+              <span>{isPending
+                ? (task.assigned_user?.name || 'Non assigné')
+                : (task.confirmation?.created_by_user?.name || 'Membre')}</span>
+            </div>
+
+            <div className="flex items-center text-gray-300">
+              <CalendarIcon className="w-4 h-4 mr-3 text-cyan-400" />
+              <span>{task.due_date ? formatDate(task.due_date) : 'Pas de deadline'}</span>
+            </div>
+
+            {isPending ? (
+              <div className="flex items-center text-gray-300">
+                <ClockIcon className="w-4 h-4 mr-3 text-purple-400" />
+                <span>Créé le {formatDate(task.created_at)}</span>
+              </div>
+            ) : (
+              <div className="flex items-center text-gray-300">
+                <CheckCircleIcon className="w-4 h-4 mr-3 text-teal-400" />
+                <span>Terminé le {formatDate(task.confirmation?.created_at)}</span>
+              </div>
+            )}
+
+            {!isPending && task.confirmation?.file_path && (
+              <a
+                href={`/storage/${task.confirmation.file_path}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                <DocumentTextIcon className="w-4 h-4 mr-2" />
+                Voir la pièce jointe
+              </a>
+            )}
+
+            {isPending && (
+              <div className="mt-4 space-y-2">
+                <div className="h-1.5 bg-gray-700/50 rounded-full overflow-hidden">
+                  <div className="h-full w-3/4 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full" />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
-    <div className="font-poppins  min-h-screen text-white p-5 h-auto w-auto relative">
-    {/* Background overlay */}
-    <div
-      id="back"
-      className="fixed bottom-0 right-0 w-1/3 h-full bg-gradient-to-r from-[#FDCD65] to-[#FDC03E] transition-all duration-[800ms] ease-in-out -z-10"
-      style={{ clipPath: "circle(50% at 91% 0)" }}
-    ></div>
-    <div className="container mx-auto p-6">
-      <div className="max-w-7xl mx-auto pt-8">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-[#FFD700] to-white bg-clip-text text-transparent">
-            Task Management
-          </h2>
-          <p className="text-gray-300 mt-4 text-lg">
-            Track and organize your project tasks efficiently
-          </p>
-        </div>
+    <div className="max-w-7xl mx-auto p-6">
+      <div className="flex justify-center mb-8 border-b border-white/10">
+        <button
+          onClick={() => setActiveTab('pending')}
+          className={`flex items-center gap-2 px-6 py-4 font-medium transition-colors relative ${
+            activeTab === 'pending'
+              ? 'text-amber-400 border-b-2 border-amber-400'
+              : 'text-gray-400 hover:text-gray-300'
+          }`}
+        >
+          <BeakerIcon className="w-5 h-5" />
+          Tâches en cours
+          <span className="ml-2 px-2 py-0.5 text-xs bg-amber-500/10 text-amber-400 rounded-full">
+            {pendingTasks.length}
+          </span>
+        </button>
+        <button
+          onClick={() => setActiveTab('completed')}
+          className={`flex items-center gap-2 px-6 py-4 font-medium transition-colors relative ${
+            activeTab === 'completed'
+              ? 'text-blue-400 border-b-2 border-blue-400'
+              : 'text-gray-400 hover:text-gray-300'
+          }`}
+        >
+          <ShieldCheckIcon className="w-5 h-5" />
+          Tâches terminées
+          <span className="ml-2 px-2 py-0.5 text-xs bg-blue-500/10 text-blue-400 rounded-full">
+            {finishedTasks.length}
+          </span>
+        </button>
       </div>
 
-      <div className="flex space-x-4 mb-12 justify-center">
-          <button
-            onClick={() => setActiveTab('pending')}
-            className={`px-6 py-3 rounded-full transition-all ${
-              activeTab === 'pending'
-                ? 'bg-yellow-500 text-white shadow-lg'
-                : 'bg-white text-blue-800 hover:bg-blue-100'
-            }`}
-          >
-            Pending Tasks
-          </button>
-          <button
-            onClick={() => setActiveTab('completed')}
-            className={`px-6 py-3 rounded-full transition-all ${
-              activeTab === 'completed'
-                ? 'bg-yellow-500 text-white shadow-lg'
-                : 'bg-white text-blue-800 hover:bg-blue-100'
-            }`}
-          >
-            Completed Tasks
-          </button>
-        </div>
-
-      {activeTab === 'pending' && (
-        <div className="tab-content pl-11 pr-11">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 ">
-
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {activeTab === 'pending' && (
+          <>
             {pendingTasks.length > 0 ? (
-              pendingTasks.map((task) => (
-                <div
-                  key={task.id}
-                  className="p-6 bg-white/5 backdrop-blur-lg rounded-xl shadow-lg overflow-hidden border-l-4 border-yellow-500 transition-all duration-300 hover:transform hover:-translate-y-1"
-                >
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <h3 className="font-semibold text-base">{task.title}</h3>
-                  </div>
-                  <div className="space-y-2 py-3">
-                    <div className="flex items-center text-gray-300">
-                      <UserCircleIcon className="w-4 h-4 mr-3 text-yellow-500" />
-                      <span>{task.assigned_user?.name || 'Unassigned'}</span>
-                    </div>
-                    <div className="flex items-center text-gray-300">
-                      <CalendarIcon className="w-4 h-4 mr-3 text-cyan-300" />
-                      <span>{task.due_date ? formatDueDate(task.due_date) : 'No deadline'}</span>
-                    </div>
-                    <div className="flex items-center text-gray-300">
-                      <ClockIcon className="w-4 h-4 mr-3 text-cyan-600" />
-                      <span>{task.created_at ? formatCompletionDate(task.created_at) : 'No creation date'}</span>
-                    </div>
-                    <div className="progress-bar w-full h-2 bg-gray-700 rounded-full mt-4">
-                      <div className="w-3/4 h-full bg-gradient-to-r from-blue-200 to-blue-500 rounded-full"></div>
-                    </div>
-                    {task.assigned_to === user.id && (
-                      <Link
-                        href={route('confirmations.create', { task: task.id })}
-                        className="mt-4 bg-blue-800 hover:bg-yellow-500 text-white px-4 py-2 rounded-full flex items-center justify-center"
-                      >
-                        <CheckCircleIcon className="w-4 h-4 mr-2" />
-                        Finish Task
-                      </Link>
-                    )}
-                  </div>
-                </div>
+              pendingTasks.map(task => (
+                <TaskCard key={task.id} task={task} status="pending" />
               ))
             ) : (
-              <div className="text-center p-6 bg-gray-50 rounded-lg">
-                <p className="text-gray-500 italic">All caught up! No pending tasks 🎉</p>
+              <div className="col-span-full flex items-center justify-center p-8 rounded-xl bg-gray-800/50">
+                <div className="text-center">
+                  <ExclamationCircleIcon className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                  <p className="text-gray-400">Pas de tâches en cours ! 🎉</p>
+                </div>
               </div>
             )}
-          </div>
-        </div>
-      )}
+          </>
+        )}
 
-      {activeTab === 'completed' && (
-        <div className="tab-content pl-11 pr-11">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        {activeTab === 'completed' && (
+          <>
             {finishedTasks.length > 0 ? (
-              finishedTasks.map((task) => (
-                <div
-                  key={task.id}
-                  className="p-6 bg-white/5 backdrop-blur-lg rounded-xl shadow-lg overflow-hidden border-l-4 border-yellow-500 transition-all duration-300 hover:transform hover:-translate-y-1"
-                >
-                  <div className="flex items-center space-x-3">
-                    <CheckCircleIcon className="w-5 h-5 text-green-500" />
-                    <h3 className="text-base font-bold ">{task.title}</h3>
-                  </div>
-                  <div className="space-y-2 py-3">
-                    <div className="flex items-center text-gray-300">
-                      <UserCircleIcon className="w-4 h-4 mr-3 text-yellow-500" />
-                      <span>{task.confirmation?.created_by_user?.name || 'Team member'}</span>
-                    </div>
-                    <div className="flex items-center text-gray-300">
-                      <CalendarIcon className="w-4 h-4 mr-3 text-cyan-300" />
-                      <span>{task.confirmation?.created_at ? formatCompletionDate(task.confirmation.created_at) : 'No completion date'}</span>
-                    </div>
-                    <div className="flex items-center text-gray-300">
-                      <CalendarIcon className="w-4 h-4 mr-3 text-cyan-300" />
-                      <span>{task.due_date ? formatDueDate(task.due_date) : 'No deadline'}</span>
-                    </div>
-                    {task.confirmation?.file_path && (
-                      <a
-                        href={`/storage/${task.confirmation.file_path}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-indigo-600 hover:text-indigo-800 flex items-center mt-2"
-                      >
-                        <svg
-                          className="w-4 h-4 mr-1.5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                          />
-                        </svg>
-                        View Attachment
-                      </a>
-                    )}
-                  </div>
-                </div>
+              finishedTasks.map(task => (
+                <TaskCard key={task.id} task={task} status="completed" />
               ))
             ) : (
-              <div className="text-center p-6 bg-gray-50 rounded-lg">
-                <p className="text-gray-500 italic">No completed tasks yet. Finish some tasks! 💪</p>
+              <div className="col-span-full flex items-center justify-center p-8 rounded-xl bg-gray-800/50">
+                <div className="text-center">
+                  <ExclamationCircleIcon className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                  <p className="text-gray-400">Aucune tâche terminée pour le moment ! 💪</p>
+                </div>
               </div>
             )}
-          </div>
-        </div>
-      )}
+          </>
+        )}
+      </div>
     </div>
-    </div>
-
   );
 };
 

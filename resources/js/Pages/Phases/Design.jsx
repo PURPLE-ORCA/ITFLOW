@@ -18,8 +18,8 @@ const Design = ({ project, pendingTasks, finishedTasks }) => {
         ></div>
 
         {/* Titre et sous-titre */}
-        <div className="relative z-10 text-center mb-16">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-yellow-400 to-blue-300 bg-clip-text text-transparent mb-4">
+        <div className="relative z-10 text-center mb-8">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-blue-300 bg-clip-text text-transparent mb-4">
           Design Tasks Management
           </h1>
           <p className="text-gray-300 mt-4 text-lg mb-4">
