@@ -2,6 +2,7 @@ import React from 'react';
 import ProjectLayout from '@/Layouts/ProjectLayout';
 import Tasks from '@/Components/Tasks';
 
+
 const Wrapping = ({ project, pendingTasks, finishedTasks }) => {
   const pendingTasksArray = Array.isArray(pendingTasks)
     ? pendingTasks

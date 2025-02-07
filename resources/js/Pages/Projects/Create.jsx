@@ -20,7 +20,7 @@ const Create = () => {
     return (
         <AuthenticatedLayout
             header={
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-200 to-pink-200 bg-clip-text text-transparent">
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FDC03E] to-blue-500 bg-clip-text text-transparent">
                     Create a New Project
                 </h2>
             }

@@ -27,7 +27,7 @@ const Show = ({ project, auth }) => {
       });
     }
   };
-              cvx
+          
   const handleRemoveTask = (task) => {
     setTaskToRemove(task);
     setShowTaskConfirmationModal(true);
