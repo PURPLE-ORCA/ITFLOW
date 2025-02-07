@@ -27,7 +27,6 @@ const Show = ({ project, auth }) => {
       });
     }
   };
-          
   const handleRemoveTask = (task) => {
     setTaskToRemove(task);
     setShowTaskConfirmationModal(true);
