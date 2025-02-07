@@ -34,9 +34,10 @@ const Create = () => {
                             <div className="p-3 bg-blue-500/20 rounded-lg">
                                 <DocumentIcon className="h-6 w-6 text-blue-300" />
                             </div>
-                            <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FDC03E] to-blue-500 bg-clip-text text-transparent">
+                            <h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-blue-300 bg-clip-text text-transparent mb-4">
+
                                 Project Details
-                            </h2>
+                            </h1>
                         </div>
                     </div>
 

@@ -27,7 +27,7 @@ const Show = ({ project, auth }) => {
       });
     }
   };
-
+              cvx
   const handleRemoveTask = (task) => {
     setTaskToRemove(task);
     setShowTaskConfirmationModal(true);
@@ -62,7 +62,7 @@ const Show = ({ project, auth }) => {
           <div className="max-w-7xl mx-auto px-4 py-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-[#FFD700] to-blue-200 bg-clip-text text-transparent">Project Details</h1>
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-[#FFD700] to-blue-200 bg-clip-text text-transparent">Project Details</h1>
                 <p className="text-gray-300 mt-4 text-lg">Explorez les détails de votre projet avec des sections transparentes pour une gestion efficace des membres de l'équipe et des tâches.</p>
               </div>
               {isProjectManager && (
