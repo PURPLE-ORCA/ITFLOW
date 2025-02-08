@@ -13,8 +13,7 @@ export default function Dashboard() {
 
     return (
         <AuthenticatedLayout>
-        <div className="font-poppins bg-gradient-to-br from-blue-900 via-black to-blue-950 min-h-screen text-white p-5">
-            {/* Background overlay */}
+
             <div
                 className="fixed bottom-0 right-0 w-1/2 h-full bg-gradient-to-r from-[#FDC03E] to-[#FDCD65] transition-all duration-800 ease-in-out -z-10"
                 style={{clipPath: 'polygon(52% 0, 100% 0, 100% 100%, 0% 100%)'}}
@@ -225,7 +224,7 @@ export default function Dashboard() {
                     </div>
                 </div>
             </main>
-        </div>
+    
         </AuthenticatedLayout>
     );
 }

@@ -29,7 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('projects', ProjectController::class);
     Route::post('/projects/{project}/users', [ProjectController::class, 'addUser'])->name('projects.addUser');
     Route::delete('/projects/{project}/users/{user}', [ProjectController::class, 'removeUser'])->name('projects.removeUser');
-   
+
     Route::get('/projects/{project}', [ProjectController::class, 'show'])
     ->name('projects.show');
     // Tasks (nested under projects)
@@ -53,7 +53,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Handle adding a team member
     Route::post('/projects/{project}/users', [ProjectController::class, 'addUser'])
         ->name('projects.addUser');
-        
+
         Route::delete('/projects/{project}/users/{user}', [ProjectController::class, 'removeUser'])
     ->name('projects.removeUser');
 
@@ -70,4 +70,4 @@ Route::post('/confirmations/{task}', [ConfirmationController::class, 'store'])
     ->name('confirmations.store');
 });
 
-require __DIR__.'/auth.php'; 
+require __DIR__.'/auth.php';

@@ -18,13 +18,15 @@ export default forwardRef(function TextInput(
 
     return (
         <input
-            {...props}
-            type={type}
-            className={
-                'rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-600 dark:focus:ring-indigo-600 ' +
-                className
-            }
-            ref={localRef}
-        />
+        {...props}
+        type={type}
+        style={{ backgroundColor: 'rgba(31, 41, 55, 0.2)' }} // Temporary inline style
+        className={
+            'w-full px-16 py-1 bg-gray-800 bg-opacity-30 border-b-2 border-gray-300 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-0 transition duration-200 ' +
+            className
+        }
+        ref={localRef}
+    />
+
     );
 });

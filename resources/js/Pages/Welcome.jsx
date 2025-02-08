@@ -44,28 +44,23 @@ export default function Welcome({ auth }) {
                             </a>
                         </div>
                         <div>
-                            {auth.user ? (
-                                <Link
-                                    href={route("dashboard")}
-                                    className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                >
-                                    Dashboard
-                                </Link>
-                            ) : (
-                                <>
-                                    <Link
-                                        href={route("login")}
-                                        className="px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded-full  hover:bg-cyan-400 transition">Log in
+    {auth.user ? (
+        <Link
+            href={route("dashboard")}
+            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+        >
+            Dashboard
+        </Link>
+    ) : (
+        <Link
+            href={route("login")}
+            className="px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded-full hover:bg-cyan-400 transition"
+        >
+            Log in
+        </Link>
+    )}
+</div>
 
-                                    </Link>
-                                    <Link
-                                        href={route("register")}
-                                        className="px-4 py-2 text-sm font-semibold text-white border-2 border-[#FFD700] rounded-full hover:bg-cyan-400/25 transition">
-                                        Register
-                                    </Link>
-                                </>
-                            )}
-                        </div>
                     </nav>
                 </header>
 
