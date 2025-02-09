@@ -145,7 +145,7 @@ export default function IsLogin({ status, canResetPassword }) {
                         ) : (
                             <form onSubmit={handleRegisterSubmit} className="space-y-4">
                                 <div className="relative">
-                                    <InputLabel htmlFor="name" value="" className="text-gray-300 " />
+                                    <InputLabel htmlFor="name" value="" className="text-gray-300" />
                                     <TextInput
                                         id="name"
                                         name="name"
