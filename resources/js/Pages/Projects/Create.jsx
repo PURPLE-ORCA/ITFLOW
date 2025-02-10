@@ -18,16 +18,12 @@ const Create = () => {
     };
 
     return (
-        <AuthenticatedLayout
-            header={
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FDC03E] to-blue-500 bg-clip-text text-transparent">
-                    Create a New Project
-                </h2>
-            }
-        >
+        <>
+
+
             <Head title="Create" />
 
-            <div className="min-h-screen p-2">
+            <div className="min-h-screen p-2 inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 -z-10">
                 <div className="max-w-xl mx-auto backdrop-blur-lg bg-slate-400/5 border border-white/20 rounded-xl">
                     <div className="p-6 space-y-1">
                         <div className="flex items-center space-x-4">
@@ -135,7 +131,7 @@ const Create = () => {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+            </>
     );
 };
 

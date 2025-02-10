@@ -1,10 +1,15 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, usePage } from '@inertiajs/react';
+import { Head, usePage , Link } from '@inertiajs/react';
 import { DocumentTextIcon, CalendarIcon, ChartBarIcon, PlusCircleIcon } from '@heroicons/react/24/outline';
+import ProjectLayout from '@/Layouts/ProjectLayout';
+import ApplicationLogo from '@/Components/ApplicationLogo';
+import { useState } from 'react';
 
 export default function Dashboard() {
     const { auth, currentProjects, tasksByStatus, upcomingDeadlines } = usePage().props;
     const user = auth.user;
+        const [showProfileMenu, setShowProfileMenu] = useState(false);
+
 
     const formatDate = (dateString) => {
         const options = { day: 'numeric', month: 'short', year: 'numeric' };
@@ -12,7 +17,64 @@ export default function Dashboard() {
     };
 
     return (
-        <AuthenticatedLayout>
+        <>
+
+<nav className="fixed top-0 h-screen w-16 hover:w-64 bg-transparent backdrop-blur-md transition-all duration-300 overflow-hidden group border-r border-white/10 z-50">
+            <div className="flex flex-col h-full">
+                {/* Logo Section */}
+                <div className="w-full h-20 bg-transparent flex items-center justify-center duration-300">
+                    <Link href="/" className="flex items-center justify-center w-16 h-16">
+                        <ApplicationLogo className="relative z-10" />
+                    </Link>
+                </div>
+
+                {/* Navigation Section */}
+                <div className="flex-1 overflow-y-auto py-4 space-y-3 px-2">
+                    {/* Dashboard */}
+                    <Link href={route('dashboard')} className="flex items-center p-2 text-yellow-400 hover:text-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-sm shadow-yellow-400 hover:shadow-lg hover:shadow-blue-700 rounded-md group/item">
+                        <i className='bx bxs-dashboard text-2xl text-yellow-400 group-hover/item:text-blue-400'></i>
+                        <span className="ml-4 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Dashboard</span>
+                    </Link>
+
+                    {/* Project Details */}
+
+
+                    {/* Project Phases Section */}
+                </div>
+
+                {/* Profile Section */}
+                <div className="mt-auto">
+                    <div
+                        className="relative px-2 py-4 5"
+                        onMouseEnter={() => setShowProfileMenu(true)}
+                        onMouseLeave={() => setShowProfileMenu(false)}
+                    >
+                        <div className="flex items-center">
+                            <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center">
+                                <i className='bx bxs-user text-2xl text-yellow-400'></i>
+                            </div>
+                            <div className="ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <p className="text-sm font-medium text-yellow-400">{user.name}</p>
+                                <p className="text-xs text-blue-400">Admin</p>
+                            </div>
+                        </div>
+
+                        {/* Profile Menu */}
+                        <div className={`absolute bottom-full left-0 w-full bg-gray-800/95 backdrop-blur-lg rounded-t-xl overflow-hidden transition-all duration-300 ${showProfileMenu ? 'block' : 'hidden'}`}>
+                            <Link href={route('profile.edit')} className="flex items-center px-4 py-3 hover:bg-yellow-400/20 transition-colors">
+                                <i className='bx bxs-cog text-xl text-yellow-400'></i>
+                                <span className="ml-3 text-sm text-yellow-400">Profile Settings</span>
+                            </Link>
+                            <Link href={route('logout')} method="post" as="button" className="w-full flex items-center px-4 py-3 hover:bg-blue-700/20 transition-colors">
+                                <i className='bx bxs-log-out text-xl text-blue-400'></i>
+                                <span className="ml-3 text-sm text-blue-400">Sign Out</span>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
             <Head title="Dashboard" />
 
             {/* Background Gradient */}
@@ -182,6 +244,7 @@ export default function Dashboard() {
                     </div>
                 </div>
             </main>
-        </AuthenticatedLayout>
+
+            </>
     );
 }

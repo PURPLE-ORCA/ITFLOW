@@ -131,7 +131,7 @@ const Show = ({ project, auth }) => {
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Team Members Column */}
-            <div className="lg:w-1/3 space-y-4 bg-gradient-to-br from-[#FDC03E] to-blue-800 p-1 rounded-xl">
+            <div className="h-min space-y-4 bg-gradient-to-br from-[#FDC03E] to-blue-800 p-1 rounded-xl">
               <div className="bg-black/85 backdrop-blur-xl rounded-lg p-6">
                 <div className="flex items-center justify-between">
                   <h2 className="text-xl font-semibold text-white">Team Members</h2>

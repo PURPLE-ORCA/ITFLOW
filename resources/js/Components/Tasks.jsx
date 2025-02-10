@@ -31,13 +31,13 @@ const Tasks = () => {
   const TaskCard = ({ task, status }) => {
     const isPending = status === 'pending';
     const cardStyles = isPending
-      ? 'bg-gradient-to-br from-[#FDC03E] to-blue-800'
+      ? ' bg-gradient-to-br from-[#FDC03E] to-blue-800'
       : 'bg-gradient-to-br from-cyan-500 to-blue-900';
 
     return (
-      <div className={`relative group transition-all duration-300 overflow-hidden rounded-3xl ${cardStyles} p-1`}>
-        <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-6 text-white">
-          <div className="flex items-start justify-between mb-4">
+      <div className={`relative group transition-all duration-300 overflow-hidden rounded-3xl  ${cardStyles} p-1`}>
+        <div className="h-full bg-black/90 backdrop-blur-lg rounded-2xl p-6 text-white">
+          <div className="flex items-start justify-between mb-4 h-min">
             <div className="flex items-center space-x-3">
               {isPending ? (
                 <ClockIcon className="w-5 h-5 text-yellow-400" />
@@ -93,13 +93,6 @@ const Tasks = () => {
               </a>
             )}
 
-            {isPending && (
-              <div className="mt-4 space-y-2">
-                <div className="h-1.5 bg-gray-700/50 rounded-full overflow-hidden">
-                  <div className="h-full w-3/4 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full" />
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>
