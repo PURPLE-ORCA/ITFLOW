@@ -53,7 +53,7 @@ const Show = ({ project, auth }) => {
       <div className="font-poppins  text-white p-5 h-auto w-full">
         {/* Background overlay */}
         <div id="back"
-          className="fixed bottom-0 right-0 w-2/6 h-full bg-gradient-to-r from-[#FDCD65] to-[#FDC03E] transition-all duration-800 ease-in-out -z-10"
+          className="fixed bottom-0 right-0 w-2/6 h-full bg-gradient-to-r from-amber-400/45 to-[#FDC03E] transition-all duration-800 ease-in-out -z-10"
           style={{ clipPath: 'circle(50% at 100% 50%)' }}></div>
 
         {/* Top Banner */}

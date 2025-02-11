@@ -9,10 +9,19 @@ export default defineConfig({
             refresh: true,
         }),
         react(),
+
+
     ],
     resolve: {
         alias: {
             '@': '/resources/js', // Ensure this alias matches your imports
         },
     },
+    css: {
+        preprocessorOptions: {
+          scss: {
+            additionalData: `@import "./resources/css/Animation.css";`,
+          },
+        },
+      },
 });

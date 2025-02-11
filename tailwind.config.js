@@ -29,6 +29,7 @@ export default {
             secondary: '#FBBF24',
             background: '#1E293B',
             text: '#FFFFFF',
+            yellow: '#FFD700'
         },
         },
       },

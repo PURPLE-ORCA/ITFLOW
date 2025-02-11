@@ -80,15 +80,12 @@ export default function Dashboard() {
             {/* Background Gradient */}
             <div className="fixed inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 -z-10" />
                {/* Overlay en clip-path */}
-        <div
-          className="fixed bottom-0 right-0 w-full h-full bg-gradient-to-r from-[#FDCD65] to-[#FDC03E] transition-all duration-800 ease-in-out -z-10 pointer-events-none"
-          style={{ clipPath: "polygon(52% 0, 100% 0, 100% 100%, 0% 00%)" }}
-        ></div>
 
-            <main className="min-h-screen p-8">
+
+            <main className="min-h-screen p-5 pl-10">
                 {/* Header Section */}
-                <div className="max-w-7xl mx-auto mb-12">
-                    <div className="flex justify-between items-center bg-white/10 backdrop-blur-xl p-8 rounded-2xl">
+                <div className="max-w-7xl mx-auto mb-12 pl-5">
+                    <div className="flex justify-between items-center  bg-gradient-to-r from-amber-400/45 to-[#FDC03E]  p-8 rounded-2xl">
                         <h2 className="text-4xl font-bold text-white">
                             Welcome back, {user.name}! 👋
                         </h2>
