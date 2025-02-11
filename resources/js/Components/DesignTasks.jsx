@@ -81,7 +81,7 @@ const Tasks = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 relative">
+    <div className="max-w-7xl mx-auto p-6 relative ">
       {/* Tabs Navigation */}
       <div className="flex justify-center mb-8 border-b border-white/10">
         <button
@@ -92,7 +92,7 @@ const Tasks = () => {
               : 'text-gray-400 hover:text-gray-300'
           }`}
         >
-          <BeakerIcon className="w-5 h-5" />
+          <BeakerIcon className="w-5 h-5 " />
           Pending Tasks
           <span className="ml-2 px-2 py-0.5 text-xs bg-amber-500/10 text-amber-400 rounded-full">
             {pendingTasks.length}

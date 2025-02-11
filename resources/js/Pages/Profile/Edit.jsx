@@ -159,30 +159,32 @@ export default function Edit({ mustVerifyEmail, status, className = '' }) {
          {/* Background Gradient */}
          <div className="fixed inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 -z-10" />
 
-    {/* Animated Background */}
-    <div className="fixed bottom-0 right-0 w-full h-full bg-gradient-to-r from-[#FDCD65] to-[#FDC03E] transition-all duration-800 ease-in-out -z-10 pointer-events-none"
-    style={{ clipPath: "polygon(0 0, 0% 100%, 100% 100%)" }}
-    ></div>
+   {/* Overlay en clip-path */}
+   <div
+          className="fixed bottom-0 right-0 w-full h-full bg-gradient-to-r from-[#FDCD65] to-[#FDC03E] transition-all duration-800 ease-in-out -z-10 pointer-events-none"
+          style={{ clipPath: "polygon(2% 0, 52% 28%, 99% 0)" }}
+        ></div>
             <div className="max-w-4xl mx-auto pt-12 px-4 md:px-8">
-                <div className="flex flex-col md:flex-row justify-between items-center mb-12">
-                    <div className="text-center md:text-left">
-                        <h2 className="text-5xl font-extrabold text-white dark:text-white mb-4 tracking-tight">
-                            Profile Settings
-                        </h2>
-                        <p className="text-blue-100 dark:text-blue-200 text-xl">
-                            Manage your account settings and preferences
-                        </p>
-                    </div>
-                </div>
+            <div className="relative z-10 text-center mb-8">
 
-                <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
+<h className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-blue-300 bg-clip-text text-transparent mb-4">
+Profile Settings
+    </h>
+    <p className="text-gray-300 mt-4 text-lg mb-4">
+    Manage your account settings and preferences
+    </p>
+    <div className="w-28 h-1 bg-gradient-to-r from-yellow-400 to-blue-400 mx-auto rounded-full"></div>
+
+</div>
+
+                <div className="grid grid-cols-1 md:grid-cols-1 gap-8 p-11">
                     {/* Profile Information Card */}
                     <div className="bg-gray-800/10 dark:bg-gray-800/10 shadow-2xl rounded-3xl p-8 backdrop-blur-lg transform transition-all duration-300 hover:scale-[1.02]">
                         <header className="mb-8  border-blue-100 dark:border-blue-800 pb-6">
                             <h3 className="text-2xl mb-5 font-bold bg-gradient-to-r from-blue-600 to-yellow-500 bg-clip-text text-transparent">
                                 Profile Information & Security
                             </h3>
-                            <div className="w-full h-1 bg-gradient-to-r from-yellow-400 to-blue-400 mx-auto rounded-full"></div>
+                            <div className="w-full h-1 bg-gradient-to-r from-blue-950 to-blue-400 mx-auto rounded-full"></div>
 
                         </header>
 

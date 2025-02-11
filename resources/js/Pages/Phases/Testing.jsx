@@ -21,13 +21,11 @@ const Tesing = ({ project, pendingTasks, finishedTasks }) => {
     backgroundBlendMode: 'overlay',
   }}
 ></div>
-
-{/* Overlay en clip-path (modifié) */}
-<div
-
-  className="fixed bottom-0 right-0 w-1/3 h-full bg-gradient-to-r from-[#FDCD65] to-[#FDC03E] transition-all duration-800 ease-in-out -z-10 pointer-events-none"
-  style={{ clipPath: "polygon(100% 0, 100% 0%, 100% 100%, 0 100%" }}
-></div>
+    {/* Overlay en clip-path */}
+    <div
+          className="fixed bottom-0 right-0 w-full h-full bg-gradient-to-r from-[#FDCD65] to-[#FDC03E] transition-all duration-800 ease-in-out -z-10 pointer-events-none"
+          style={{ clipPath: "polygon(2% 0, 52% 28%, 99% 0)" }}
+        ></div>
 {/* Titre et sous-titre */}
 <div className="relative z-10 text-center mb-8">
   <h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-blue-300 bg-clip-text text-transparent mb-4">

@@ -13,11 +13,11 @@ const Development = ({ project, pendingTasks, finishedTasks }) => {
 
 <div className="relative min-h-screen p-5 text-white font-poppins">
 
-{/* Overlay en clip-path */}
-<div
-  className="fixed bottom-0 right-0 w-full h-full bg-gradient-to-r from-[#FDCD65] to-[#FDC03E] transition-all duration-800 ease-in-out -z-10 pointer-events-none"
-  style={{ clipPath: "polygon(50% 0%, 100% 0, 100% 43%, 100% 100%, 100% 100%, 100% 100%, 49% 100%, 100% 45%, 51% 0)" }}
-></div>
+    {/* Overlay en clip-path */}
+    <div
+          className="fixed bottom-0 right-0 w-full h-full bg-gradient-to-r from-[#FDCD65] to-[#FDC03E] transition-all duration-800 ease-in-out -z-10 pointer-events-none"
+          style={{ clipPath: "polygon(2% 0, 52% 28%, 99% 0)" }}
+        ></div>
 
 {/* Titre et sous-titre */}
 <div className="relative z-10 text-center mb-8">
