@@ -27,6 +27,7 @@ const Show = ({ project, auth }) => {
       });
     }
   };
+
   const handleRemoveTask = (task) => {
     setTaskToRemove(task);
     setShowTaskConfirmationModal(true);
@@ -50,51 +51,50 @@ const Show = ({ project, auth }) => {
 
   return (
     <ProjectLayout>
-      <div className="font-poppins  text-white p-5 h-auto w-full ">
-           {/* Overlay en clip-path */}
-           <div
+          <div className="font-poppins text-white p-5 h-auto w-full ">
+        {/* Overlay en clip-path */}
+        <div
           className="fixed bottom-0 right-0 w-full h-full bg-gradient-to-r from-[#FDCD65] to-[#FDC03E] transition-all duration-800 ease-in-out -z-10 pointer-events-none"
           style={{ clipPath: "polygon(2% 0, 52% 28%, 99% 0)" }}
         ></div>
-             <div className="relative z-10 text-center mb-8">
-
-<h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-blue-300 bg-clip-text text-transparent mb-4">
-Project Details</h1>
-<p className="text-gray-300 mt-4 text-lg mb-4">
-A simple way to organize projects, priorities, teams.</p>
-<div className="w-28 h-1 bg-gradient-to-r from-yellow-400 to-blue-400 mx-auto rounded-full"></div>
-
-</div>
-         {/* Top Banner */}
-        <div className="text-white mb-1 ">
-          <div className="max-w-7xl mx-auto px-4 py-8">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-
-              {isProjectManager && (
-                <div className="flex gap-2 mt-4 md:mt-0">
-                  <Link
-                    href={route('projects.edit', { project: project.id })}
-                    className="p-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
-                  >
-                    <PencilSquareIcon className="w-5 h-5" />
-                  </Link>
-                  <button
-                    onClick={() => setShowDeleteConfirmationModal(true)}
-                    className="p-2 bg-red-500/80 hover:bg-red-500 rounded-lg transition-colors"
-                  >
-                    <TrashIcon className="w-5 h-5" />
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
+        <div className="relative z-10 text-center mb-8">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-blue-300 bg-clip-text text-transparent mb-4">
+            Project Details
+          </h1>
+          <p className="text-gray-300 mt-4 text-lg mb-4">
+            A simple way to organize projects, priorities, teams.
+          </p>
         </div>
+        <div className="w-28 h-1 bg-gradient-to-r from-yellow-400 to-blue-400 mx-auto rounded-full"></div>
 
+        </div>
+      <div className="font-poppins text-white p-10   ">
         {/* Project Info Bar */}
         <div className="bg-gradient-to-br from-[#FDC03E] to-blue-800 p-1 rounded-xl">
-          <div className="bg-black/90 backdrop-blur-xl rounded-lg p-6">
-            <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="bg-black/90 backdrop-blur-xl rounded-lg p-2 ">
+            <div className="max-w-7xl mx-auto px-4 py-4 ">
               <div className="flex flex-wrap gap-6 text-sm">
+                <div className="flex items-center gap-2">
+                  <DocumentTextIcon className="w-5 h-5 text-violet-400" />
+                  <span className="text-gray-400">Description:</span>
+                  <span className="text-white">{project.description}</span>
+                  {isProjectManager && (
+                    <div className="flex gap-2 ml-20">
+                      <Link
+                        href={route('projects.edit', { project: project.id })}
+                        className="p-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
+                      >
+                        <PencilSquareIcon className="w-5 h-5" />
+                      </Link>
+                      <button
+                        onClick={() => setShowDeleteConfirmationModal(true)}
+                        className="p-2 bg-red-500/80 hover:bg-red-500 rounded-lg transition-colors"
+                      >
+                        <TrashIcon className="w-5 h-5" />
+                      </button>
+                    </div>
+                  )}
+                </div>
                 <div className="flex items-center gap-2">
                   <UserCircleIcon className="w-5 h-5 text-violet-400" />
                   <span className="text-gray-400">Owner:</span>
@@ -117,18 +117,25 @@ A simple way to organize projects, priorities, teams.</p>
                   <span className="text-gray-400">Status:</span>
                   <span className="text-white">{project.status}</span>
                 </div>
-                {project.file_path && (
-                  <a
-                    href={route('project.file', { project: project.id })}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-3 py-1 bg-violet-600 hover:bg-violet-700 rounded-full transition-colors ml-auto"
-                  >
-                    <DocumentTextIcon className="w-4 h-4" />
-                    <span>View Docs</span>
-                  </a>
-                )}
+                <div className="flex items-center gap-2">
+                  <DocumentTextIcon className="w-5 h-5 text-violet-400" />
+                  <span className="text-gray-400">Title:</span>
+                  <span className="text-white">{project.title}</span>
+                </div>
+
+              {project.file_path && (
+                <a
+                  href={route('project.file', { project: project.id })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-3 py-1  bg-violet-600 hover:bg-violet-700 rounded-full transition-colors mt-4 ml-auto"
+                >
+                  <DocumentTextIcon className="w-4 h-4" />
+                  <span>View Docs</span>
+                </a>
+              )}
               </div>
+
             </div>
           </div>
         </div>
