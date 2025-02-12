@@ -121,9 +121,9 @@ export default function Welcome({ auth }) {
                                 with efficient and user-friendly tools.
                             </p>
                         </div>
-                        <div className="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div className="card-container">
-                                <div className="card bg-white p-6 rounded-lg shadow-md">
+                        <div className="cards flex flex-wrap justify-center gap-[55px] p-5  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
+                            <div className="card-container ">
+                                <div className="card shadow-md relative w-full max-w-[320px] p-[3em] text-[--text-color] bg-[--bg-color] rounded-[1em]">
                                     <img
                                         src="storage/svg/workers_8xeu (1).svg"
                                         alt=""
@@ -137,14 +137,14 @@ export default function Welcome({ auth }) {
                                         Create, manage, and track the progress
                                         of your projects with ease.
                                     </p>
-                                    <div className="layers">
-                                        <div className="layer"></div>
+                                    <div className="absolute inset-0 w-full h-full -z-10 preserve-3d">
+                                    <div className="layer absolute inset-0 w-full h-full rounded-[1em]"></div>
                                     </div>
                                 </div>
                             </div>
                             <div className="card-container">
-                                <div className="card bg-white p-6 rounded-lg shadow-md">
-                                    <img
+                            <div className="card shadow-md relative w-full max-w-[320px] p-[3em] text-[--text-color] bg-[--bg-color] rounded-[1em]">
+                            <img
                                         src="storage/svg/real-time-collaboration_g4mc.svg"
                                         alt=""
                                         className="block mx-auto size-28"
@@ -157,14 +157,14 @@ export default function Welcome({ auth }) {
                                         Work as a team, communicate instantly,
                                         and track updates for every task.
                                     </p>
-                                    <div className="layers">
-                                        <div className="layer"></div>
+                                    <div className="absolute inset-0 w-full h-full -z-10 preserve-3d">
+                                    <div className="layer absolute inset-0 w-full h-full rounded-[1em]"></div>
                                     </div>
                                 </div>
                             </div>
                             <div className="card-container">
-                                <div className="card bg-white p-6 rounded-lg shadow-md">
-                                    <img
+                            <div className="card shadow-md relative w-full max-w-[320px] p-[3em] text-[--text-color] bg-[--bg-color] rounded-[1em]">
+                            <img
                                         src="storage/svg/staks_term-sheet_70lo.svg"
                                         alt=""
                                         className="block mx-auto size-28"
@@ -178,8 +178,8 @@ export default function Welcome({ auth }) {
                                         deadlines efficiently with detailed
                                         reports.
                                     </p>
-                                    <div className="layers">
-                                        <div className="layer"></div>
+                                    <div className="absolute inset-0 w-full h-full -z-10 preserve-3d">
+                                        <div className="layer absolute inset-0 w-full h-full rounded-[1em]"></div>
                                     </div>
                                 </div>
                             </div>
