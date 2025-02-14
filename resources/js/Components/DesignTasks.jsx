@@ -32,7 +32,7 @@ const Tasks = () => {
         {/* Status Indicator */}
         <div className="absolute -left-1 top-6 w-2 h-12 rounded-xl bg-gradient-to-b from-blue-500 to-yellow-500 group-hover:scale-y-110 transition-transform duration-300" />
 
-        <div className="bg-black/90 backdrop-blur-xl rounded-xl p-6">
+        <div className="bg-black/90 backdrop-blur-xl rounded-xl p-6  min-h-full">
           {/* Task Header */}
           <div className="flex items-center gap-3 mb-2">
             <CodeBracketIcon className="w-5 h-5 text-cyan-400" />

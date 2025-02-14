@@ -36,7 +36,7 @@ const Tasks = () => {
 
     return (
       <div className={`relative group transition-all duration-300 overflow-hidden rounded-3xl  ${cardStyles} p-1`}>
-        <div className="h-full bg-black/90 backdrop-blur-lg rounded-2xl p-6 text-white">
+        <div className="h-full bg-black/90 backdrop-blur-lg rounded-2xl p-6 text-white  min-h-full">
           <div className="flex items-start justify-between mb-4 h-min">
             <div className="flex items-center space-x-3">
               {isPending ? (

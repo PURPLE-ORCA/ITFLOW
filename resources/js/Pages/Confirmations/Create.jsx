@@ -16,7 +16,7 @@ const Create = ({ task }) => {
 
   return (
     <ProjectLayout>
-      <div className="font-poppins text-white  ">
+      <div className="font-poppins text-white">
         <div className="min-h-screen p-2">
           <div className="max-w-2xl mx-auto backdrop-blur-lg bg-slate-400/5 border border-white/20 rounded-xl">
             <div className="p-6 space-y-1">

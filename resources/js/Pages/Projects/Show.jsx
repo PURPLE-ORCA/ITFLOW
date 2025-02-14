@@ -68,84 +68,96 @@ const Show = ({ project, auth }) => {
         <div className="w-28 h-1 bg-gradient-to-r from-yellow-400 to-blue-400 mx-auto rounded-full"></div>
 
         </div>
-      <div className="font-poppins text-white p-10   ">
+      <div className="font-poppins text-white p-7   ">
         {/* Project Info Bar */}
         <div className="bg-gradient-to-br from-[#FDC03E] to-blue-800 p-1 rounded-xl">
-          <div className="bg-black/90 backdrop-blur-xl rounded-lg p-2 ">
-            <div className="max-w-7xl mx-auto px-4 py-4 ">
-              <div className="flex flex-wrap gap-6 text-sm">
-                <div className="flex items-center gap-2">
-                  <DocumentTextIcon className="w-5 h-5 text-violet-400" />
-                  <span className="text-gray-400">Description:</span>
-                  <span className="text-white">{project.description}</span>
-                  {isProjectManager && (
-                    <div className="flex gap-2 ml-20">
-                      <Link
-                        href={route('projects.edit', { project: project.id })}
-                        className="p-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
-                      >
-                        <PencilSquareIcon className="w-5 h-5" />
-                      </Link>
-                      <button
-                        onClick={() => setShowDeleteConfirmationModal(true)}
-                        className="p-2 bg-red-500/80 hover:bg-red-500 rounded-lg transition-colors"
-                      >
-                        <TrashIcon className="w-5 h-5" />
-                      </button>
-                    </div>
-                  )}
-                </div>
-                <div className="flex items-center gap-2">
-                  <UserCircleIcon className="w-5 h-5 text-violet-400" />
-                  <span className="text-gray-400">Owner:</span>
-                  <span className="text-white">{project.owner.name}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <DocumentTextIcon className="w-5 h-5 text-violet-400" />
-                  <span className="text-gray-400">Type:</span>
-                  <span className="text-white">{project.type}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CalendarIcon className="w-5 h-5 text-violet-400" />
-                  <span className="text-gray-400">Deadline:</span>
-                  <span className="text-white">
-                    {project.deadline ? formatDate(project.deadline) : 'No deadline'}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-violet-400" />
-                  <span className="text-gray-400">Status:</span>
-                  <span className="text-white">{project.status}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <DocumentTextIcon className="w-5 h-5 text-violet-400" />
-                  <span className="text-gray-400">Title:</span>
-                  <span className="text-white">{project.title}</span>
-                </div>
+      <div className="bg-black/90 backdrop-blur-xl rounded-lg p-2  min-h-full">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex flex-wrap gap-6 text-sm">
+            <div className="flex items-center gap-2">
+              <DocumentTextIcon className="w-5 h-5 text-violet-400" />
+              <span className="text-gray-400">Description:</span>
+              <span className="text-white">{project.description}</span>
+            </div>
 
-              {project.file_path && (
-                <a
-                  href={route('project.file', { project: project.id })}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3 py-1  bg-violet-600 hover:bg-violet-700 rounded-full transition-colors mt-4 ml-auto"
-                >
-                  <DocumentTextIcon className="w-4 h-4" />
-                  <span>View Docs</span>
-                </a>
-              )}
-              </div>
+            <div className="flex items-center gap-2">
+              <UserCircleIcon className="w-5 h-5 text-violet-400" />
+              <span className="text-gray-400">Owner:</span>
+              <span className="text-white">{project.owner.name}</span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <DocumentTextIcon className="w-5 h-5 text-violet-400" />
+              <span className="text-gray-400">Type:</span>
+              <span className="text-white">{project.type}</span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <CalendarIcon className="w-5 h-5 text-violet-400" />
+              <span className="text-gray-400">Deadline:</span>
+              <span className="text-white">
+                {project.deadline ? formatDate(project.deadline) : 'No deadline'}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-violet-400" />
+              <span className="text-gray-400">Status:</span>
+              <span className="text-white">{project.status}</span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <DocumentTextIcon className="w-5 h-5 text-violet-400" />
+              <span className="text-gray-400">Title:</span>
+              <span className="text-white">{project.title}</span>
 
             </div>
+            <div className='flex items-center gap-2 pb-2.5'>
+
+
+            {project.file_path && (
+
+              <a
+                href={route('project.file', { project: project.id })}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3 py-1  bg-violet-600 hover:bg-violet-700 rounded-full transition-colors mt-4 ml-auto"
+              >
+
+
+                <DocumentTextIcon className="w-4 h-4" />
+                <span>View Docs</span>
+              </a>
+            )}
+              </div>
+
+    {isProjectManager && (
+      <div className="flex gap-2 ml-auto">
+        <Link
+          href={route('projects.edit', { project: project.id })}
+          className="p-2 bg-yellow-300 hover:bg-yellow-400 rounded-full transition-colors"
+        >
+          <PencilSquareIcon className="w-5 h-5" />
+        </Link>
+        <button
+          onClick={() => setShowDeleteConfirmationModal(true)}
+          className="p-2 bg-red-600 hover:bg-red-700 rounded-full transition-colors"
+        >
+          <TrashIcon className="w-5 h-5" />
+        </button>
+      </div>
+    )}
           </div>
         </div>
+      </div>
+    </div>
 
         {/* Main Content */}
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Team Members Column */}
             <div className="h-min space-y-4 bg-gradient-to-br from-[#FDC03E] to-blue-800 p-1 rounded-xl">
-              <div className="bg-black/85 backdrop-blur-xl rounded-lg p-6">
+              <div className="bg-black/85 backdrop-blur-xl rounded-lg p-6  min-h-full">
                 <div className="flex items-center justify-between">
                   <h2 className="text-xl font-semibold text-white">Team Members</h2>
                   {isProjectManager && (
@@ -189,7 +201,7 @@ const Show = ({ project, auth }) => {
             {/* Tasks Column */}
             <div className="lg:w-2/3 space-y-4">
               <div className="bg-gradient-to-br from-[#FDC03E] to-blue-800 p-1 rounded-xl">
-                <div className="bg-black/80 backdrop-blur-xl rounded-lg p-3 flex items-center justify-between">
+                <div className="bg-black/80 backdrop-blur-xl rounded-lg p-3 flex items-center justify-between ">
                   <h2 className="text-xl font-semibold text-white">Project Tasks</h2>
                   {isProjectManager && (
                     <Link

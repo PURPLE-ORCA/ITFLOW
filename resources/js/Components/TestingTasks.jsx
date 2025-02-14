@@ -41,7 +41,7 @@ const Tasks = () => {
           <div className="w-1 h-12 rounded-full bg-gradient-to-b from-yellow-500 to-cyan-500 animate-pulse delay-75" />
         </div>
 
-        <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-6">
+        <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-6  min-h-full">
           {/* Task Header */}
           <div className="ml-4">
             <div className="flex items-center gap-3 mb-3">
