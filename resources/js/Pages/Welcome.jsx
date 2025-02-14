@@ -19,51 +19,51 @@ export default function Welcome({ auth }) {
 
             <div className="">
                 <AnimatedBackground />
+                <header className="fixed inset-x-0 top-0 z-50  backdrop-blur-sm bg-opacity-90">
+      <nav className="mx-3 flex justify-between items-center py-3">
+        {/* Logo Section */}
+        <div className="transform hover:scale-105 transition-transform duration-300">
+          <ApplicationLogo />
+        </div>
 
-                <header className="bg-black fixed inset-x-0 top-0 z-50 shadow-md">
-                    <nav className="mx-3 flex justify-between items-center py-4">
-                        <div>
-                            <ApplicationLogo />
-                        </div>
-                        <div className="hidden lg:flex gap-x-8">
-                            <a
-                                href="#features"
-                                className="text-sm font-semibold text-white hover:text-cyan-200"
-                            >
-                                Features
-                            </a>
-                            <a
-                                href="#About"
-                                className="text-sm font-semibold text-white hover:text-cyan-200"
-                            >
-                                About
-                            </a>
-                            <a
-                                href="#learn-more"
-                                className="text-sm font-semibold text-white hover:text-cyan-200"
-                            >
-                                Contact
-                            </a>
-                        </div>
-                        <div>
-                            {auth.user ? (
-                                <Link
-                                    href={route("dashboard")}
-                                    className="px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded-full hover:bg-cyan-400 transitionfocus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                >
-                                    Dashboard
-                                </Link>
-                            ) : (
-                                <Link
-                                    href={route("login")}
-                                    className="px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded-full hover:bg-cyan-400 transition"
-                                >
-                                    Log in
-                                </Link>
-                            )}
-                        </div>
-                    </nav>
-                </header>
+        {/* Navigation Links */}
+        <div className="hidden lg:flex gap-x-12">
+          {['Features', 'About', 'Contact'].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="group relative text-sm font-medium text-gray-100 hover:text-white transition-colors duration-300"
+            >
+              {item}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-yellow-500 transition-all duration-300 group-hover:w-full" />
+            </a>
+          ))}
+        </div>
+
+        {/* Auth Section */}
+        <div className="relative">
+          {auth.user ? (
+            <Link
+              href={route("dashboard")}
+              className="relative px-6 py-3 text-sm font-medium text-white overflow-hidden group"
+            >
+              <span className="absolute inset-0 w-full h-full transition duration-300 ease-out transform translate-x-0 -skew-x-12 bg-gradient-to-r from-purple-700 to-indigo-600 group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-700"></span>
+              <span className="absolute inset-0 w-full h-full transition duration-300 ease-out transform skew-x-12 bg-gradient-to-r from-indigo-600 to-purple-700 group-hover:bg-gradient-to-r group-hover:from-purple-700 group-hover:to-indigo-600 opacity-0 group-hover:opacity-100"></span>
+              <span className="relative">Dashboard</span>
+            </Link>
+          ) : (
+            <Link
+              href={route("login")}
+              className="relative inline-flex items-center px-6 py-2 text-sm font-medium text-white bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full overflow-hidden transition-all duration-300 hover:from-blue-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-cyan-500/50 "
+            >
+
+              <span className="relative z-10">Log in</span>
+              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-cyan-400 to-blue-400 opacity-0 transition-opacity duration-300 hover:opacity-100" />
+            </Link>
+          )}
+        </div>
+      </nav>
+    </header>
 
                 <main className="mt-6">
                     <section className="animated-section h-[50vh] md:h-screen box-border flex flex-col items-center md:justify-center relative text-[rgb(157,239,255)] m-0 p-0">
@@ -85,7 +85,7 @@ export default function Welcome({ auth }) {
                             <div className="space-x-4 py-6 pl-4">
                                 <a
                                     href={route("login")}
-                                    className="border-3 border-cyan-500 border-x-[#FFD700] dark:ring-offset-emerald-200 rounded-full px-3 py-2 font-semibold text-white hover:text-black shadow-sm hover:bg-blue-500"
+                                    className="border-3 border-cyan-500 border-x-[#FFD700] dark:ring-offset-cyan-500 rounded-full px-3 py-2 font-semibold text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-cyan-500/50"
                                 >
                                     Get started
                                 </a>
@@ -320,7 +320,7 @@ export default function Welcome({ auth }) {
                             <div className="mt-12">
                                 <a
                                     href={route("login")}
-                                    className="inline-flex items-center px-3 py-2 border-3 border-cyan-500 border-x-[#FFD700] rounded-full font-semibold text-white  shadow-sm hover:bg-blue-500"
+                                    className="border-3 border-cyan-500 border-x-[#FFD700] dark:ring-offset-cyan-500 rounded-full px-3 py-2 font-semibold text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-cyan-500/50"
                                 >
                                     Contact Us →
                                 </a>
