@@ -33,7 +33,7 @@ class ConfirmationController extends Controller
 
         $validated = $request->validate([
             'description' => 'required|string|min:10',
-            'file' => 'nullable|file|max:10240',
+            'file' => 'required|file|max:10240',
         ]);
 
         // Store file if present
