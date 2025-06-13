@@ -70,7 +70,7 @@ const Sidebar = () => {
 
                     {/* AI Assistant */}
                     <Link href={route('chat.index')} className="flex items-center p-2 text-yellow-400 hover:text-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-sm shadow-yellow-400 hover:shadow-lg hover:shadow-blue-700 rounded-md group/item">
-                        <i className='bx bxs-robot text-2xl text-yellow-400 group-hover/item:text-blue-400'></i>
+                        <i className='bxr bx-robot text-2xl text-yellow-400 group-hover/item:text-blue-400'></i>
                         <span className="ml-4 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">AI Assistant</span>
                     </Link>
                 </div>
