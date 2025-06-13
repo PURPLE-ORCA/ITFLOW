@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Confirmation::class, 'created_by');
     }
+
+    public function chatMessages()
+    {
+        return $this->hasMany(ChatMessage::class);
+    }
 }

@@ -8,6 +8,8 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Models\ChatMessage; // Add this
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 // Public routes
@@ -75,8 +77,42 @@ Route::post('/confirmations/{task}', [ConfirmationController::class, 'store'])
         ->name('chat.ask');
 
     Route::get('/chat', function () {
-        return Inertia::render('Chat/Index');
-    })->middleware(['auth', 'verified'])->name('chat.index');
+    $chatHistory = Auth::user()->chatMessages()->orderBy('created_at')->get();
+
+    // Use flatMap to transform each DB row into one or two message objects
+    $messages = $chatHistory->flatMap(function ($message) {
+        $userMessage = null;
+        $botMessage = null;
+
+        // Create the user's message object
+        if ($message->prompt || $message->file_path) {
+            $userMessage = [
+                'id' => 'user-' . $message->id,
+                'sender' => 'user',
+                'text' => $message->prompt,
+                'file_path' => $message->file_path,
+                'file_name' => $message->file_name,
+                'mime_type' => $message->mime_type,
+            ];
+        }
+
+        // Create the bot's reply object
+        if ($message->reply) {
+            $botMessage = [
+                'id' => 'bot-' . $message->id,
+                'sender' => 'bot',
+                'text' => $message->reply,
+                'file_path' => null, // Bots don't send files back in this setup
+            ];
+        }
+
+        return array_filter([$userMessage, $botMessage]); // Return both, filtering out any nulls
+    });
+
+    return Inertia::render('Chat/Index', [
+        'messages' => $messages,
+    ]);
+})->middleware(['auth', 'verified'])->name('chat.index');
 });
 
 require __DIR__.'/auth.php';
