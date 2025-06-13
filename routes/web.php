@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
@@ -68,6 +69,14 @@ Route::get('/confirmations/create/{task}', [ConfirmationController::class, 'crea
 ->name('confirmations.create');
 Route::post('/confirmations/{task}', [ConfirmationController::class, 'store'])
     ->name('confirmations.store');
+
+    Route::post('/chat', [ChatController::class, 'ask'])
+        ->middleware(['auth', 'verified'])
+        ->name('chat.ask');
+
+    Route::get('/chat', function () {
+        return Inertia::render('Chat/Index');
+    })->middleware(['auth', 'verified'])->name('chat.index');
 });
 
 require __DIR__.'/auth.php';
