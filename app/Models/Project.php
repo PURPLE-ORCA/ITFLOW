@@ -36,4 +36,9 @@ class Project extends Model
     {
         return $this->hasMany(Task::class);
     }
+
+    public function drawings()
+    {
+        return $this->hasMany(Drawing::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ConfirmationController;
+use App\Http\Controllers\DrawingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProjectController;
@@ -30,6 +31,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Projects
     Route::resource('projects', ProjectController::class);
+    Route::resource('projects.drawings', DrawingController::class)->shallow();
+// Add this new route for auto-saving
+Route::patch('/drawings/{drawing}/autosave', [DrawingController::class, 'autoSave'])->name('drawings.autosave');
     Route::post('/projects/{project}/users', [ProjectController::class, 'addUser'])->name('projects.addUser');
     Route::delete('/projects/{project}/users/{user}', [ProjectController::class, 'removeUser'])->name('projects.removeUser');
 
