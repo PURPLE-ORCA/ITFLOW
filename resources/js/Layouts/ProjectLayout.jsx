@@ -1,5 +1,6 @@
 import React from "react";
 import Sidebar from "@/Components/Sidebar";
+import Header from "@/Components/Header";
 import ProjectProvider from "@/contexts/ProjectContext";
 import { usePage } from "@inertiajs/react";
 import Toast from "@/Components/Toast";
@@ -28,7 +29,10 @@ export default function ProjectLayout({
                 ></div>
 
                 <Sidebar />
-                <main className="pl-20 p-6 w-full">{children}</main>
+                <div className="flex flex-col ml-16">
+                    <Header user={usePage().props.auth.user} />
+                    <main className="p-6 w-full">{children}</main>
+                </div>
             </div>
         </ProjectProvider>
     );

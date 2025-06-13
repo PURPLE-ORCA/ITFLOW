@@ -1,0 +1,11 @@
+{
+  "drawings_header": "لوحات المشروع البيضاء",
+  "no_drawings_title": "لا توجد لوحات بيضاء بعد",
+  "no_drawings_message": "ابدأ بإنشاء أول لوحة بيضاء لهذا المشروع.",
+  "create_first_drawing_button": "إنشاء أول لوحة بيضاء",
+  "new_drawing_button": "لوحة بيضاء جديدة",
+  "rename_button": "إعادة تسمية",
+  "delete_button": "حذف",
+  "delete_drawing_confirmation_title": "حذف اللوحة البيضاء",
+  "delete_drawing_confirmation_message": "هل أنت متأكد أنك تريد حذف \"{drawingName}\" نهائيًا؟ لا يمكن التراجع عن هذا الإجراء."
+}

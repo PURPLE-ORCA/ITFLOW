@@ -1,0 +1,11 @@
+{
+  "drawings_header": "Tableaux Blancs du Projet",
+  "no_drawings_title": "Aucun Tableau Blanc Pour le Moment",
+  "no_drawings_message": "Commencez par créer le premier tableau blanc pour ce projet.",
+  "create_first_drawing_button": "Créer le Premier Tableau Blanc",
+  "new_drawing_button": "Nouveau Tableau Blanc",
+  "rename_button": "Renommer",
+  "delete_button": "Supprimer",
+  "delete_drawing_confirmation_title": "Supprimer le Tableau Blanc",
+  "delete_drawing_confirmation_message": "Êtes-vous sûr de vouloir supprimer définitivement \"{drawingName}\" ? Cette action est irréversible."
+}

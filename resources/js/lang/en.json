@@ -1,0 +1,11 @@
+{
+  "drawings_header": "Project Whiteboards",
+  "no_drawings_title": "No Whiteboards Yet",
+  "no_drawings_message": "Get started by creating the first whiteboard for this project.",
+  "create_first_drawing_button": "Create First Drawing",
+  "new_drawing_button": "New Drawing",
+  "rename_button": "Rename",
+  "delete_button": "Delete",
+  "delete_drawing_confirmation_title": "Delete Drawing",
+  "delete_drawing_confirmation_message": "Are you sure you want to permanently delete \"{drawingName}\"? This action cannot be undone."
+}
