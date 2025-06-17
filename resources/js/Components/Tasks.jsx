@@ -31,8 +31,8 @@ const Tasks = () => {
   const TaskCard = ({ task, status }) => {
     const isPending = status === 'pending';
     const cardStyles = isPending
-      ? ' bg-gradient-to-br from-[#FDC03E] to-blue-800'
-      : 'bg-gradient-to-br from-cyan-500 to-blue-900';
+      ? ' bg-gradient-to-br from-black/80 to-blue-950/80 border border-yellow-400/30 shadow-2xl shadow-yellow-400/10'
+      : 'bg-gradient-to-br from-black/80 to-blue-950/80 border border-blue-500/30 shadow-2xl shadow-blue-500/10';
 
     return (
       <div className={`relative group transition-all duration-300 overflow-hidden rounded-3xl  ${cardStyles} p-1`}>

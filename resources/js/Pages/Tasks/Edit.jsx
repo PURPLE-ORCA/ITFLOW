@@ -19,10 +19,7 @@ const Edit = ({ task, users }) => {
 
   return (
     <div className="font-poppins text-white p-5 h-auto w-full">
-      {/* Background overlay */}
-      <div id="back"
-        className="fixed bottom-0 right-0 w-2/6 h-full bg-gradient-to-r from-[#FDCD65] to-[#FDC03E] transition-all duration-800 ease-in-out -z-10"
-        style={{ clipPath: 'circle(50% at 100% 50%)' }}></div>
+
       <ProjectLayout>
         <div className="min-h-screen p-2">
           <div className="max-w-2xl mx-auto backdrop-blur-lg bg-slate-400/5 border border-white/20 rounded-xl">

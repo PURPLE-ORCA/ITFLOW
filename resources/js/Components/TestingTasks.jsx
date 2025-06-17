@@ -33,13 +33,14 @@ const Tasks = () => {
       ? 'bg-gradient-to-br from-[#FDC03E] to-blue-800'
       : 'bg-gradient-to-br from-cyan-500 to-blue-900';
 
+
     return (
-      <div className={`relative group ${statusColors} p-1 rounded-3xl text-white transition-all duration-500 ease-out`}>
-        {/* Status Indicator */}
-        <div className="absolute -left-1 top-6 flex space-x-0.5">
-          <div className="w-1 h-12 rounded-full bg-gradient-to-b from-blue-500 to-amber-500 animate-pulse" />
-          <div className="w-1 h-12 rounded-full bg-gradient-to-b from-yellow-500 to-cyan-500 animate-pulse delay-75" />
-        </div>
+      <div className="relative bg-gradient-to-br from-black/90 via-gray-900/95 to-black/90 backdrop-blur-2xl border border-gray-700/30 rounded-3xl overflow-hidden hover:border-gray-600/50 transition-all duration-500">
+
+          {/* Animated top border */}
+          <div className={`h-1 w-full bg-gradient-to-r ${isPending ? 'from-yellow-400 via-yellow-300 to-blue-500' : 'from-blue-400 via-blue-300 to-yellow-400'} relative overflow-hidden`}>
+            <div className={`absolute inset-0 bg-gradient-to-r ${isPending ? 'from-transparent via-white/40 to-transparent' : 'from-transparent via-white/40 to-transparent'} animate-pulse`}></div>
+          </div>
 
         <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-6  min-h-full">
           {/* Task Header */}

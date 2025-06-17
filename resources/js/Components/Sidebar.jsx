@@ -172,6 +172,7 @@ const Sidebar = () => {
                             </div>
                         </div>
 
+<<<<<<< Updated upstream
                         {/* Profile Menu */}
                         <div
                             className={`absolute bottom-full left-0 w-full bg-gray-800/95 backdrop-blur-lg rounded-t-xl overflow-hidden transition-all duration-300 ${
@@ -199,6 +200,27 @@ const Sidebar = () => {
                                 </span>
                             </Link>
                         </div>
+=======
+                          {/* Profile Menu */}
+                            <div className={`absolute bottom-full left-4 right-4 bg-black/95 backdrop-blur-xl rounded-2xl border border-blue-500/20 shadow-2xl transition-all duration-300 ${showProfileMenu ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+                                <Link
+                                    href={route('profile.edit')}
+                                    className="flex items-center px-6 py-4 hover:bg-yellow-400/10 transition-colors rounded-t-2xl border-b border-blue-500/10"
+                                >
+                                    <i className='bx bxs-cog text-xl text-yellow-400'></i>
+                                    <span className="ml-4 text-sm text-white">Profile Settings</span>
+                                </Link>
+                                <Link
+                                    href={route('logout')}
+                                    method="post"
+                                    as="button"
+                                    className="w-full flex items-center px-6 py-4 hover:bg-blue-500/10 transition-colors rounded-b-2xl"
+                                >
+                                    <i className='bx bxs-log-out text-xl text-blue-400'></i>
+                                    <span className="ml-4 text-sm text-white">Sign Out</span>
+                                </Link>
+                            </div>
+>>>>>>> Stashed changes
                     </div>
                 </div>
             </div>

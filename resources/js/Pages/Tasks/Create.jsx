@@ -19,7 +19,6 @@ const Create = ({ project, users }) => {
 
   return (
     <div className="font-poppins text-white p-5 h-auto w-full">
-      {/* Background overlay */}
 
       <ProjectLayout>
         <div className="min-h-screen p-2">

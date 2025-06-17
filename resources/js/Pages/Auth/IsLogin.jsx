@@ -46,7 +46,7 @@ export default function IsLogin({ status, canResetPassword }) {
 
             {/* Animated Background */}
             <div
-                className="fixed bottom-0 right-0 w-full h-full bg-gradient-to-r from-[#FDCD65] to-[#FDC03E] transition-all duration-800 ease-in-out -z-10 pointer-events-none"
+                className="fixed bottom-0 right-0 w-full h-full bg-gradient-to-r from-[#f3b42a] to-[#f0af22] transition-all duration-800 ease-in-out -z-10 pointer-events-none"
                 style={{ clipPath: "polygon(100% 0, 100% 0, 100% 100%, 0% 100%)" }}
             ></div>
 
@@ -86,7 +86,7 @@ export default function IsLogin({ status, canResetPassword }) {
                                         type="email"
                                         name="email"
                                         value={loginForm.data.email}
-                                        className="w-full px-8 py-2 rounded-lg border-b-2 border-white bg-white bg-opacity-20 focus:bg-opacity-30 focus:ring-2 focus:ring-cyan-300 text-white text-center placeholder-gray-300 transition duration-200"
+                                        className="w-full px-8 py-2 rounded-lg border-b-2 border-white text-white text-center "
                                         autoComplete="username"
                                         isFocused={true}
                                         onChange={(e) => loginForm.setData('email', e.target.value)}
@@ -103,7 +103,7 @@ export default function IsLogin({ status, canResetPassword }) {
                                         type="password"
                                         name="password"
                                         value={loginForm.data.password}
-                                        className="w-full px-8 py-2 rounded-lg border-b-2 border-white bg-white bg-opacity-20 focus:bg-opacity-30 focus:ring-2 focus:ring-cyan-300 text-white text-center placeholder-gray-300 transition duration-200"
+                                        className="w-full px-8 py-2 rounded-lg border-b-2 border-white text-white text-center"
                                         autoComplete="current-password"
                                         onChange={(e) => loginForm.setData('password', e.target.value)}
                                         placeholder="Password"
