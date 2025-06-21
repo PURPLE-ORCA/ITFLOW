@@ -53,7 +53,7 @@ export default function IsLogin({ status, canResetPassword }) {
             <div className="container mx-auto px-4 py-10">
                 <div className="w-full px-8 py-1 rounded-lg border-b-2 border-black text-white placeholder-gray-100/5 transition duration-200">
                     <div className="flex flex-col items-center text-center py-6 bg-transparent text-yellow-300">
-                    <img src={`${window.location.origin}/storage/img/logo.png`} alt="Logo" className="min-w-24 h-24 mb-3" />
+                    <img src={`${window.location.origin}/storage/img/logo2.png`} alt="Logo" className="min-w-24 h-24 mb-3" />
 
                         <p className="mt-2 text-lg">Join our amazing community</p>
                     </div>

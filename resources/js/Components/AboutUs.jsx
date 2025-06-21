@@ -50,7 +50,7 @@ const AboutUs = () => {
                         </div>
                         <div className="order-1 text-white border-y-2 rounded-lg shadow-lg border-cyan-200 shadow-cyan-500/50 w-5/12 px-6 py-4">
                             <h3 className="mb-3 font-bold text-xl">
-                                Kaouthar Mssaoui
+                                Kaouthar Missaoui
                             </h3>
                             <p className="text-white leading-tight text-sm">
                                 UX/UI Design Expert & Frontend Developer
