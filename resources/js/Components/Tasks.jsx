@@ -19,7 +19,7 @@ const Tasks = () => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return new Intl.DateTimeFormat('fr-FR', {
+    return new Intl.DateTimeFormat('en-US', {
       day: 'numeric',
       month: 'short',
       year: 'numeric',
@@ -51,7 +51,7 @@ const Tasks = () => {
                 onClick={() => window.location.href = route('confirmations.create', { task: task.id })}
                 className="px-4 py-2 text-sm font-medium bg-blue-600 rounded-full hover:bg-blue-700 transition-colors"
               >
-                Terminer
+                Complete
               </button>
             )}
           </div>
@@ -60,24 +60,24 @@ const Tasks = () => {
             <div className="flex items-center text-gray-300">
               <UserCircleIcon className="w-4 h-4 mr-3 text-indigo-400" />
               <span>{isPending
-                ? (task.assigned_user?.name || 'Non assigné')
-                : (task.confirmation?.created_by_user?.name || 'Membre')}</span>
+                ? (task.assigned_user?.name || 'Unassigned')
+                : (task.confirmation?.created_by_user?.name || 'Member')}</span>
             </div>
 
             <div className="flex items-center text-gray-300">
               <CalendarIcon className="w-4 h-4 mr-3 text-cyan-400" />
-              <span>{task.due_date ? formatDate(task.due_date) : 'Pas de deadline'}</span>
+              <span>{task.due_date ? formatDate(task.due_date) : 'No deadline'}</span>
             </div>
 
             {isPending ? (
               <div className="flex items-center text-gray-300">
                 <ClockIcon className="w-4 h-4 mr-3 text-purple-400" />
-                <span>Créé le {formatDate(task.created_at)}</span>
+                <span>Created on {formatDate(task.created_at)}</span>
               </div>
             ) : (
               <div className="flex items-center text-gray-300">
                 <CheckCircleIcon className="w-4 h-4 mr-3 text-teal-400" />
-                <span>Terminé le {formatDate(task.confirmation?.created_at)}</span>
+                <span>Completed on {formatDate(task.confirmation?.created_at)}</span>
               </div>
             )}
 
@@ -89,7 +89,7 @@ const Tasks = () => {
                 className="flex items-center text-blue-400 hover:text-blue-300 transition-colors"
               >
                 <DocumentTextIcon className="w-4 h-4 mr-2" />
-                Voir la pièce jointe
+                View attachment
               </a>
             )}
 
@@ -111,7 +111,7 @@ const Tasks = () => {
           }`}
         >
           <BeakerIcon className="w-5 h-5" />
-          Tâches en cours
+          Pending Tasks
           <span className="ml-2 px-2 py-0.5 text-xs bg-amber-500/10 text-amber-400 rounded-full">
             {pendingTasks.length}
           </span>
@@ -125,7 +125,7 @@ const Tasks = () => {
           }`}
         >
           <ShieldCheckIcon className="w-5 h-5" />
-          Tâches terminées
+          Completed Tasks
           <span className="ml-2 px-2 py-0.5 text-xs bg-blue-500/10 text-blue-400 rounded-full">
             {finishedTasks.length}
           </span>
@@ -143,7 +143,7 @@ const Tasks = () => {
               <div className="col-span-full flex items-center justify-center p-8 rounded-xl bg-gray-800/50">
                 <div className="text-center">
                   <ExclamationCircleIcon className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                  <p className="text-gray-400">Pas de tâches en cours ! 🎉</p>
+                  <p className="text-gray-400">No pending tasks! 🎉</p>
                 </div>
               </div>
             )}
@@ -160,7 +160,7 @@ const Tasks = () => {
               <div className="col-span-full flex items-center justify-center p-8 rounded-xl bg-gray-800/50">
                 <div className="text-center">
                   <ExclamationCircleIcon className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                  <p className="text-gray-400">Aucune tâche terminée pour le moment ! 💪</p>
+                  <p className="text-gray-400">No completed tasks yet! 💪</p>
                 </div>
               </div>
             )}

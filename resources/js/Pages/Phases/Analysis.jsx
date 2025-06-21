@@ -16,11 +16,11 @@ const Analysis = ({ project, pendingTasks, finishedTasks }) => {
 
 {/* Titre et sous-titre */}
 <div className="relative z-10 text-center mb-8">
-  <h1 className="text-4xl bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-400 bg-clip-text text-transparent mb-6 relative z-10">
-  Gestionnaire de Tâches
+  <h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-400 bg-clip-text text-transparent mb-6 relative z-10">
+   Task Management
   </h1>
   <p className="text-gray-300 mt-4 text-lg mb-4">
-  Suivez et organisez efficacement les tâches de votre projet
+  Track and organize your project tasks efficiently
   </p>
 
 

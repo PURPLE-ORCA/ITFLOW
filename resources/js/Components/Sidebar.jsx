@@ -130,15 +130,15 @@ const Sidebar = () => {
                             </h3>
                         </div>
                         {/* AI Assistant */}
-                        <Link
-                            href={route("chat.index")}
-                            className="flex items-center p-2 text-yellow-400 hover:text-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-sm shadow-yellow-400 hover:shadow-lg hover:shadow-blue-700 rounded-md group/item"
-                        >
-                            <i className="bxr bx-robot text-2xl text-yellow-400 group-hover/item:text-blue-400"></i>
-                            <span className="ml-4 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                AI Assistant
-                            </span>
-                        </Link>
+            <Link
+    href={route("chat.index")}
+    className="flex items-center p-2 text-yellow-400 hover:text-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-sm shadow-yellow-400 hover:shadow-lg hover:shadow-blue-700 rounded-md group/item"
+>
+    <i className="bx bx-bot text-2xl text-yellow-400 group-hover/item:text-blue-400"></i>
+    <span className="ml-4 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        AI Assistant
+    </span>
+</Link>
 
                         {/* Drawings */}
                         <Link
@@ -154,75 +154,57 @@ const Sidebar = () => {
                 </div>
 
                 {/* Profile Section */}
-                <div className="mt-auto">
-                    <div
-                        className="relative px-2 py-4 5"
-                        onMouseEnter={() => setShowProfileMenu(true)}
-                        onMouseLeave={() => setShowProfileMenu(false)}
-                    >
-                        <div className="flex items-center">
-                            <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center">
-                                <i className="bx bxs-user text-2xl text-yellow-400"></i>
-                            </div>
-                            <div className="ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <p className="text-sm font-medium text-yellow-400">
-                                    {user.name}
-                                </p>
-                                <p className="text-xs text-blue-400">Admin</p>
-                            </div>
-                        </div>
-
-<<<<<<< Updated upstream
-                        {/* Profile Menu */}
+               <div className="mt-auto border-t border-blue-500/20">
                         <div
-                            className={`absolute bottom-full left-0 w-full bg-gray-800/95 backdrop-blur-lg rounded-t-xl overflow-hidden transition-all duration-300 ${
-                                showProfileMenu ? "block" : "hidden"
-                            }`}
+                            className="relative p-4"
+                            onMouseEnter={() => setShowProfileMenu(true)}
+                            onMouseLeave={() => setShowProfileMenu(false)}
                         >
-                            <Link
-                                href={route("profile.edit")}
-                                className="flex items-center px-4 py-3 hover:bg-yellow-400/20 transition-colors"
+                            <div className="flex items-center">
+                                <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center">
+                                    <i className="bx bxs-user text-2xl text-yellow-400"></i>
+                                </div>
+                                <div className="ml-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
+                                    <p className="text-sm font-semibold text-white">
+                                        {user.name}
+                                    </p>
+                                    <p className="text-xs text-blue-400">
+                                        Administrator
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Profile Menu */}
+                            <div
+                                className={`absolute bottom-full left-4 right-4 bg-black/95 backdrop-blur-xl rounded-2xl border border-blue-500/20 shadow-2xl transition-all duration-300 ${
+                                    showProfileMenu
+                                        ? "opacity-100 translate-y-0"
+                                        : "opacity-0 translate-y-4 pointer-events-none"
+                                }`}
                             >
-                                <i className="bx bxs-cog text-xl text-yellow-400"></i>
-                                <span className="ml-3 text-sm text-yellow-400">
-                                    Profile Settings
-                                </span>
-                            </Link>
-                            <Link
-                                href={route("logout")}
-                                method="post"
-                                as="button"
-                                className="w-full flex items-center px-4 py-3 hover:bg-blue-700/20 transition-colors"
-                            >
-                                <i className="bx bxs-log-out text-xl text-blue-400"></i>
-                                <span className="ml-3 text-sm text-blue-400">
-                                    Sign Out
-                                </span>
-                            </Link>
-                        </div>
-=======
-                          {/* Profile Menu */}
-                            <div className={`absolute bottom-full left-4 right-4 bg-black/95 backdrop-blur-xl rounded-2xl border border-blue-500/20 shadow-2xl transition-all duration-300 ${showProfileMenu ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
                                 <Link
-                                    href={route('profile.edit')}
+                                    href={route("profile.edit")}
                                     className="flex items-center px-6 py-4 hover:bg-yellow-400/10 transition-colors rounded-t-2xl border-b border-blue-500/10"
                                 >
-                                    <i className='bx bxs-cog text-xl text-yellow-400'></i>
-                                    <span className="ml-4 text-sm text-white">Profile Settings</span>
+                                    <i className="bx bxs-cog text-xl text-yellow-400"></i>
+                                    <span className="ml-4 text-sm text-white">
+                                        Profile Settings
+                                    </span>
                                 </Link>
                                 <Link
-                                    href={route('logout')}
+                                    href={route("logout")}
                                     method="post"
                                     as="button"
                                     className="w-full flex items-center px-6 py-4 hover:bg-blue-500/10 transition-colors rounded-b-2xl"
                                 >
-                                    <i className='bx bxs-log-out text-xl text-blue-400'></i>
-                                    <span className="ml-4 text-sm text-white">Sign Out</span>
+                                    <i className="bx bxs-log-out text-xl text-blue-400"></i>
+                                    <span className="ml-4 text-sm text-white">
+                                        Sign Out
+                                    </span>
                                 </Link>
                             </div>
->>>>>>> Stashed changes
+                        </div>
                     </div>
-                </div>
             </div>
         </nav>
     );

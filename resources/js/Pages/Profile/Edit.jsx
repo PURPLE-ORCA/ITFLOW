@@ -110,68 +110,94 @@ export default function Edit({ mustVerifyEmail, status, className = '' }) {
   <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
 </div>
 
-           <nav className="fixed top-0 h-screen w-16 hover:w-64 bg-transparent backdrop-blur-md transition-all duration-300 overflow-hidden group border-r border-white/10 z-50">
-                       <div className="flex flex-col h-full">
-                           {/* Logo Section */}
-                           <div className="w-full h-20 bg-transparent flex items-center justify-center duration-300">
-                               <Link href="/" className="flex items-center justify-center w-16 h-16">
-                                   <ApplicationLogo className="relative z-10" />
-                               </Link>
-                           </div>
+           <nav className="fixed top-0 left-0 right-0 h-20 bg-transparent backdrop-blur-md transition-all duration-300 border-b border-white/10 z-50">
+                         <div className="flex items-center justify-between h-full px-8">
+                             {/* Logo Section */}
+                             <div className="flex items-center">
+                                 <Link
+                                     href="/"
+                                     className="flex items-center justify-center w-16 h-16"
+                                 >
+                                     <ApplicationLogo className="relative z-10" />
+                                 </Link>
+                             </div>
 
-                           {/* Navigation Section */}
-                           <div className="flex-1 overflow-y-auto py-4 space-y-3 px-2">
-                               {/* Dashboard */}
-                               <Link href={route('dashboard')} className="flex items-center p-2 text-yellow-400 hover:text-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-sm shadow-yellow-400 hover:shadow-lg hover:shadow-blue-700 rounded-md group/item">
-                                   <i className='bx bxs-dashboard text-2xl text-yellow-400 group-hover/item:text-blue-400'></i>
-                                   <span className="ml-4 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Dashboard</span>
-                               </Link>
+                             {/* Dashboard Link */}
+      <div className="flex-1 flex justify-center absolute left-1/2 transform -translate-x-1/2">
+  <div className="relative group">
+    <Link
+      href={route("dashboard")}
+      className="flex items-center"
+    >
+      <i className="bx bxs-dashboard text-2xl text-yellow-400 group-hover:text-blue-400"></i>
+    </Link>
+    {/* Tooltip style */}
+    <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 text-xs bg-black/80 text-white rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+      Dashboard
+    </span>
+  </div>
+</div>
 
-                           </div>
+                             {/* Right Section - New Project Button and Profile */}
+                             <div className="flex items-center space-x-4">
 
-                           {/* Profile Section */}
-                               <div className="mt-auto border-t border-blue-500/20">
-                                   <div
-                                       className="relative p-4"
-                                       onMouseEnter={() => setShowProfileMenu(true)}
-                                       onMouseLeave={() => setShowProfileMenu(false)}
-                                   >
-                                       <div className="flex items-center">
-                                           <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center">
-                                           <i className='bx bxs-user text-2xl text-yellow-400'></i>
-                                           </div>
-                                           <div className="ml-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
-                                               <p className="text-sm font-semibold text-white">{user.name}</p>
-                                               <p className="text-xs text-blue-400">Administrator</p>
-                                           </div>
-                                       </div>
 
-                                       {/* Profile Menu */}
-                                       <div className={`absolute bottom-full left-4 right-4 bg-black/95 backdrop-blur-xl rounded-2xl border border-blue-500/20 shadow-2xl transition-all duration-300 ${showProfileMenu ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
-                                           <Link
-                                               href={route('profile.edit')}
-                                               className="flex items-center px-6 py-4 hover:bg-yellow-400/10 transition-colors rounded-t-2xl border-b border-blue-500/10"
-                                           >
-                                               <i className='bx bxs-cog text-xl text-yellow-400'></i>
-                                               <span className="ml-4 text-sm text-white">Profile Settings</span>
-                                           </Link>
-                                           <Link
-                                               href={route('logout')}
-                                               method="post"
-                                               as="button"
-                                               className="w-full flex items-center px-6 py-4 hover:bg-blue-500/10 transition-colors rounded-b-2xl"
-                                           >
-                                               <i className='bx bxs-log-out text-xl text-blue-400'></i>
-                                               <span className="ml-4 text-sm text-white">Sign Out</span>
-                                           </Link>
-                                       </div>
-                                   </div>
-                               </div>
-                       </div>
-                   </nav>
+                                 {/* Profile Section */}
+                                 <div
+                                     className="relative"
+                                     onMouseEnter={() => setShowProfileMenu(true)}
+                                     onMouseLeave={() => setShowProfileMenu(false)}
+                                 >
+                                     <div className="flex items-center p-2 hover:bg-blue-500/10 rounded-xl transition-all duration-300">
+                                         <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center">
+                                             <i className="bx bxs-user text-2xl text-yellow-400"></i>
+                                         </div>
+                                         <div className="ml-3">
+                                             <p className="text-sm font-semibold text-white">
+                                                 {user.name}
+                                             </p>
+                                             <p className="text-xs text-blue-400">
+                                                 Administrator
+                                             </p>
+                                         </div>
+                                     </div>
+
+                                     {/* Profile Menu */}
+                                     <div
+                                         className={`absolute top-full right-0 mt-2 bg-black/95 backdrop-blur-xl rounded-2xl border border-blue-500/20 shadow-2xl transition-all duration-300 ${
+                                             showProfileMenu
+                                                 ? "opacity-100 translate-y-0"
+                                                 : "opacity-0 translate-y-4 pointer-events-none"
+                                         }`}
+                                     >
+                                         <Link
+                                             href={route("profile.edit")}
+                                             className="flex items-center px-6 py-4 hover:bg-yellow-400/10 transition-colors rounded-t-2xl border-b border-blue-500/10"
+                                         >
+                                             <i className="bx bxs-cog text-xl text-yellow-400"></i>
+                                             <span className="ml-4 text-sm text-white">
+                                                 Profile Settings
+                                             </span>
+                                         </Link>
+                                         <Link
+                                             href={route("logout")}
+                                             method="post"
+                                             as="button"
+                                             className="w-full flex items-center px-6 py-4 hover:bg-blue-500/10 transition-colors rounded-b-2xl"
+                                         >
+                                             <i className="bx bxs-log-out text-xl text-blue-400"></i>
+                                             <span className="ml-4 text-sm text-white">
+                                                 Sign Out
+                                             </span>
+                                         </Link>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </nav>
 
             {/* Main Content */}
-            <div className="ml-20 min-h-screen relative z-10">
+            <div className="min-h-screen pt-24 transition-all duration-500">
                 <div className="max-w-6xl mx-auto px-8 py-12">
                     {/* Header Section */}
                     <div className="text-center mb-16 relative">
