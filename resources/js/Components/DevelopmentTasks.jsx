@@ -27,12 +27,12 @@ const TestingTasks = () => {
         minute: '2-digit'
       })
     };
-    return new Date(dateString).toLocaleDateString(undefined, options);
+    return new Date(dateString).toLocaleDateString('fr-FR', options);
   };
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      {/* Tabs Navigation */}
+      {/* Navigation des onglets */}
       <div className="flex justify-center mb-8 border-b border-white/10">
         <button
           onClick={() => setActiveTab('pending')}
@@ -43,7 +43,7 @@ const TestingTasks = () => {
           }`}
         >
           <BeakerIcon className="w-5 h-5" />
-          Pending Tests
+          Tests en attente
           <span className="ml-2 px-2 py-0.5 text-xs bg-amber-500/10 text-amber-400 rounded-full">
             {pendingTasks.length}
           </span>
@@ -57,24 +57,24 @@ const TestingTasks = () => {
           }`}
         >
           <ShieldCheckIcon className="w-5 h-5" />
-          Completed Tests
+          Tests complétés
           <span className="ml-2 px-2 py-0.5 text-xs bg-blue-500/10 text-blue-400 rounded-full">
             {finishedTasks.length}
           </span>
         </button>
       </div>
 
-      {/* Table Container */}
+      {/* Conteneur du tableau */}
       <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden">
         {activeTab === 'pending' ? (
           <table className="w-full">
             <thead>
               <tr className="border-b border-white/10 bg-black/20">
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Test Case</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Assignee</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Priority</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Due Date</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Status</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Cas de test</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Assigné à</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Priorité</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Échéance</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Statut</th>
                 <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Actions</th>
               </tr>
             </thead>
@@ -90,7 +90,7 @@ const TestingTasks = () => {
                   <td className="px-6 py-4 text-gray-300">
                     <div className="flex items-center gap-2">
                       <UserCircleIcon className="w-4 h-4 text-gray-400" />
-                      {task.assigned_user?.name || 'Unassigned'}
+                      {task.assigned_user?.name || 'Non assigné'}
                     </div>
                   </td>
                   <td className="px-6 py-4">
@@ -99,13 +99,14 @@ const TestingTasks = () => {
                       task.priority === 'Medium' ? 'bg-yellow-500/10 text-yellow-400' :
                       'bg-green-500/10 text-green-400'
                     }`}>
-                      {task.priority}
+                      {task.priority === 'High' ? 'Haute' :
+                       task.priority === 'Medium' ? 'Moyenne' : 'Basse'}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-gray-300">{formatDate(task.due_date)}</td>
                   <td className="px-6 py-4">
                     <span className="px-3 py-1 rounded-full text-xs font-medium bg-amber-500/10 text-amber-400">
-                      {task.status}
+                      {task.status === 'Pending' ? 'En attente' : task.status}
                     </span>
                   </td>
                   <td className="px-6 py-4">
@@ -115,7 +116,7 @@ const TestingTasks = () => {
                         className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-sm rounded-lg font-medium hover:from-amber-600 hover:to-orange-600 transition-colors"
                       >
                         <BugAntIcon className="w-4 h-4" />
-                        Test
+                        Tester
                       </Link>
                     )}
                   </td>
@@ -127,10 +128,10 @@ const TestingTasks = () => {
           <table className="w-full">
             <thead>
               <tr className="border-b border-white/10 bg-black/20">
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Test Case</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Tester</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Completion Date</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Result</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Cas de test</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Testeur</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Date de complétion</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Résultat</th>
                 <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Actions</th>
               </tr>
             </thead>
@@ -154,7 +155,7 @@ const TestingTasks = () => {
                   </td>
                   <td className="px-6 py-4">
                     <span className="px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400">
-                      Completed
+                      Complété
                     </span>
                   </td>
                   <td className="px-6 py-4">
@@ -166,7 +167,7 @@ const TestingTasks = () => {
                         className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm rounded-lg font-medium hover:from-blue-600 hover:to-cyan-600 transition-colors"
                       >
                         <DocumentMagnifyingGlassIcon className="w-4 h-4" />
-                        View Report
+                        Voir le rapport
                       </a>
                     )}
                   </td>

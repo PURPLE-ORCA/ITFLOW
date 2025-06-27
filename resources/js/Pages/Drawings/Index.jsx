@@ -8,14 +8,14 @@ import {
 
 const EmptyState = ({ projectId }) => (
     <div className="text-center py-20 relative">
-        {/* Background decorative elements */}
+        {/* Éléments décoratifs d'arrière-plan */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <div className="absolute top-10 left-1/4 w-32 h-32 bg-blue-500/10 rounded-full blur-xl animate-pulse"></div>
             <div className="absolute bottom-10 right-1/4 w-24 h-24 bg-yellow-400/10 rounded-full blur-xl animate-pulse delay-1000"></div>
         </div>
 
         <div className="relative z-10">
-            {/* Animated icon container */}
+            {/* Conteneur d'icône animée */}
             <div className="mx-auto flex items-center justify-center h-20 w-20 rounded-2xl bg-gradient-to-br from-blue-600/20 to-blue-800/30 border border-blue-500/30 backdrop-blur-sm shadow-xl mb-6 transform hover:scale-110 transition-all duration-500">
                 <div className="relative">
                     <i className="bx bxs-paint-roll text-4xl text-yellow-400 animate-bounce"></i>
@@ -24,10 +24,10 @@ const EmptyState = ({ projectId }) => (
             </div>
 
             <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-yellow-400 bg-clip-text text-transparent mb-3">
-                No Whiteboards
+                Aucun tableau blanc
             </h3>
             <p className="text-blue-200/70 text-lg mb-8 max-w-md mx-auto leading-relaxed">
-                Unleash your creativity by creating your first interactive whiteboard
+                Libérez votre créativité en créant votre premier tableau blanc interactif
             </p>
 
             <Link
@@ -35,7 +35,7 @@ const EmptyState = ({ projectId }) => (
                 className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-300 text-blue-900 font-bold text-sm uppercase tracking-wider rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border-2 border-yellow-400/50 hover:border-yellow-300"
             >
                 <i className="bx bx-plus text-xl mr-2 group-hover:rotate-90 transition-transform duration-300"></i>
-                Create First Whiteboard
+                Créer un tableau blanc
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-yellow-400/0 to-yellow-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
         </div>
@@ -72,13 +72,13 @@ export default function Index({ auth, project, drawings }) {
             project={project}
             header={
                 <h2 className="font-bold text-2xl bg-gradient-to-r from-blue-400 via-blue-300 to-yellow-400 bg-clip-text text-transparent leading-tight">
-                    Project Whiteboards
+                    Tableaux blancs du projet
                 </h2>
             }
         >
-            <Head title={`Drawings for ${project.name}`} />
+            <Head title={`Tableaux blancs pour ${project.name}`} />
 
-            {/* Background animated elements */}
+            {/* Éléments animés d'arrière-plan */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-1/4 left-10 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
                 <div className="absolute bottom-1/4 right-10 w-48 h-48 bg-yellow-400/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
@@ -88,7 +88,7 @@ export default function Index({ auth, project, drawings }) {
             <div className="py-12 relative z-10">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-gradient-to-br from-blue-900/20 via-transparent to-blue-800/10 backdrop-blur-xl border border-blue-500/20 rounded-3xl shadow-2xl p-8 relative overflow-hidden">
-                        {/* Decorative corner elements */}
+                        {/* Éléments décoratifs de coin */}
                         <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-yellow-400/10 to-transparent rounded-bl-3xl"></div>
                         <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-tr-3xl"></div>
 
@@ -101,15 +101,15 @@ export default function Index({ auth, project, drawings }) {
                                     }}
                                 ></div>
                                 <div>
-                                    <h3 className="text-2xl font-bold text-white mb-2">All Whiteboards</h3>
-                                    <p className="text-blue-200/60">Manage your creative works</p>
+                                    <h3 className="text-2xl font-bold text-white mb-2">Tous les tableaux blancs</h3>
+                                    <p className="text-blue-200/60">Gérez vos créations</p>
                                 </div>
                                 <Link
                                     href={route('projects.drawings.create', project.id)}
                                     className="group mt-4 sm:mt-0 inline-flex items-center px-6 py-3 bg-gradient-to-r from-yellow-400 to-blue-500 text-black font-semibold rounded-2xl shadow-lg transition-all duration-300 transform hover:scale-105"
                                 >
                                     <PlusCircleIcon className="w-5 h-5 text-black bx bx-plus text-xl mr-2 group-hover:rotate-180 transition-transform duration-500" />
-                                    New Whiteboard
+                                    Nouveau tableau
                                     <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-yellow-400/0 to-yellow-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 </Link>
                             </div>
@@ -125,10 +125,10 @@ export default function Index({ auth, project, drawings }) {
                                             animationDelay: `${index * 100}ms`
                                         }}
                                     >
-                                        {/* Card background effect */}
+                                        {/* Effet d'arrière-plan de carte */}
                                         <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-yellow-400/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                                        {/* Decorative corner */}
+                                        {/* Coin décoratif */}
                                         <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-yellow-400/20 to-transparent rounded-bl-2xl rounded-tr-2xl"></div>
 
                                         <div className="relative z-10 flex flex-col h-full">
@@ -143,7 +143,7 @@ export default function Index({ auth, project, drawings }) {
                                                     <h4 className="font-bold text-white text-lg truncate group-hover:text-yellow-300 transition-colors duration-300">
                                                         {drawing.name}
                                                     </h4>
-                                                    <p className="text-blue-200/60 text-sm">Interactive whiteboard</p>
+                                                    <p className="text-blue-200/60 text-sm">Tableau blanc interactif</p>
                                                 </div>
                                             </Link>
 
@@ -153,19 +153,19 @@ export default function Index({ auth, project, drawings }) {
                                                     className="flex items-center text-sm text-blue-300 hover:text-yellow-400 transition-colors duration-300 group/edit"
                                                 >
                                                     <i className='bx bxs-edit-alt mr-2 group-hover/edit:rotate-12 transition-transform duration-300'></i>
-                                                    Rename
+                                                    Renommer
                                                 </Link>
                                                 <button
                                                     onClick={() => openConfirmationModal(drawing)}
                                                     className="flex items-center text-sm text-red-400 hover:text-red-300 transition-colors duration-300 group/delete"
                                                 >
                                                     <i className='bx bxs-trash-alt mr-2 group-hover/delete:scale-110 transition-transform duration-300'></i>
-                                                    Delete
+                                                    Supprimer
                                                 </button>
                                             </div>
                                         </div>
 
-                                        {/* Hover glow effect */}
+                                        {/* Effet de lueur au survol */}
                                         <div className="absolute inset-0 rounded-2xl shadow-lg shadow-yellow-400/0 group-hover:shadow-yellow-400/20 transition-shadow duration-500"></div>
                                     </div>
                                 ))}
@@ -177,13 +177,13 @@ export default function Index({ auth, project, drawings }) {
                 </div>
             </div>
 
-            {/* Modal with matching design */}
+            {/* Modal avec design correspondant */}
             <ConfirmationModal
                 isOpen={isModalOpen}
                 onClose={closeConfirmationModal}
                 onConfirm={confirmDelete}
-                title="Delete Whiteboard"
-                message={`Are you sure you want to permanently delete "${drawingToDelete?.name}"? This action cannot be undone.`}
+                title="Supprimer le tableau blanc"
+                message={`Êtes-vous sûr de vouloir supprimer définitivement "${drawingToDelete?.name}" ? Cette action est irréversible.`}
                 className="bg-gradient-to-br from-blue-900/95 via-blue-800/90 to-blue-900/95 backdrop-blur-xl border border-blue-500/30 rounded-2xl"
             />
         </ProjectLayout>

@@ -17,14 +17,14 @@ export default function Create({ auth, project }) {
         <ProjectLayout
             user={auth.user}
             project={project}
-            header={<h2 className="font-semibold text-xl text-white/90 leading-tight">Create New Whiteboard</h2>}
+            header={<h2 className="font-semibold text-xl text-white/90 leading-tight">Créer un nouveau tableau blanc</h2>}
         >
-            <Head title="Create New Drawing" />
+            <Head title="Créer un nouveau tableau blanc" />
 
             <div className="font-poppins text-white p-5 h-auto w-full">
-                {/* Background */}
+                {/* Arrière-plan */}
                 <div className="fixed inset-0 bg-gradient-to-br from-blue-800 via-black to-blue-800 -z-10">
-                    {/* Animated Background Elements */}
+                    {/* Éléments animés d'arrière-plan */}
                     <div className="absolute top-20 left-20 w-72 h-72 bg-yellow-400/5 rounded-full blur-3xl animate-pulse"></div>
                     <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
                 </div>
@@ -37,7 +37,7 @@ export default function Create({ auth, project }) {
                                     <PencilSquareIcon className="h-6 w-6 text-blue-300" />
                                 </div>
                                 <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FDC03E] to-blue-500 bg-clip-text text-transparent">
-                                    Create New Whiteboard
+                                    Créer un nouveau tableau blanc
                                 </h2>
                             </div>
                         </div>
@@ -46,14 +46,14 @@ export default function Create({ auth, project }) {
                             <form onSubmit={submit} className="space-y-6">
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-gray-200">
-                                        Whiteboard Name
+                                        Nom du tableau blanc
                                     </label>
                                     <input
                                         type="text"
                                         value={data.name}
                                         onChange={(e) => setData('name', e.target.value)}
                                         className="w-full px-4 py-3 rounded-lg bg-slate-400/5 border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-white placeholder-gray-400"
-                                        placeholder="Enter a name for your whiteboard"
+                                        placeholder="Entrez un nom pour votre tableau blanc"
                                     />
                                     {errors.name && <span className="text-red-400 text-sm">{errors.name}</span>}
                                 </div>
@@ -67,10 +67,10 @@ export default function Create({ auth, project }) {
                                         {processing ? (
                                             <span className="flex items-center justify-center space-x-2">
                                                 <div className="w-5 h-5 border-t-2 border-b-2 border-white rounded-full animate-spin" />
-                                                <span>Creating...</span>
+                                                <span>Création en cours...</span>
                                             </span>
                                         ) : (
-                                            'Create Whiteboard'
+                                            'Créer le tableau blanc'
                                         )}
                                     </button>
 
@@ -79,7 +79,7 @@ export default function Create({ auth, project }) {
                                         className="w-full px-4 py-3 bg-slate-400/5 border border-white/10 text-gray-200 rounded-lg font-medium hover:bg-white/10 focus:ring-2 focus:ring-blue-500 transition-all duration-200 flex items-center justify-center space-x-2"
                                     >
                                         <ArrowLeftIcon className="h-4 w-4" />
-                                        <span>Back to Project</span>
+                                        <span>Retour au projet</span>
                                     </Link>
                                 </div>
                             </form>

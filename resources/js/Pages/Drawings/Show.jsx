@@ -13,10 +13,10 @@ export default function Show({ auth, project, drawing }) {
                 data: newData,
             })
             .then(response => {
-                console.log('Auto-saved!', response.data.message);
+                console.log('Auto-sauvegarde réussie !', response.data.message);
             })
             .catch(error => {
-                console.error('Auto-save failed:', error.response?.data || error.message);
+                console.error('Échec de l\'auto-sauvegarde :', error.response?.data || error.message);
             });
         }, 1500)
     ).current;
@@ -41,7 +41,7 @@ export default function Show({ auth, project, drawing }) {
             header={
                 <div className="flex items-center space-x-4">
                     <h2 className="font-semibold text-xl text-white/90 leading-tight">
-                        Drawing: {drawing.name}
+                        Dessin : {drawing.name}
                     </h2>
                     <Link
                         href={route('drawings.edit', [project.id, drawing.id])}
@@ -53,26 +53,26 @@ export default function Show({ auth, project, drawing }) {
             }
             hideContentPadding={true}
         >
-            <Head title={`Drawing: ${drawing.name}`} />
+            <Head title={`Dessin : ${drawing.name}`} />
 
-            {/* Background */}
+            {/* Arrière-plan */}
             <div className="fixed inset-0 bg-gradient-to-br from-blue-800 via-black to-blue-800 -z-10">
                 <div className="absolute top-20 left-20 w-72 h-72 bg-yellow-400/5 rounded-full blur-3xl animate-pulse"></div>
                 <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
             </div>
 
-            {/* Floating back button */}
+            {/* Bouton de retour flottant */}
             <div className="absolute top-4 left-4 z-10">
                 <Link
                     href={route('projects.show', project.id)}
                     className="flex items-center space-x-2 bg-slate-400/5 border border-white/10 text-gray-200 rounded-lg px-4 py-2 font-medium hover:bg-white/10 transition-all duration-200"
                 >
                     <ArrowLeftIcon className="h-4 w-4" />
-                    <span>Back to Project</span>
+                    <span>Retour au projet</span>
                 </Link>
             </div>
 
-            {/* Drawing canvas */}
+            {/* Canvas de dessin */}
             <div style={{ height: 'calc(100vh - 65px)' }} className="relative">
                 <Excalidraw
                     key={drawing.id}
@@ -87,9 +87,9 @@ export default function Show({ auth, project, drawing }) {
                     </WelcomeScreen>
                 </Excalidraw>
 
-                {/* Auto-save indicator */}
+                {/* Indicateur d'auto-sauvegarde */}
                 <div className="absolute bottom-4 right-4 bg-slate-400/5 border border-white/10 text-gray-200 rounded-lg px-3 py-1 text-sm font-medium backdrop-blur-sm">
-                    Auto-save enabled
+                    Auto-sauvegarde activée
                 </div>
             </div>
         </ProjectLayout>

@@ -9,10 +9,11 @@ import TextInput from '@/Components/TextInput';
 import { Transition } from '@headlessui/react';
 import { useForm, usePage } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
+
 export default function ProfileSettings({ mustVerifyEmail, status, className = '' }) {
     const user = usePage().props.auth.user;
 
-    // State for deleting user
+    // État pour la suppression du compte
     const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
     const passwordInput = useRef();
 
@@ -43,7 +44,7 @@ export default function ProfileSettings({ mustVerifyEmail, status, className = '
         });
     };
 
-    // State for updating password
+    // État pour la mise à jour du mot de passe
     const passwordInputRef = useRef();
     const currentPasswordInputRef = useRef();
 
@@ -79,7 +80,7 @@ export default function ProfileSettings({ mustVerifyEmail, status, className = '
         });
     };
 
-    // State for updating profile information
+    // État pour la mise à jour des informations du profil
     const {
         data: profileData,
         setData: setProfileData,
@@ -98,32 +99,26 @@ export default function ProfileSettings({ mustVerifyEmail, status, className = '
     };
 
     return (
-
         <div className={`space-y-6 ${className}`}>
-            {/* Delete Account Section */}
-
-
-
+            {/* Section Suppression du compte */}
             <section>
-
-
                 <header>
-                    <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">Delete Account</h2>
+                    <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">Supprimer le compte</h2>
                     <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                        Once your account is deleted, all of its resources and data will be permanently deleted.
+                        Une fois votre compte supprimé, toutes ses données seront définitivement effacées.
                     </p>
                 </header>
-                <DangerButton onClick={confirmUserDeletion}>Delete Account</DangerButton>
+                <DangerButton onClick={confirmUserDeletion}>Supprimer le compte</DangerButton>
                 <Modal show={confirmingUserDeletion} onClose={closeModal}>
                     <form onSubmit={deleteUser} className="p-6">
                         <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            Are you sure you want to delete your account?
+                            Êtes-vous sûr de vouloir supprimer votre compte ?
                         </h2>
                         <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                            Please enter your password to confirm.
+                            Veuillez entrer votre mot de passe pour confirmer.
                         </p>
                         <div className="mt-6">
-                            <InputLabel htmlFor="password" value="Password" className="sr-only" />
+                            <InputLabel htmlFor="password" value="Mot de passe" className="sr-only" />
                             <TextInput
                                 id="password"
                                 type="password"
@@ -133,32 +128,32 @@ export default function ProfileSettings({ mustVerifyEmail, status, className = '
                                 onChange={(e) => setDeleteData('password', e.target.value)}
                                 className="mt-1 block w-3/4"
                                 isFocused
-                                placeholder="Password"
+                                placeholder="Mot de passe"
                             />
                             <InputError message={deleteErrors.password} className="mt-2" />
                         </div>
                         <div className="mt-6 flex justify-end">
-                            <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
+                            <SecondaryButton onClick={closeModal}>Annuler</SecondaryButton>
                             <DangerButton className="ms-3" disabled={deleteProcessing}>
-                                Delete Account
+                                Supprimer le compte
                             </DangerButton>
                         </div>
                     </form>
                 </Modal>
             </section>
 
-            {/* Update Password Section */}
+            {/* Section Mise à jour du mot de passe */}
             <section className="relative">
                 <div className="p-8 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl">
                     <header className="text-center">
-                        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Update Password</h2>
+                        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Mettre à jour le mot de passe</h2>
                         <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                            Ensure your account is using a long, random password to stay secure.
+                            Utilisez un mot de passe long et aléatoire pour garantir la sécurité de votre compte.
                         </p>
                     </header>
                     <form onSubmit={updatePassword} className="mt-8 space-y-6">
                         <div className="relative group">
-                            <InputLabel htmlFor="current_password" value="Current Password" className="text-gray-700 dark:text-gray-300" />
+                            <InputLabel htmlFor="current_password" value="Mot de passe actuel" className="text-gray-700 dark:text-gray-300" />
                             <TextInput
                                 id="current_password"
                                 ref={currentPasswordInputRef}
@@ -171,7 +166,7 @@ export default function ProfileSettings({ mustVerifyEmail, status, className = '
                             <InputError message={passwordErrors.current_password} className="mt-2" />
                         </div>
                         <div className="relative group">
-                            <InputLabel htmlFor="password" value="New Password" className="text-gray-700 dark:text-gray-300" />
+                            <InputLabel htmlFor="password" value="Nouveau mot de passe" className="text-gray-700 dark:text-gray-300" />
                             <TextInput
                                 id="password"
                                 ref={passwordInputRef}
@@ -184,7 +179,7 @@ export default function ProfileSettings({ mustVerifyEmail, status, className = '
                             <InputError message={passwordErrors.password} className="mt-2" />
                         </div>
                         <div className="relative group">
-                            <InputLabel htmlFor="password_confirmation" value="Confirm Password" className="text-gray-700 dark:text-gray-300" />
+                            <InputLabel htmlFor="password_confirmation" value="Confirmer le mot de passe" className="text-gray-700 dark:text-gray-300" />
                             <TextInput
                                 id="password_confirmation"
                                 value={passwordData.password_confirmation}
@@ -197,11 +192,11 @@ export default function ProfileSettings({ mustVerifyEmail, status, className = '
                         </div>
                         <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
                             <PrimaryButton className={`px-6 py-3 ${passwordProcessing && 'opacity-75 cursor-wait'}`} disabled={passwordProcessing}>
-                                Update Password
+                                Mettre à jour
                             </PrimaryButton>
                             <Transition show={passwordRecentlySuccessful}>
                                 <p className="text-sm text-green-600 dark:text-green-400 flex items-center">
-                                    Password updated successfully
+                                    Mot de passe mis à jour avec succès
                                 </p>
                             </Transition>
                         </div>
@@ -209,16 +204,16 @@ export default function ProfileSettings({ mustVerifyEmail, status, className = '
                 </div>
             </section>
 
-            {/* Update Profile Information Section */}
+            {/* Section Mise à jour des informations du profil */}
             <section className="relative">
                 <div className="p-8 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl">
                     <header className="text-center">
-                        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Profile Information</h2>
-                        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">Keep your profile information up to date</p>
+                        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Informations du profil</h2>
+                        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">Maintenez vos informations à jour</p>
                     </header>
                     <form onSubmit={submitProfile} className="mt-8 space-y-6">
                         <div className="relative group">
-                            <InputLabel htmlFor="name" value="Name" className="text-gray-700 dark:text-gray-300" />
+                            <InputLabel htmlFor="name" value="Nom" className="text-gray-700 dark:text-gray-300" />
                             <TextInput
                                 id="name"
                                 className="mt-1 block w-full"
@@ -253,9 +248,9 @@ export default function ProfileSettings({ mustVerifyEmail, status, className = '
                                     </div>
                                     <div className="ml-3">
                                         <p className="text-sm text-yellow-700 dark:text-yellow-200">
-                                            Your email address is unverified.
+                                            Votre adresse email n'est pas vérifiée.
                                             <Link href={route('verification.send')} method="post" as="button" className="ml-2 font-medium text-yellow-700 dark:text-yellow-200 underline hover:text-yellow-600 dark:hover:text-yellow-100">
-                                                Click here to re-send the verification email.
+                                                Cliquez ici pour renvoyer l'email de vérification.
                                             </Link>
                                         </p>
                                     </div>
@@ -263,7 +258,7 @@ export default function ProfileSettings({ mustVerifyEmail, status, className = '
                                 {status === 'verification-link-sent' && (
                                     <div className="mt-4 bg-green-50 dark:bg-green-900/30 p-3 rounded-md">
                                         <p className="text-sm text-green-700 dark:text-green-200">
-                                            A new verification link has been sent to your email address.
+                                            Un nouveau lien de vérification a été envoyé à votre adresse email.
                                         </p>
                                     </div>
                                 )}
@@ -271,11 +266,11 @@ export default function ProfileSettings({ mustVerifyEmail, status, className = '
                         )}
                         <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
                             <PrimaryButton className={`px-6 py-3 ${profileProcessing && 'opacity-75 cursor-wait'}`} disabled={profileProcessing}>
-                                Save Changes
+                                Enregistrer
                             </PrimaryButton>
                             <Transition show={profileRecentlySuccessful}>
                                 <p className="text-sm text-green-600 dark:text-green-400 flex items-center">
-                                    Changes saved successfully
+                                    Modifications enregistrées avec succès
                                 </p>
                             </Transition>
                         </div>

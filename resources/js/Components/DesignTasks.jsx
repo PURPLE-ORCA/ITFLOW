@@ -18,7 +18,7 @@ const Tasks = () => {
         minute: '2-digit'
       })
     };
-    return new Date(dateString).toLocaleDateString(undefined, options);
+    return new Date(dateString).toLocaleDateString('fr-FR', options);
   };
 
   const TaskCard = ({ task, status }) => {
@@ -29,28 +29,28 @@ const Tasks = () => {
 
     return (
       <div className={`relative group ${cardStyles} p-1 rounded-2xl text-white transition-all duration-500 ease-out`}>
-        {/* Status Indicator */}
+        {/* Indicateur de statut */}
         <div className="absolute -left-1 top-6 w-2 h-12 rounded-xl bg-gradient-to-b from-blue-500 to-yellow-500 group-hover:scale-y-110 transition-transform duration-300" />
 
-        <div className="bg-black/90 backdrop-blur-xl rounded-xl p-6  min-h-full">
-          {/* Task Header */}
+        <div className="bg-black/90 backdrop-blur-xl rounded-xl p-6 min-h-full">
+          {/* En-tête de tâche */}
           <div className="flex items-center gap-3 mb-2">
             <CodeBracketIcon className="w-5 h-5 text-cyan-400" />
             <h3 className="text-lg font-bold">{task.title}</h3>
           </div>
 
-          {/* Task Meta */}
+          {/* Métadonnées de tâche */}
           <div className="grid grid-cols-2 gap-4 text-sm text-gray-300 mb-4">
             <div className="flex items-center gap-2">
               <UserCircleIcon className="w-4 h-4 text-gray-400" />
-              <span>{isPending ? task.assigned_user?.name || 'Unassigned' : task.confirmation?.created_by_user?.name || 'Team member'}</span>
+              <span>{isPending ? task.assigned_user?.name || 'Non assigné' : task.confirmation?.created_by_user?.name || 'Membre équipe'}</span>
             </div>
             <div className="flex items-center gap-2">
               <CalendarIcon className="w-4 h-4 text-gray-400" />
               <span>
                 {isPending
-                  ? task.due_date ? formatDate(task.due_date) : 'No deadline'
-                  : task.confirmation?.created_at ? formatDate(task.confirmation.created_at, true) : 'No completion date'}
+                  ? task.due_date ? formatDate(task.due_date) : 'Pas d\'échéance'
+                  : task.confirmation?.created_at ? formatDate(task.confirmation.created_at, true) : 'Pas de date'}
               </span>
             </div>
           </div>
@@ -62,7 +62,7 @@ const Tasks = () => {
               className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-yellow-500 to-blue-500 text-white rounded-xl font-medium transform transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
             >
               <CheckCircleIcon className="w-4 h-4" />
-              Mark as Complete
+              Marquer comme terminé
             </Link>
           ) : task.confirmation?.file_path && (
             <a
@@ -72,7 +72,7 @@ const Tasks = () => {
               className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl font-medium transform transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
             >
               <DocumentIcon className="w-4 h-4" />
-              View Development Files
+              Voir les fichiers
             </a>
           )}
         </div>
@@ -81,8 +81,8 @@ const Tasks = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-6 relative ">
-      {/* Tabs Navigation */}
+    <div className="max-w-7xl mx-auto p-6 relative">
+      {/* Navigation des onglets */}
       <div className="flex justify-center mb-8 border-b border-white/10">
         <button
           onClick={() => setActiveTab('pending')}
@@ -92,8 +92,8 @@ const Tasks = () => {
               : 'text-gray-400 hover:text-gray-300'
           }`}
         >
-          <BeakerIcon className="w-5 h-5 " />
-          Pending Tasks
+          <BeakerIcon className="w-5 h-5" />
+          Tâches en cours
           <span className="ml-2 px-2 py-0.5 text-xs bg-amber-500/10 text-amber-400 rounded-full">
             {pendingTasks.length}
           </span>
@@ -107,24 +107,24 @@ const Tasks = () => {
           }`}
         >
           <ShieldCheckIcon className="w-5 h-5" />
-          Completed Tasks
+          Tâches terminées
           <span className="ml-2 px-2 py-0.5 text-xs bg-blue-500/10 text-blue-400 rounded-full">
             {finishedTasks.length}
           </span>
         </button>
       </div>
 
-      {/* Table Container */}
+      {/* Conteneur des cartes */}
       <div className="grid grid-cols-1 md:grid-cols- gap-8">
         {activeTab === 'pending' ? (
           <div className="bg-slate-400/5 border border-white/5 backdrop-blur-xl rounded-2xl p-6">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
                 <div className="w-3 h-12 bg-yellow-400 rounded-full"></div>
-                <h2 className="text-2xl font-bold text-white">Pending</h2>
+                <h2 className="text-2xl font-bold text-white">En cours</h2>
               </div>
               <span className="px-4 py-1 bg-yellow-400/20 text-yellow-400 rounded-full text-sm">
-                {pendingTasks.length} Tasks
+                {pendingTasks.length} Tâches
               </span>
             </div>
 
@@ -135,8 +135,8 @@ const Tasks = () => {
                 ))
               ) : (
                 <div className="text-center py-8 text-blue-200 col-span-full">
-                  <p className="text-lg">All caught up! 🎉</p>
-                  <p className="text-sm opacity-70">No pending tasks</p>
+                  <p className="text-lg">Tout est à jour ! 🎉</p>
+                  <p className="text-sm opacity-70">Aucune tâche en cours</p>
                 </div>
               )}
             </div>
@@ -146,10 +146,10 @@ const Tasks = () => {
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
                 <div className="w-3 h-12 bg-blue-400 rounded-full"></div>
-                <h2 className="text-2xl font-bold text-white">Completed</h2>
+                <h2 className="text-2xl font-bold text-white">Terminées</h2>
               </div>
               <span className="px-4 py-1 bg-blue-400/20 text-blue-400 rounded-full text-sm">
-                {finishedTasks.length} Tasks
+                {finishedTasks.length} Tâches
               </span>
             </div>
 
@@ -160,8 +160,8 @@ const Tasks = () => {
                 ))
               ) : (
                 <div className="text-center py-8 text-blue-200 col-span-full">
-                  <p className="text-lg">Start completing tasks! 💪</p>
-                  <p className="text-sm opacity-70">No completed tasks yet</p>
+                  <p className="text-lg">Commencez à compléter des tâches ! 💪</p>
+                  <p className="text-sm opacity-70">Aucune tâche terminée</p>
                 </div>
               )}
             </div>

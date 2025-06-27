@@ -25,7 +25,7 @@ const Create = ({ task }) => {
                   <DocumentIcon className="h-6 w-6 text-blue-300" />
                 </div>
                 <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FDC03E] to-blue-500 bg-clip-text text-transparent">
-                  Complete Task: {task.title}
+                  Compléter la tâche : {task.title}
                 </h2>
               </div>
             </div>
@@ -47,7 +47,7 @@ const Create = ({ task }) => {
 
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-200">
-                    Attachment
+                    Fichier joint
                   </label>
                   <input
                     type="file"
@@ -66,10 +66,10 @@ const Create = ({ task }) => {
                     {processing ? (
                       <span className="flex items-center justify-center space-x-2">
                         <div className="w-5 h-5 border-t-2 border-b-2 border-white rounded-full animate-spin" />
-                        <span>Submitting...</span>
+                        <span>Envoi en cours...</span>
                       </span>
                     ) : (
-                      'Submit Completion'
+                      'Valider la complétion'
                     )}
                   </button>
                 </div>

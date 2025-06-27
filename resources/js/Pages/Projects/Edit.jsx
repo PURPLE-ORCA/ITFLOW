@@ -8,7 +8,7 @@ const Edit = ({ project }) => {
     title: project.title,
     description: project.description || '',
     deadline: project.deadline || '',
-    status: project.status || 'Active',
+    status: project.status || 'Actif',
     file: null,
   });
 
@@ -22,11 +22,11 @@ const Edit = ({ project }) => {
   };
 
   return (
-    <div className="font-poppins  text-white p-5 h-auto w-full">
-      {/* Background overlay */}
+    <div className="font-poppins text-white p-5 h-auto w-full">
+      {/* Arrière-plan */}
 
       <ProjectLayout>
-        <div className=" min-h-screen  p-2">
+        <div className="min-h-screen p-2">
           <div className="max-w-2xl mx-auto backdrop-blur-lg bg-slate-400/5 border border-white/20 rounded-xl">
             <div className="p-6 space-y-1">
               <div className="flex items-center space-x-4">
@@ -34,7 +34,7 @@ const Edit = ({ project }) => {
                   <PencilIcon className="h-6 w-6 text-blue-300" />
                 </div>
                 <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FDC03E] to-blue-500 bg-clip-text text-transparent">
-                  Edit Project
+                  Modifier le Projet
                 </h2>
               </div>
             </div>
@@ -43,7 +43,7 @@ const Edit = ({ project }) => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-200">
-                    Title
+                    Titre
                   </label>
                   <input
                     type="text"
@@ -69,7 +69,7 @@ const Edit = ({ project }) => {
 
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-200">
-                    Deadline
+                    Date limite
                   </label>
                   <input
                     type="date"
@@ -82,22 +82,22 @@ const Edit = ({ project }) => {
 
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-200">
-                    Status
+                    Statut
                   </label>
                   <select
                     value={data.status}
                     onChange={(e) => setData('status', e.target.value)}
                     className="w-full px-4 py-3 rounded-lg bg-slate-400/5 border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-white"
                   >
-                    <option value="Active" className="bg-gray-900">Active</option>
-                    <option value="Completed" className="bg-gray-900">Completed</option>
+                    <option value="Actif" className="bg-gray-900">Actif</option>
+                    <option value="Terminé" className="bg-gray-900">Terminé</option>
                   </select>
                   {errors.status && <span className="text-red-400 text-sm">{errors.status}</span>}
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-200">
-                    Upload File (Optional)
+                    Fichier (Optionnel)
                   </label>
                   <input
                     type="file"
@@ -116,10 +116,10 @@ const Edit = ({ project }) => {
                     {processing ? (
                       <span className="flex items-center justify-center space-x-2">
                         <div className="w-5 h-5 border-t-2 border-b-2 border-white rounded-full animate-spin" />
-                        <span>Updating...</span>
+                        <span>Mise à jour...</span>
                       </span>
                     ) : (
-                      'Update Project'
+                      'Mettre à jour'
                     )}
                   </button>
 
@@ -129,7 +129,7 @@ const Edit = ({ project }) => {
                     className="w-full px-4 py-3 bg-slate-400/5 border border-white/10 text-gray-200 rounded-lg font-medium hover:bg-white/10 focus:ring-2 focus:ring-blue-500 transition-all duration-200 flex items-center justify-center space-x-2"
                   >
                     <ArrowLeftIcon className="h-4 w-4" />
-                    <span>Back to Project</span>
+                    <span>Retour au projet</span>
                   </button>
                 </div>
               </form>

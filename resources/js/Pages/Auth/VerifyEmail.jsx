@@ -13,26 +13,25 @@ export default function VerifyEmail({ status }) {
 
     return (
         <GuestLayout>
-            <Head title="Email Verification" />
+            <Head title="Vérification d'email" />
 
             <div className="mb-4 text-sm text-gray-600 dark:text-gray-400">
-                Thanks for signing up! Before getting started, could you verify
-                your email address by clicking on the link we just emailed to
-                you? If you didn't receive the email, we will gladly send you
-                another.
+                Merci pour votre inscription ! Avant de commencer, pourriez-vous vérifier
+                votre adresse email en cliquant sur le lien que nous venons de vous envoyer ?
+                Si vous n'avez pas reçu l'email, nous vous en enverrons un autre avec plaisir.
             </div>
 
             {status === 'verification-link-sent' && (
                 <div className="mb-4 text-sm font-medium text-green-600 dark:text-green-400">
-                    A new verification link has been sent to the email address
-                    you provided during registration.
+                    Un nouveau lien de vérification a été envoyé à l'adresse email
+                    que vous avez fournie lors de l'inscription.
                 </div>
             )}
 
             <form onSubmit={submit}>
                 <div className="mt-4 flex items-center justify-between">
                     <PrimaryButton disabled={processing}>
-                        Resend Verification Email
+                        Renvoyer l'email de vérification
                     </PrimaryButton>
 
                     <Link
@@ -41,7 +40,7 @@ export default function VerifyEmail({ status }) {
                         as="button"
                         className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
                     >
-                        Log Out
+                        Déconnexion
                     </Link>
                 </div>
             </form>

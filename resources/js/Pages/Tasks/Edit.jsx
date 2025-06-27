@@ -29,7 +29,7 @@ const Edit = ({ task, users }) => {
                   <PencilIcon className="h-6 w-6 text-blue-300" />
                 </div>
                 <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FDC03E] to-blue-500 bg-clip-text text-transparent">
-                  Edit Task
+                  Modifier la Tâche
                 </h2>
               </div>
             </div>
@@ -38,7 +38,7 @@ const Edit = ({ task, users }) => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-200">
-                    Title
+                    Titre
                   </label>
                   <input
                     type="text"
@@ -64,14 +64,14 @@ const Edit = ({ task, users }) => {
 
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-200">
-                    Assign To
+                    Assigner à
                   </label>
                   <select
                     value={data.assigned_to}
                     onChange={(e) => setData('assigned_to', e.target.value)}
                     className="w-full px-4 py-3 rounded-lg bg-slate-400/5 border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-white"
                   >
-                    <option value="">Select Team Member</option>
+                    <option value="">Sélectionner un membre</option>
                     {users.map((user) => (
                       <option key={user.id} value={user.id}>
                         {user.name} - {user.pivot.role}
@@ -90,19 +90,19 @@ const Edit = ({ task, users }) => {
                     onChange={(e) => setData('phase', e.target.value)}
                     className="w-full px-4 py-3 rounded-lg bg-slate-400/5 border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-white"
                   >
-                    <option value="">Select Phase</option>
-                    <option value="analysis">Analysis</option>
-                    <option value="design">Design</option>
-                    <option value="development">Development</option>
-                    <option value="testing">Testing</option>
-                    <option value="wrapping">Wrapping</option>
+                    <option value="">Sélectionner une phase</option>
+                    <option value="analysis">Analyse</option>
+                    <option value="design">Conception</option>
+                    <option value="development">Développement</option>
+                    <option value="testing">Tests</option>
+                    <option value="wrapping">Finalisation</option>
                   </select>
                   {errors.phase && <span className="text-red-400 text-sm">{errors.phase}</span>}
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-200">
-                    Due Date
+                    Date d'échéance
                   </label>
                   <input
                     type="date"
@@ -122,10 +122,10 @@ const Edit = ({ task, users }) => {
                     {processing ? (
                       <span className="flex items-center justify-center space-x-2">
                         <div className="w-5 h-5 border-t-2 border-b-2 border-white rounded-full animate-spin" />
-                        <span>Updating...</span>
+                        <span>Mise à jour...</span>
                       </span>
                     ) : (
-                      'Update Task'
+                      'Mettre à jour'
                     )}
                   </button>
 
@@ -135,7 +135,7 @@ const Edit = ({ task, users }) => {
                     className="w-full px-4 py-3 bg-slate-400/5 border border-white/10 text-gray-200 rounded-lg font-medium hover:bg-white/10 focus:ring-2 focus:ring-blue-500 transition-all duration-200 flex items-center justify-center space-x-2"
                   >
                     <ArrowLeftIcon className="h-4 w-4" />
-                    <span>Back to Task</span>
+                    <span>Retour à la tâche</span>
                   </button>
                 </div>
               </form>

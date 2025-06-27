@@ -28,7 +28,7 @@ const TypingIndicator = () => (
                     <div className="electric-dot dot-2"></div>
                     <div className="electric-dot dot-3"></div>
                 </div>
-                <span className="text-sm text-blue-200 font-medium electric-text">Assistant is generating a response...</span>
+                <span className="text-sm text-blue-200 font-medium electric-text">L'assistant génère une réponse...</span>
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@ export default function ChatIndex({ auth, messages }) {
     const initialMessage = {
         id: 'init-0',
         sender: 'bot',
-        text: "Hi! I'm your Electric AI Assistant. How can I brighten your day?",
+        text: "Bonjour ! Je suis votre Assistant Électrique IA. Comment puis-je illuminer votre journée ?",
     };
 
     const fileInputRef = useRef(null);
@@ -82,7 +82,7 @@ export default function ChatIndex({ auth, messages }) {
 
     return (
         <ProjectLayout user={auth.user}>
-            <Head title="Electric AI Assistant" />
+            <Head title="Assistant Électrique IA" />
 
             <style>{`
                 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap');
@@ -470,10 +470,10 @@ export default function ChatIndex({ auth, messages }) {
                             </div>
                             <div>
                                 <h1 className="text-2xl font-bold text-white electric-title animate-neon-glow">
-                                    Electric AI Assistant
+                                    Assistant Électrique IA
                                 </h1>
                                 <p className="text-sm text-blue-200 mt-1 font-medium">
-                                    Powered by the pure energy of artificial intelligence
+                                    Alimenté par l'énergie pure de l'intelligence artificielle
                                 </p>
                             </div>
                         </div>
@@ -525,7 +525,7 @@ export default function ChatIndex({ auth, messages }) {
                                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                                         </svg>
-                                                        <span>Download {msg.file_name}</span>
+                                                        <span>Télécharger {msg.file_name}</span>
                                                     </a>
                                                 </div>
                                             )}
@@ -561,7 +561,7 @@ export default function ChatIndex({ auth, messages }) {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
                                         </svg>
                                         <span className="text-sm text-yellow-200 flex-1 font-medium">
-                                            Attached file: {data.attachment.name}
+                                            Fichier joint : {data.attachment.name}
                                         </span>
                                         <button
                                             type="button"
@@ -601,7 +601,7 @@ export default function ChatIndex({ auth, messages }) {
                                         <textarea
                                             value={data.prompt}
                                             onChange={(e) => setData('prompt', e.target.value)}
-                                            placeholder="Write your electrifying message..."
+                                            placeholder="Écrivez votre message électrisant..."
                                             disabled={processing}
                                             onKeyDown={(e) => {
                                                 if (e.key === 'Enter' && !e.shiftKey) {

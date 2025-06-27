@@ -17,14 +17,14 @@ export default function Edit({ auth, project, drawing }) {
         <ProjectLayout
             user={auth.user}
             project={project}
-            header={<h2 className="font-semibold text-xl text-white/90 leading-tight">Rename Drawing</h2>}
+            header={<h2 className="font-semibold text-xl text-white/90 leading-tight">Renommer le dessin</h2>}
         >
-            <Head title={`Rename ${drawing.name}`} />
+            <Head title={`Renommer ${drawing.name}`} />
 
             <div className="font-poppins text-white p-5 h-auto w-full">
-                {/* Background */}
+                {/* Arrière-plan */}
                 <div className="fixed inset-0 bg-gradient-to-br from-blue-800 via-black to-blue-800 -z-10">
-                    {/* Animated Background Elements */}
+                    {/* Éléments animés d'arrière-plan */}
                     <div className="absolute top-20 left-20 w-72 h-72 bg-yellow-400/5 rounded-full blur-3xl animate-pulse"></div>
                     <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
                 </div>
@@ -37,7 +37,7 @@ export default function Edit({ auth, project, drawing }) {
                                     <DocumentIcon className="h-6 w-6 text-blue-300" />
                                 </div>
                                 <h2 className="text-2xl font-bold bg-gradient-to-r from-[#FDC03E] to-blue-500 bg-clip-text text-transparent">
-                                    Rename Drawing
+                                    Renommer le dessin
                                 </h2>
                             </div>
                         </div>
@@ -46,7 +46,7 @@ export default function Edit({ auth, project, drawing }) {
                             <form onSubmit={submit} className="space-y-6">
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-gray-200">
-                                        Drawing Name
+                                        Nom du dessin
                                     </label>
                                     <input
                                         type="text"
@@ -66,10 +66,10 @@ export default function Edit({ auth, project, drawing }) {
                                         {processing ? (
                                             <span className="flex items-center justify-center space-x-2">
                                                 <div className="w-5 h-5 border-t-2 border-b-2 border-white rounded-full animate-spin" />
-                                                <span>Saving...</span>
+                                                <span>Enregistrement...</span>
                                             </span>
                                         ) : (
-                                            'Save Changes'
+                                            'Enregistrer les modifications'
                                         )}
                                     </button>
 
@@ -78,7 +78,7 @@ export default function Edit({ auth, project, drawing }) {
                                         className="w-full px-4 py-3 bg-slate-400/5 border border-white/10 text-gray-200 rounded-lg font-medium hover:bg-white/10 focus:ring-2 focus:ring-blue-500 transition-all duration-200 flex items-center justify-center space-x-2"
                                     >
                                         <ArrowLeftIcon className="h-4 w-4" />
-                                        <span>Back to Project</span>
+                                        <span>Retour au projet</span>
                                     </Link>
                                 </div>
                             </form>

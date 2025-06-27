@@ -7,9 +7,9 @@ function Toast({ message, type }) {
             if (toastElement) {
                 toastElement.style.display = "none";
             }
-        }, 3000); // Hide after 3 seconds
+        }, 3000); // Masquer après 3 secondes
 
-        return () => clearTimeout(timer); // Cleanup timeout on unmount
+        return () => clearTimeout(timer); // Nettoyage du timeout lors du démontage
     }, []);
 
     return (

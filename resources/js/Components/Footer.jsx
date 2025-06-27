@@ -6,27 +6,27 @@ const Footer = () => {
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4 lg:px-8">
             <div>
                 <h3 className="text-lg font-semibold text-yellow-300 mb-4">
-                    About ITFLOW
+                    À propos d'ITFLOW
                 </h3>
                 <p className="text-sm">
-                    ITFLOW is your ultimate tool for seamless project
-                    management and collaboration. Empower your team with
-                    innovative features and agile solutions.
+                    ITFLOW est votre outil ultime pour une gestion de projet fluide
+                    et une collaboration efficace. Donnez à votre équipe des
+                    fonctionnalités innovantes et des solutions agiles.
                 </p>
             </div>
             <div>
                 <h3 className="text-lg font-semibold text-yellow-300 mb-4">
-                    Quick Links
+                    Liens rapides
                 </h3>
                 <nav className="flex flex-col gap-y-2 ">
                     <a
                         href="#features"
                         className="text-sm hover:text-cyan-200"
                     >
-                        Features
+                        Fonctionnalités
                     </a>
                     <a href="#About" className="text-sm hover:text-cyan-200">
-                        About
+                        À propos
                     </a>
                     <a
                         href="#learn-more"
@@ -38,13 +38,13 @@ const Footer = () => {
                         href="login.html"
                         className="text-sm hover:text-cyan-200"
                     >
-                        Log in
+                        Connexion
                     </a>
                 </nav>
             </div>
             <div>
                 <h3 className="text-lg font-semibold text-yellow-300 mb-4 ">
-                    Follow Us
+                    Suivez-nous
                 </h3>
                 <div className="flex gap-4 pl-36 ">
                     <a href="#" aria-label="Facebook">
@@ -81,7 +81,7 @@ const Footer = () => {
             </div>
         </div>
         <div className="border-t border-gray-700 mt-10 pt-6 text-center text-sm text-gray-400">
-            IT Flow Team &copy; {new Date().getFullYear()}
+            Équipe ITFLOW &copy; {new Date().getFullYear()}
         </div>
     </footer>
   );

@@ -5,19 +5,19 @@ const AboutUs = () => {
         <section id="About" className="py-16 text-center text-white/20">
             <div className="container mx-auto px-4 py-8">
                 <h2 className="text-3xl font-semibold mb-5 text-yellow-300 animate__animated animate__pulse animate__infinite">
-                    About Our Solution
+                    À propos de notre solution
                 </h2>
                 <p className="text-base mb-8 text-white">
                     <span className="inline-block bg-gradient-to-r from-cyan-300 to-cyan-400 text-black px-1 py-0 rounded-lg transform hover:scale-105 transition-all duration-300">
-                        Our solution
+                        Notre solution
                     </span>{" "}
-                    is specially designed to simplify
+                    est spécialement conçue pour simplifier
                     <span className="inline-block bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black px-1 py-0 rounded-lg transform hover:scale-105 transition-all duration-300">
                         ITFlow
                     </span>{" "}
-                    ,enabling <br />
-                    technical teams to collaborate effectively and adopt agile
-                    methodologies for better
+                    , permettant <br />
+                    aux équipes techniques de collaborer efficacement et d'adopter des
+                    méthodologies agiles pour une meilleure
                     <span className="inline-block bg-gradient-to-r from-cyan-300 to-cyan-400 text-black px-1 py-0 rounded-lg transform hover:scale-105 transition-all duration-300">
                         performance.
                     </span>
@@ -37,7 +37,7 @@ const AboutUs = () => {
                                 Mohammed El Moussaoui
                             </h3>
                             <p className="text-white text-sm leading-tight">
-                                Project Manager & Back-End Developer
+                                Chef de projet & Développeur Back-End
                             </p>
                         </div>
                     </div>
@@ -53,11 +53,10 @@ const AboutUs = () => {
                                 Kaouthar Missaoui
                             </h3>
                             <p className="text-white leading-tight text-sm">
-                                UX/UI Design Expert & Frontend Developer
+                                Experte UX/UI Design & Développeuse Frontend
                             </p>
                         </div>
                     </div>
-
 
                     <div className="mb-8 flex justify-between items-center w-full right-timeline">
                         <div className="order-1 w-5/12"></div>
@@ -68,10 +67,9 @@ const AboutUs = () => {
                         </div>
                       <div className="order-1 border-y-2 rounded-lg ounded-lg shadow-lg border-cyan-200 shadow-cyan-500/50 w-5/12 px-6 py-4">
                             <h3 className="text-white font-semibold text-xl">
-                            Ilyes Rafai    </h3>
+                            Ilyes Rafai</h3>
                             <p className="text-white text-sm leading-tight">
-                                Tech Lead & Agile Coach | Encadrement Technique
-
+                                Tech Lead & Coach Agile | Encadrement Technique
                             </p>
                         </div>
                     </div>

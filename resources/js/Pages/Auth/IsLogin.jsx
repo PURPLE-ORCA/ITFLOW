@@ -42,7 +42,7 @@ export default function IsLogin({ status, canResetPassword }) {
 
     return (
         <GuestLayout>
-            <Head title={isLogin ? "Log in" : "Register"} />
+            <Head title={isLogin ? "Connexion" : "Inscription"} />
 
             {/* Animated Background */}
             <div
@@ -55,7 +55,7 @@ export default function IsLogin({ status, canResetPassword }) {
                     <div className="flex flex-col items-center text-center py-6 bg-transparent text-yellow-300">
                     <img src={`${window.location.origin}/storage/img/logo2.png`} alt="Logo" className="min-w-24 h-24 mb-3" />
 
-                        <p className="mt-2 text-lg">Join our amazing community</p>
+                        <p className="mt-2 text-lg">Rejoignez notre incroyable communauté</p>
                     </div>
                     <div className="p-8">
                         <div className="flex justify-center mb-6 space-x-4">
@@ -65,7 +65,7 @@ export default function IsLogin({ status, canResetPassword }) {
                                     isLogin ? 'bg-blue-500 text-white shadow-lg' : 'bg-black text-blue-500'
                                 }`}
                             >
-                                Login
+                                Connexion
                             </button>
                             <button
                                 onClick={() => setIsLogin(false)}
@@ -73,7 +73,7 @@ export default function IsLogin({ status, canResetPassword }) {
                                     !isLogin ? 'bg-yellow-500 text-white shadow-lg' : 'bg-black text-yellow-500'
                                 }`}
                             >
-                                Sing Up
+                                Inscription
                             </button>
                         </div>
 
@@ -106,7 +106,7 @@ export default function IsLogin({ status, canResetPassword }) {
                                         className="w-full px-8 py-2 rounded-lg border-b-2 border-white text-white text-center"
                                         autoComplete="current-password"
                                         onChange={(e) => loginForm.setData('password', e.target.value)}
-                                        placeholder="Password"
+                                        placeholder="Mot de passe"
                                     />
                                     <i className="fas fa-lock absolute left-3 top-3 text-gray-400"></i>
                                     <InputError message={loginForm.errors.password} className="mt-2" />
@@ -122,7 +122,7 @@ export default function IsLogin({ status, canResetPassword }) {
                                             }
                                         />
                                         <span className="ms-2 text-sm text-gray-300">
-                                            Remember me
+                                            Se souvenir de moi
                                         </span>
                                     </label>
 
@@ -131,14 +131,14 @@ export default function IsLogin({ status, canResetPassword }) {
                                             href={route('password.request')}
                                             className="text-sm text-gray-300 underline hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                         >
-                                            Forgot your password?
+                                            Mot de passe oublié ?
                                         </Link>
                                     )}
                                 </div>
 
                                 <div className="mt-4">
-                                    <PrimaryButton className="w-full py-1.5 bg-blue-600 rounded-full hover:bg-yellow-500 hover:text-white text-black hover:opacity-90 transition-opacity duration-300 transform hover:scale-105" disabled={loginForm.processing}>
-                                        Log in
+                                    <PrimaryButton className="w-full py-1.5 bg-blue-600 rounded-full hover:bg-yellow-500 hover:text-white text-white hover:opacity-90 transition-opacity duration-300 transform hover:scale-105" disabled={loginForm.processing}>
+                                        Se connecter
                                     </PrimaryButton>
                                 </div>
                             </form>
@@ -154,7 +154,7 @@ export default function IsLogin({ status, canResetPassword }) {
                                         autoComplete="name"
                                         isFocused={true}
                                         onChange={(e) => registerForm.setData('name', e.target.value)}
-                                        placeholder="Full Name"
+                                        placeholder="Nom complet"
                                         required
                                     />
                                     <i className="fas fa-user absolute left-3 top-3 text-gray-400"></i>
@@ -188,7 +188,7 @@ export default function IsLogin({ status, canResetPassword }) {
                                         className="w-full px-8 py-2 rounded-lg border-b-2 border-white bg-white bg-opacity-20 focus:bg-opacity-30 focus:ring-2 focus:ring-cyan-300 text-white text-center placeholder-gray-300 transition duration-200"
                                         autoComplete="new-password"
                                         onChange={(e) => registerForm.setData('password', e.target.value)}
-                                        placeholder="Password"
+                                        placeholder="Mot de passe"
                                         required
                                     />
                                     <i className="fas fa-lock absolute left-3 top-3 text-gray-400"></i>
@@ -207,7 +207,7 @@ export default function IsLogin({ status, canResetPassword }) {
                                         onChange={(e) =>
                                             registerForm.setData('password_confirmation', e.target.value)
                                         }
-                                        placeholder="Confirm Password"
+                                        placeholder="Confirmer le mot de passe"
                                         required
                                     />
                                     <i className="fas fa-lock absolute left-3 top-3 text-gray-400"></i>
@@ -215,8 +215,8 @@ export default function IsLogin({ status, canResetPassword }) {
                                 </div>
 
                                 <div className="mt-4">
-                                    <PrimaryButton className="w-full py-2 text-black bg-blue-600 rounded-full hover:bg-yellow-500 hover:text-white transition" disabled={registerForm.processing}>
-                                        Sign Up
+                                    <PrimaryButton className="w-full py-2 text-white bg-blue-600 rounded-full hover:bg-yellow-500 hover:text-white transition" disabled={registerForm.processing}>
+                                        S'inscrire
                                     </PrimaryButton>
                                 </div>
                             </form>
