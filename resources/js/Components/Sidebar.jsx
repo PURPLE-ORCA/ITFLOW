@@ -21,7 +21,7 @@ const Sidebar = () => {
                 </div>
 
                 {/* Section Navigation */}
-                <div className="flex-1 overflow-y-auto py-4 space-y-3 px-2">
+                <div className="flex-1 overflow-y py-4 space-y-3 px-2">
                     {/* Tableau de bord */}
                     <Link
                         href={route("dashboard")}
@@ -107,20 +107,7 @@ const Sidebar = () => {
                                 Tests
                             </span>
                         </Link>
-
-                        {/* Finalisation */}
-                        <Link
-                            href={route("projects.phases", {
-                                project: projectId,
-                                phase: "wrapping",
-                            })}
-                            className="flex items-center p-2 text-yellow-400 hover:text-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-sm shadow-yellow-400 hover:shadow-lg hover:shadow-blue-700 rounded-md group/item"
-                        >
-                            <i className="bx bxs-package text-2xl text-yellow-400 group-hover/item:text-blue-400"></i>
-                            <span className="ml-4 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                Finalisation
-                            </span>
-                        </Link>
+                        
                     </div>
 
                     <div className="mt-6">

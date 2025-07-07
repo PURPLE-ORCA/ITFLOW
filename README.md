@@ -1,66 +1,136 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### Yet Another Project Management Tool... But This One Has a Robot Brain and a Doodle Pad.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## About The Project
 
-## About Laravel
+ITFLOW was built as a comprehensive final year project (PFE) to demonstrate a full-stack skillset using a modern, monolithic tech stack. It's an opinionated platform designed to streamline a specific, phased software development workflow (Analysis -> Design -> Development -> Testing -> Wrapping).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+While it solves the "problem" of disorganized project tracking, its real purpose is to serve as a canvas for integrating advanced, and fun features. It's less about trying to compete with Jira and more about showing what's possible with modern web technologies.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**The core idea:** Combine the rigidity of a phased workflow with the chaotic creativity of a real-time whiteboard and the analytical power of a multimodal AI assistant.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### ✅ Core Functionality
+- **Project & Task Management:** Full CRUD operations for projects and their associated tasks.
+- **Phased Workflow:** A structured five-phase workflow (Analysis, Design, Development, Testing, Wrapping) to guide projects from conception to completion.
+- **User Authentication:** Secure user registration, login, and profile management powered by Laravel Breeze.
+- **Team Collaboration:** Assign users to projects with specific roles.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### ✨ The Fun Stuff (The "Look What I Can Do" Features)
+- **🧠 Multimodal AI Assistant:** An integrated chat interface powered by the Google Gemini API. It can:
+    -   Answer questions and provide assistance.
+    -   Analyze uploaded images (`gemini-1.5-flash-latest`).
+    -   Read and summarize the text content of uploaded PDF files.
+- **🎨 Infinite Whiteboard:** A persistent, auto-saving digital whiteboard for each project, powered by **Excalidraw**. Perfect for architecture diagrams, brainstorming, or just doodling.
+- **🌐 Internationalization (i18n):** The entire UI supports English, French, and Arabic, with a seamless language switcher in the header. It even handles RTL layouts for Arabic. **(DISABLED IN THIS VERSION)**
+- **🔔 Real-Time(ish) Notifications:** A polling-based notification system alerts users when they're assigned to a new task, without needing WebSockets **(DISABLED IN THIS VERSION)**. 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Tech Stack
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+This project is built on the TALL stack's cooler cousin, the LIRP stack (Laravel, Inertia, React, PostgreSQL).
 
-### Premium Partners
+| Backend       | Frontend       | Database     | Styling & UI        |
+|---------------|----------------|--------------|---------------------|
+| **Laravel 12**| **React 19**   | **PostgreSQL** | **Tailwind CSS**    |
+| **PHP 8.2+**  | **Inertia.js** |              | **shadcn/ui**       |
+|               | **Vite**       |              | **Framer Motion** (for flair) |
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+---
 
-## Contributing
+## Getting Started
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+To get a local copy up and running, follow these simple steps.
 
-## Code of Conduct
+### Prerequisites
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Make sure you have the following installed on your system:
+- PHP >= 8.2
+- Composer
+- Node.js >= 18.0
+- PostgreSQL
 
-## Security Vulnerabilities
+### Installation
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1.  **Clone the repo**
+    ```sh
+    git clone https://github.com/PURPLE-ORCA/ITFLOW.git
+    cd ITFLOW
+    ```
+
+2.  **Install PHP dependencies**
+    ```sh
+    composer install
+    ```
+
+3.  **Install NPM dependencies**
+    ```sh
+    npm install
+    ```
+
+4.  **Set up your environment file**
+    -   Copy the example environment file:
+        ```sh
+        cp .env.example .env
+        ```
+    -   Open the `.env` file and configure your database credentials:
+        ```env
+        DB_CONNECTION=pgsql
+        DB_HOST=127.0.0.1
+        DB_PORT=5432
+        DB_DATABASE=itflow_db
+        DB_USERNAME=your_username
+        DB_PASSWORD=your_password
+        ```
+    -   **CRITICAL:** Add your Google Gemini API key for the AI Assistant to work:
+        ```env
+        GEMINI_API_KEY="your_secret_api_key"
+        ```
+
+5.  **Generate your application key**
+    ```sh
+    php artisan key:generate
+    ```
+
+6.  **Run the database migrations and seeders**
+    -   The seeders will create a default admin user and a sample project to get you started.
+    ```sh
+    php artisan migrate --seed
+    ```
+
+7.  **Link the storage directory**
+    -   This is necessary for uploaded files (like in the chat) to be publicly accessible.
+    ```sh
+    php artisan storage:link
+    ```
+
+8.  **Fire it up!**
+    -   Run the Vite development server in one terminal:
+        ```sh
+        npm run dev
+        ```
+    -   Run the Laravel development server in another terminal:
+        ```sh
+        php artisan serve
+        ```
+
+You should now be able to access the application at `http://localhost:8000`.
+
+**Default Login:**
+-   **Email:** `admin@itflow.com`
+-   **Password:** `password`
+
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+
+## Contact
+
+Your Name - medms2005@gmail.com . misskaouthar9@gmail.com
